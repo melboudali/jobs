@@ -1,3 +1,4 @@
+@use "fonts";
 @use "variables.module";
 
 * {
@@ -11,7 +12,7 @@ body {
 	font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
 		sans-serif;
 	color: variables.$color-primary;
-	background-color: variables.$bColor-secondary;
+	background-color: variables.$bColor-primary;
 	font-size: 1rem;
 	font-weight: 400;
 	font-style: normal;
