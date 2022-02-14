@@ -1,9 +1,13 @@
-$color-primary: #2b2b2b;
-$color-secondary: #3465cf;
+$color-primary: #2b2e32;
+$color-secondary: #286efa;
+$color-white: #fff;
 $bColor-primary: #fff;
 $bColor-secondary: #f5f5f5;
+$borderGrayColor: rgba(43, 46, 50, 0.1);
+$grayBoxShadow: rgba(43, 46, 50, 0.2);
 
 :export {
+	colorWhite: $color-white;
 	colorPrimary: $color-primary;
 	colorSecondary: $color-secondary;
 	bColorPrimary: $bColor-primary;
