@@ -1,4 +1,4 @@
-// import Header from "../components/header";
+import Header from "../components/header";
 import styles from "./layout.module.scss";
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
 
 const Layout = ({ children }: Props) => (
 	<>
-		{/* <Header /> */}
+		<Header />
 		<main className={styles.main}>{children}</main>
 		<footer />
 	</>
