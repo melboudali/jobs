@@ -1,0 +1,15 @@
+@use "../styles/variables.module";
+
+.header {
+	position: absolute;
+	height: 60px;
+	width: 100%;
+	max-width: 864px;
+	top: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: variables.$bColor-primary;
+	border: 1px solid variables.$borderGrayColor;
+	border-radius: 4px;
+	padding: 0 10px;
+}
