@@ -47,12 +47,16 @@
 			border: 1px solid variables.$borderGrayColor;
 			border-radius: 2px;
 			line-height: 10px;
+			transition: background-color 400ms ease-in-out;
 			span {
 				font-weight: 500;
 				font-size: 0.875rem;
 				text-transform: capitalize;
 				color: variables.$color-white;
 				margin-right: 13px;
+			}
+			&:hover {
+				background-color: variables.$color-primary;
 			}
 		}
 	}
