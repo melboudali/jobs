@@ -1,10 +1,5 @@
-@use "variables.module";
-
 .main {
 	max-width: 1080px;
 	margin: 50px auto 0;
-	background-color: variables.$bColor-secondary;
-	border-radius: 2px;
-	border: 1px solid variables.$borderGrayColor;
 	height: 200vh;
 }
