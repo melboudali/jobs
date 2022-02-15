@@ -1,0 +1,9 @@
+@use "variables.module";
+
+.title {
+	font-weight: bold;
+	font-size: 1.125rem;
+	line-height: 22px;
+	text-transform: capitalize;
+	color: variables.$color-primary;
+}
