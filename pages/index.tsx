@@ -4,7 +4,7 @@ import Image from "next/image";
 import variables from "../styles/_variables.module.scss";
 
 const Home: NextPage = () => {
-	return <div>hello world</div>;
+	return <div></div>;
 };
 
 export default Home;
