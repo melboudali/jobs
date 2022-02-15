@@ -1,0 +1,58 @@
+@use "variables.module";
+
+.hero {
+	position: relative;
+	height: 536px;
+	background-color: variables.$bColor-secondary;
+	&,
+	img {
+		z-index: 0;
+		border-radius: 2px;
+		border: 1px solid variables.$borderGrayColor;
+	}
+	&:before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background-color: variables.$heroBg;
+		z-index: 1;
+	}
+}
+
+.hero__wrapper {
+	z-index: 2;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	color: variables.$color-white;
+}
+
+.hero__title {
+	margin-bottom: 50px;
+	text-align: center;
+	font-size: 3rem;
+	font-weight: 800;
+	line-height: 58px;
+	text-transform: capitalize;
+	color: variables.$color-primary;
+}
+
+.hero__link {
+	display: block;
+	width: fit-content;
+	margin: 0 auto;
+	background-color: variables.$color-secondary;
+	box-shadow: 0px 2px 6px variables.$grayBoxShadow;
+	border: 1px solid variables.$borderGrayColor;
+	border-radius: 20px 0px;
+	padding: 26px 28px;
+	font-weight: 700;
+	font-size: 1.5rem;
+	line-height: 18px;
+	letter-spacing: -0.05em;
+	text-transform: capitalize;
+	transition: background-color 400ms ease-in-out;
+	&:hover {
+		background-color: variables.$color-primary;
+	}
+}
