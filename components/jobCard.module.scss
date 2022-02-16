@@ -1,12 +1,17 @@
 @use "variables.module";
 
 .wrapper {
+	height: 144px;
+	width: 255px;
 	padding: 5px;
 	background-color: variables.$bColor-secondary;
 	border: 1px solid variables.$borderGrayColor;
-	width: 255px;
-	height: 144px;
+	border-radius: 4px;
+	box-shadow: 0px 2px 6px 0 variables.$grayBoxShadow;
 }
 
 .top {
+	&__img {
+		border-radius: 50%;
+	}
 }
