@@ -76,16 +76,16 @@
 }
 
 .cards-slider {
-	width: 100%;
-	max-width: 1280px;
 	overflow-x: hidden;
 }
 
 .cards {
-	margin-top: 30px;
 	display: flex;
 	gap: 20px;
 	width: fit-content;
+	margin-top: 20px;
+	padding: 10px 0;
+
 	// animation: bannermove 10s linear infinite;
 	// @keyframes bannermove {
 	// 	0% {
