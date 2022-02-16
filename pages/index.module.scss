@@ -19,7 +19,7 @@
 	}
 }
 
-.hero__wrapper {
+.wrapper {
 	z-index: 2;
 	position: absolute;
 	top: 50%;
@@ -57,6 +57,42 @@
 	}
 }
 
-.section-wrapper {
+.container {
 	margin-top: 50px;
+}
+
+.title-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.buttons {
+	display: flex;
+	gap: 10px;
+	button {
+		padding: 5px 10px;
+	}
+}
+
+.cards-slider {
+	width: 100%;
+	max-width: 1280px;
+	overflow-x: hidden;
+}
+
+.cards {
+	margin-top: 30px;
+	display: flex;
+	gap: 20px;
+	width: fit-content;
+	// animation: bannermove 10s linear infinite;
+	// @keyframes bannermove {
+	// 	0% {
+	// 		transform: translate(0, 0);
+	// 	}
+	// 	100% {
+	// 		transform: translate(-100%, 0);
+	// 	}
+	// }
 }
