@@ -1,0 +1,12 @@
+@use "variables.module";
+
+.wrapper {
+	padding: 5px;
+	background-color: variables.$bColor-secondary;
+	border: 1px solid variables.$borderGrayColor;
+	width: 255px;
+	height: 144px;
+}
+
+.top {
+}
