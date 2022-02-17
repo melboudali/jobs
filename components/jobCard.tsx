@@ -11,6 +11,10 @@ const JobCard = ({ children }: Props) => {
 		<div className={styles.wrapper}>
 			<div className={styles.top}>
 				<Image className={styles.top__img} src="https://dexibell.com/app/uploads/2018/05/facebook-logo.png" height={34} width={34} alt="logo" />
+				<div className={styles.top__titleandcname}>
+					<h3 title="facebook advertising specialist">facebook advertising specialist</h3>
+					<p>facebook</p>
+				</div>
 			</div>
 		</div>
 	);
