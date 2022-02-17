@@ -1,9 +1,8 @@
 @use "variables.module";
 
 .wrapper {
-	height: 144px;
 	width: 261px;
-	padding: 5px 0 5px 5px;
+	padding: 4px 0 0 4px;
 	background-color: variables.$bColor-secondary;
 	border: 1px solid variables.$borderGrayColor;
 	border-radius: 4px;
@@ -33,6 +32,27 @@
 		p {
 			line-height: 10px;
 			color: variables.$color-gray;
+		}
+	}
+}
+
+.details {
+	padding: 20px 0 19px 10px;
+	&__item {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		span {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			font-size: 0.75rem;
+			line-height: 10px;
+			text-transform: capitalize;
+			color: variables.$color-gray;
+		}
+		&:not(:last-child) {
+			margin-bottom: 10px;
 		}
 	}
 }
