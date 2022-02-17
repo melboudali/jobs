@@ -71,7 +71,12 @@
 	display: flex;
 	gap: 10px;
 	button {
-		padding: 5px 10px;
+		&:first-child {
+			padding: 5px 10px 5px 0;
+		}
+		&:last-child {
+			padding: 5px 0 5px 10px;
+		}
 	}
 }
 
