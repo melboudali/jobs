@@ -2,8 +2,8 @@
 
 .wrapper {
 	height: 144px;
-	width: 255px;
-	padding: 5px;
+	width: 261px;
+	padding: 5px 0 5px 5px;
 	background-color: variables.$bColor-secondary;
 	border: 1px solid variables.$borderGrayColor;
 	border-radius: 4px;
@@ -11,7 +11,28 @@
 }
 
 .top {
+	display: flex;
+	align-items: center;
+	gap: 5px;
 	&__img {
 		border-radius: 50%;
+	}
+	&__titleandcname {
+		font-size: 0.7rem;
+		text-transform: capitalize;
+		h3 {
+			width: 215px;
+			margin-bottom: 2px;
+			font-weight: 700;
+			line-height: 16px;
+			color: variables.$color-primary;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		p {
+			line-height: 10px;
+			color: variables.$color-gray;
+		}
 	}
 }
