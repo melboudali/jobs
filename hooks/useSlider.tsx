@@ -22,14 +22,12 @@ const useSlider = ({ containerRef, sliderRef }: Props) => {
 			{
 				setSlideButtons({ back: true, next: true });
 			}
-			console.log(currentWidth.current);
 		} else {
 			sliderRef.current!.clientWidth - currentWidth.current > 0 ? (currentWidth.current += 273) : null;
 			setTranslateValue(sliderRef.current!.clientWidth - containerRef.current!.clientWidth);
 			{
 				slideButtons.next && setSlideButtons({ ...slideButtons, next: false });
 			}
-			console.log(sliderRef.current!.clientWidth - currentWidth.current);
 		}
 	};
 
