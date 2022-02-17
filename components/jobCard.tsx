@@ -3,16 +3,14 @@ import React from "react";
 import styles from "./jobCard.module.scss";
 import variables from "../styles/variables.module.scss";
 
-interface Props {
-	children: React.ReactNode;
-}
+interface Props {}
 
 interface DetailsItemProps {
 	path: string;
 	children: string;
 }
 
-const JobCard = ({ children }: Props) => {
+const JobCard = ({}: Props) => {
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.top}>
