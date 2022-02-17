@@ -6,6 +6,8 @@ import { useRef, useState } from "react";
 import JobCard from "../components/jobCard";
 import Title from "../components/title";
 import styles from "./index.module.scss";
+import cls from "classnames";
+import useSlider from "../hooks/useSlider";
 
 const Home: NextPage = () => {
 	const data = [
@@ -22,55 +24,19 @@ const Home: NextPage = () => {
 		{ id: 10 },
 		{ id: 11 }
 	];
-	const sliderRef = useRef<HTMLDivElement>(null);
-	const containerRef = useRef<HTMLDivElement>(null);
-	const slideBy = useRef(1);
-	const currentIndex = useRef(0);
-	const leftItems = useRef(data.length - 4); //TODO: change the value later (items array length - hwo many items we see on screen)
-	const currentWidth = useRef(0);
-	const [translateValue, setTranslateValue] = useState(0);
 
-	const [slideButtons, setSlideButtons] = useState({
-		back: false,
-		next: true
+	const containerRef = useRef<HTMLDivElement>(null);
+	const sliderRef = useRef<HTMLDivElement>(null);
+	const { translateValue, slideButtons, slideBack, slideNext } = useSlider({ containerRef, sliderRef });
+
+	const nextBtnClass = cls(styles.button, {
+		[styles["button-disabled"]]: !slideButtons.next
 	});
 
-	const slideRight = () => {
-		if (!currentWidth.current) currentWidth.current = containerRef.current!.clientWidth;
-		if (currentWidth.current < sliderRef.current!.clientWidth && sliderRef.current!.clientWidth - currentWidth.current > 273) {
-			currentWidth.current! += 273;
-			setTranslateValue(currentWidth.current - containerRef.current!.clientWidth);
-			setSlideButtons({ ...slideButtons, next: true });
-		} else {
-			currentWidth.current! -= sliderRef.current!.clientWidth - currentWidth.current;
-			setTranslateValue(sliderRef.current!.clientWidth - containerRef.current!.clientWidth);
-			setSlideButtons({ ...slideButtons, next: false });
-		}
-	};
+	const backBtnClass = cls(styles.button, {
+		[styles["button-disabled"]]: !slideButtons.back
+	});
 
-	const slideLeft = () => {
-		// if (!currentWidth.current) currentWidth.current = containerRef.current!.clientWidth!;
-		if (currentWidth.current > 273) {
-			currentWidth.current -= 273;
-			setTranslateValue(currentWidth.current - containerRef.current!.clientWidth);
-			{
-				!slideButtons.back && setSlideButtons({ ...slideButtons, back: true });
-			}
-		}
-		// if (currentIndex.current > 0) {
-		// 	currentIndex.current--;
-		// 	leftItems.current++;ç
-		// 	setTranslateValue(currentIndex.current * 273);
-		// 	setSlideButtons({ ...slideButtons, next: true });
-		// 	console.log({ index: currentIndex.current, left: leftItems.current });
-		// } else {
-		// 	currentIndex.current = 0;
-		// 	leftItems.current = data.length - 4;
-		// 	setTranslateValue(0);
-		// 	setSlideButtons({ ...slideButtons, back: false });
-		// 	console.log({ index: currentIndex.current, left: leftItems.current });
-		// }
-	};
 	return (
 		<>
 			<Head>
@@ -89,14 +55,14 @@ const Home: NextPage = () => {
 				<div className={styles["title-wrapper"]}>
 					<Title>jobs hiring Now</Title>
 					<div className={styles.buttons}>
-						<button type="button" onClick={slideLeft} aria-label="back">
+						<button className={backBtnClass} type="button" onClick={slideBack} aria-label="back">
 							<svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M6 1L2 5L6 9" stroke="#2B2E32" strokeWidth="2" strokeLinecap="round" />
+								<path d="M6 1L2 5L6 9" strokeWidth="2" strokeLinecap="round" />
 							</svg>
 						</button>
-						<button type="button" onClick={slideRight} aria-label="next">
+						<button className={nextBtnClass} type="button" onClick={slideNext} aria-label="next">
 							<svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M1 1L5 5L1 9" stroke="#2B2E32" strokeWidth="2" strokeLinecap="round" />
+								<path d="M1 1L5 5L1 9" strokeWidth="2" strokeLinecap="round" />
 							</svg>
 						</button>
 					</div>
