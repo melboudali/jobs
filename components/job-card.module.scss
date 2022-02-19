@@ -1,0 +1,57 @@
+@use "variables.module";
+
+.wrapper {
+	width: 261px;
+	padding: 4px 0 0 4px;
+	background-color: variables.$bColor-secondary;
+	border: 1px solid variables.$borderGrayColor;
+	border-radius: 4px;
+	box-shadow: 0px 2px 6px 0 variables.$grayBoxShadow;
+}
+
+.top {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	&__img {
+		border-radius: 50%;
+	}
+	&__titleandcname {
+		font-size: 0.7rem;
+		text-transform: capitalize;
+		h3 {
+			width: 215px;
+			margin-bottom: 2px;
+			font-weight: 700;
+			line-height: 16px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		p {
+			line-height: 10px;
+			color: variables.$color-gray;
+		}
+	}
+}
+
+.details {
+	padding: 20px 0 19px 10px;
+	&__item {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		span {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			font-size: 0.75rem;
+			line-height: 12px;
+			text-transform: capitalize;
+			color: variables.$color-gray;
+		}
+		&:not(:last-child) {
+			margin-bottom: 10px;
+		}
+	}
+}
