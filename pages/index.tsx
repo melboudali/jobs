@@ -3,11 +3,12 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
-import JobCard from "../components/jobCard";
+import Card from "../components/job-card";
 import Title from "../components/title";
 import styles from "./index.module.scss";
 import cls from "classnames";
 import useSlider from "../hooks/useSlider";
+import Stats from "../components/stats";
 
 const Home: NextPage = () => {
 	const data = [
@@ -148,10 +149,13 @@ const Home: NextPage = () => {
 				<div className={styles["cards-slider"]} ref={containerRef}>
 					<div style={{ transform: `translateX(-${translateValue}px)` }} className={styles.cards} ref={sliderRef}>
 						{data.map(({ id, ...others }) => (
-							<JobCard key={id} data={{ id, ...others }} />
+							<Card key={id} data={{ id, ...others }} />
 						))}
 					</div>
 				</div>
+			</section>
+			<section className={styles.container}>
+				<Stats />
 			</section>
 		</>
 	);
