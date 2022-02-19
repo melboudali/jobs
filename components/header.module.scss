@@ -1,10 +1,11 @@
 @use "../styles/variables.module";
 
 .header {
+	--width: 90%;
 	position: absolute;
 	z-index: 3;
 	height: 60px;
-	width: 100%;
+	width: var(--width);
 	max-width: 864px;
 	top: 20px;
 	left: 50%;
@@ -13,4 +14,7 @@
 	border: 1px solid variables.$borderGrayColor;
 	border-radius: 4px;
 	padding: 0 10px;
+	@media (min-width: 750) {
+		--width: 100%;
+	}
 }
