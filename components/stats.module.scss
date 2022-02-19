@@ -1,0 +1,33 @@
+@use "variables.module";
+
+.stats {
+	--translateY: 100px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	text-transform: capitalize;
+	transform: translateY(var(--translateY));
+	transition: transform 0.6s cubic-bezier(0, 0.55, 0.45, 1);
+	&--reveal {
+		--translateY: 0;
+	}
+}
+
+.name {
+	font-weight: 700;
+	font-size: 3rem;
+	line-height: 70px;
+	letter-spacing: -0.09em;
+}
+
+.number {
+	display: block;
+	background-color: variables.$color-primary;
+	color: variables.$color-white;
+	text-align: center;
+	margin: -22px 0 0 5px;
+	font-weight: 300;
+	font-size: 1.5rem;
+	line-height: 35px;
+	letter-spacing: 0.225em;
+}
