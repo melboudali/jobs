@@ -9,6 +9,7 @@ import styles from "./index.module.scss";
 import cls from "classnames";
 import useSlider from "../hooks/useSlider";
 import Stats from "../components/stats";
+import Icons from "../components/icons";
 
 const Home: NextPage = () => {
 	const data = [
@@ -132,7 +133,7 @@ const Home: NextPage = () => {
 			</section>
 			<section className={styles.container}>
 				<div className={styles["title-wrapper"]}>
-					<Title>jobs hiring Now</Title>
+					<Title>jobs hiring now</Title>
 					<div className={styles.buttons}>
 						<button className={backBtnClass} type="button" onClick={slideBack} aria-label="back">
 							<svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -156,6 +157,10 @@ const Home: NextPage = () => {
 			</section>
 			<section className={styles.container}>
 				<Stats />
+			</section>
+			<section className={styles.container}>
+				<Title>we are trusted by</Title>
+				<Icons />
 			</section>
 		</>
 	);
