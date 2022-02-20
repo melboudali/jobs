@@ -7,11 +7,13 @@ import cls from "classnames";
 interface Props {
 	number: number;
 	children: string;
+	appear: boolean;
 }
 
 const Stats = () => {
 	const ref = useRef<HTMLDivElement>(null);
 	const { appear } = useAppearOnScroll(ref);
+	console.log("rendered");
 
 	const stats = cls(styles.stats, {
 		[styles["stats--reveal"]]: appear
@@ -19,22 +21,24 @@ const Stats = () => {
 
 	return (
 		<div className={stats} ref={ref}>
-			{appear && (
-				<>
-					<Item number={130000}>tech jobs</Item>
-					<Item number={6000000}>matches made</Item>
-					<Item number={8000000}>candidates</Item>
-				</>
-			)}
+			<Item number={130000} appear={appear}>
+				tech jobs
+			</Item>
+			<Item number={6000000} appear={appear}>
+				matches made
+			</Item>
+			<Item number={8000000} appear={appear}>
+				candidates
+			</Item>
 		</div>
 	);
 };
 
-const Item = ({ number, children }: Props) => {
+const Item = ({ number, children, appear }: Props) => {
 	return (
 		<div>
 			<h4 className={styles.name}>{children}</h4>
-			<CountUp className={styles.number} end={number} duration={4} useEasing={true} separator="," />
+			{appear && <CountUp className={styles.number} end={number} duration={4} useEasing={true} separator="," />}
 		</div>
 	);
 };
