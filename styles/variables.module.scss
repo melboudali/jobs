@@ -2,17 +2,16 @@ $color-primary: #2b2e32;
 $color-secondary: #286efa;
 $color-white: #fff;
 $color-gray: #656565;
-$bColor-primary: #fff;
+$bColor-primary: $color-white;
 $bColor-secondary: #f9f9f9;
 $borderGrayColor: rgba(43, 46, 50, 0.1);
 $grayBoxShadow: rgba(43, 46, 50, 0.2);
 $logoLightGray: #c1c3c7;
-$logoDarkGray: #2b2e32;
 $heroBg: rgba(255, 255, 255, 0.7);
 
 :export {
+	primaryColor: $color-primary;
 	colorWhite: $color-white;
 	logoLightGray: $logoLightGray;
-	logoDarkGray: $logoDarkGray;
 	colorGray: $color-gray;
 }
