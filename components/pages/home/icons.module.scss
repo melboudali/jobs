@@ -1,0 +1,69 @@
+@use "variables.module";
+
+@mixin edges($direction) {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 50px;
+	background-image: linear-gradient(to $direction, rgba(255, 255, 255, 0), variables.$color-white);
+	z-index: 1;
+}
+
+.wrapper {
+	position: relative;
+	margin-top: 30px;
+	overflow-x: hidden;
+	&::before {
+		@include edges(left);
+		left: 0;
+	}
+	&::after {
+		@include edges(right);
+		right: 0;
+	}
+}
+
+.svgs {
+	width: fit-content;
+	display: flex;
+	align-items: center;
+	gap: 100px;
+	animation: slider 70s linear infinite;
+	svg path {
+		fill: variables.$color-primary;
+	}
+	&:hover {
+		animation-play-state: paused;
+	}
+}
+
+.svgs__svg {
+	position: relative;
+	span {
+		display: none;
+		position: absolute;
+		width: 100%;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background: variables.$color-white;
+		text-align: center;
+		color: variables.$color-primary;
+		font-size: 0.7rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		cursor: default;
+	}
+	&:hover {
+		span {
+			display: block;
+		}
+	}
+}
+
+@keyframes slider {
+	100% {
+		transform: translateX(-51.25%);
+	}
+}
