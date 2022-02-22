@@ -1,16 +1,16 @@
+import { useRef } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
-import Card from "../components/pages/home/job-card";
-import Title from "../components/pages/home/title";
-import styles from "./index.module.scss";
-import cls from "classnames";
 import useSlider from "../hooks/useSlider";
+import styles from "../components/pages/home/home.module.scss";
+import Title from "../components/pages/home/title";
+import Card from "../components/pages/home/job-card";
 import Stats from "../components/pages/home/stats";
 import Icons from "../components/pages/home/icons";
 import data from "../data/jobs.json";
+import cls from "classnames";
 
 const Home: NextPage = () => {
 	const containerRef = useRef<HTMLDivElement>(null);
@@ -31,7 +31,7 @@ const Home: NextPage = () => {
 				<title>Jobs</title>
 			</Head>
 			<section className={styles.hero}>
-				<div className={styles.wrapper}>
+				<div className={styles.hero__wrapper}>
 					<h1 className={styles.hero__title}>We&apos;re here to make hiring a little easier. Let&apos;s give it a try.</h1>
 					<Link href="/">
 						<a className={styles.hero__link}>post a job for free</a>
