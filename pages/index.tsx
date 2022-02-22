@@ -11,6 +11,7 @@ import Stats from "../components/pages/home/stats";
 import Icons from "../components/pages/home/icons";
 import data from "../data/jobs.json";
 import cls from "classnames";
+import Callouts from "../components/pages/home/callouts";
 
 const Home: NextPage = () => {
 	const containerRef = useRef<HTMLDivElement>(null);
@@ -62,6 +63,9 @@ const Home: NextPage = () => {
 						))}
 					</div>
 				</div>
+			</section>
+			<section className={styles.container}>
+				<Callouts />
 			</section>
 			<section className={styles.container}>
 				<Stats />
