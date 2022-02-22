@@ -81,7 +81,7 @@
 		border-color: variables.$logoLightGray;
 	}
 	svg path {
-		stroke: variables.$logoDarkGray;
+		stroke: variables.$color-primary;
 	}
 	&-disabled {
 		svg path {
