@@ -1,0 +1,30 @@
+[
+	{
+		"id": 1,
+		"image": "/callouts/callout-one.jpg",
+		"title": "let the jobs find you",
+		"description": "create your free profile to get interview invites and jobs that work for you.",
+		"buttonText": "get hired"
+	},
+	{
+		"id": 2,
+		"image": "/callouts/callout-two.jpg",
+		"title": "your job is personal",
+		"description": "tell us more about your goals and we'll match you with the right jobs to help you reach them.",
+		"buttonText": "see jobs"
+	},
+	{
+		"id": 3,
+		"image": "/callouts/callout-three.jpg",
+		"title": "skip the paperwork",
+		"description": "your profile is your application. apply to jobs instantly.",
+		"buttonText": "create profile"
+	},
+	{
+		"id": 4,
+		"image": "/callouts/callout-four.jpg",
+		"title": "ready to level-up?",
+		"description": "excel with our jobs Hub. find tips to get ahead and make your goals a reality.",
+		"buttonText": "learn more"
+	}
+]
