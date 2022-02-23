@@ -2,4 +2,27 @@
 
 .root {
 	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	height: 382px;
+}
+
+.callout__image {
+	position: relative;
+	grid-column: span 6;
+	&-left {
+		order: 1;
+	}
+	&-right {
+		order: 2;
+	}
+}
+
+.callout__details {
+	grid-column: span 6;
+	&-left {
+		order: 2;
+	}
+	&-right {
+		order: 1;
+	}
 }
