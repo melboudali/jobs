@@ -10,13 +10,19 @@ const Callouts = ({}: Props) => {
 	return (
 		<>
 			{data.map(({ id, image, title, description, buttonText, direction }) => (
-				<Callout key={id} image={image} direction={direction} description={description} />
+				<Callout key={id} image={image} title={title} description={description} buttonText={buttonText} direction={direction} />
 			))}
 		</>
 	);
 };
 
-const Callout: FC<{ direction: string; image: string; description: string }> = ({ direction, image, description }) => {
+const Callout: FC<{ image: string; title: string; description: string; buttonText: string; direction: string }> = ({
+	image,
+	title,
+	description,
+	buttonText,
+	direction
+}) => {
 	const callout__image = cls(styles.callout__image, {
 		[styles["callout__image-right"]]: direction === "right",
 		[styles["callout__image-left"]]: direction === "left"
@@ -33,7 +39,9 @@ const Callout: FC<{ direction: string; image: string; description: string }> = (
 				<Image src={image} alt="hero image" layout="fill" objectFit="cover" quality={100} className={styles.callout__image__img} />
 			</div>
 			<div className={callout__details}>
+				<h2>{title}</h2>
 				<p>{description}</p>
+				<button>{buttonText}</button>
 			</div>
 		</div>
 	);
