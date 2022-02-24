@@ -36,12 +36,14 @@ const Callout: FC<{ image: string; title: string; description: string; buttonTex
 	return (
 		<div className={styles.root}>
 			<div className={callout__image}>
-				<Image src={image} alt="hero image" layout="fill" objectFit="cover" quality={100} className={styles.callout__image__img} />
+				<Image src={image} alt="callout image" layout="fill" objectFit="cover" quality={100} className={styles.callout__image__img} priority />
 			</div>
 			<div className={callout__details}>
-				<h2>{title}</h2>
-				<p>{description}</p>
-				<button>{buttonText}</button>
+				<div className={styles.callout__details__wrapper}>
+					<h2>{title}</h2>
+					<p>{description}</p>
+					<button>{buttonText}</button>
+				</div>
 			</div>
 		</div>
 	);
