@@ -5,6 +5,7 @@
 	position: absolute;
 	top: 0;
 	bottom: 0;
+	#{$direction}: 0;
 	width: 50px;
 	background-image: linear-gradient(to $direction, rgba(255, 255, 255, 0), variables.$color-white);
 	z-index: 1;
@@ -16,11 +17,9 @@
 	overflow-x: hidden;
 	&::before {
 		@include edges(left);
-		left: 0;
 	}
 	&::after {
 		@include edges(right);
-		right: 0;
 	}
 }
 
