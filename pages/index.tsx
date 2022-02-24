@@ -6,12 +6,14 @@ import Link from "next/link";
 import useSlider from "../hooks/useSlider";
 import styles from "../components/pages/home/home.module.scss";
 import Title from "../components/pages/home/title";
-import Card from "../components/pages/home/job-card";
+import Card from "../components/pages/home/card";
 import Stats from "../components/pages/home/stats";
 import Icons from "../components/pages/home/icons";
 import data from "../data/jobs.json";
 import cls from "classnames";
 import Callouts from "../components/pages/home/callouts";
+import testimonials from "../data/testimonials.json";
+import { flexThis } from "../utils";
 
 const Home: NextPage = () => {
 	const containerRef = useRef<HTMLDivElement>(null);
@@ -59,7 +61,7 @@ const Home: NextPage = () => {
 				<div className={styles["cards-slider"]} ref={containerRef}>
 					<div style={{ transform: `translateX(-${translateValue}px)` }} className={styles.cards} ref={sliderRef}>
 						{data.map(({ id, ...others }) => (
-							<Card key={id} data={{ id, ...others }} />
+							<Card key={id} data={others} />
 						))}
 					</div>
 				</div>
@@ -69,6 +71,21 @@ const Home: NextPage = () => {
 			</section>
 			<section className={styles.container}>
 				<Stats />
+			</section>
+			<section className={styles.container}>
+				<Title>testimonials by people like you</Title>
+				<div className={styles.testimonials}>
+					{flexThis(testimonials).map((testimonials, idx) => (
+						<div key={idx} className={styles.testimonials__column}>
+							{testimonials.map(({ id, image, name, job, message }) => (
+								<Card key={id} data={{ logo: image, name: job, title: name }} testimonial>
+									{message}
+								</Card>
+							))}
+						</div>
+					))}
+					{}
+				</div>
 			</section>
 			<section className={styles.container}>
 				<Title>we are trusted by</Title>
