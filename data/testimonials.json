@@ -1,77 +1,86 @@
 [
 	{
 		"id": 1,
-		"image": "/public/users/sergey-s.jpg",
+		"image": "/users/sergey-s.jpg",
 		"name": "sergey s.",
 		"job": "Nanaimo, BC, Canada",
 		"message": "I am so grateful . It's truly a company that helps people change their careers and their lives."
 	},
 	{
 		"id": 2,
-		"image": "/public/users/ingrid-n.jpg",
-		"name": "ingrid n.",
-		"job": "New Baden, IL",
-		"message": "Thank you for weeding through the scams to find the gems out there. I am truly grateful for the 100% telecommute jobs you post. It is exciting to see the many opportunities out there."
-	},
-	{
-		"id": 3,
-		"image": "/public/users/shelby-b.jpg",
-		"name": "shelby-b.",
-		"job": "Leeds, AL",
-		"message": "I'm so thankful for the opportunity to change my life. I found the job opening within a few day."
-	},
-	{
-		"id": 4,
-		"image": "/public/users/graeme-d.jpg",
-		"name": "graeme d.",
-		"job": "Slovenia",
-		"message": "Within a month, I found four work-at-home jobs that interested me and was offered two of them. Definitely worth the time!"
-	},
-	{
-		"id": 5,
-		"image": "/public/users/jason-b.jpg",
+		"image": "/users/jason-b.jpg",
 		"name": "jason b.",
 		"job": "Chicago, IL",
 		"message": "I put in many applications through this site. The compilation of jobs, along with the search function, made the process so easy to connect with great companies."
 	},
 	{
+		"id": 3,
+		"image": "/users/chrissy-m.jpg",
+		"name": "chrissy m.",
+		"job": "Chicago, IL",
+		"message": "I found a lot of jobs easily in one place. I loved the experience and found that it made an overwhelming task (finding a job) almost pleasant."
+	},
+	{
+		"id": 4,
+		"image": "/users/jenn-j.jpg",
+		"name": "Jenn j.",
+		"job": "Saint Charles, IL",
+		"message": "I found genuine opportunities and a lot of good information to help with my job search."
+	},
+	{
+		"id": 5,
+		"image": "/users/ingrid-n.jpg",
+		"name": "ingrid n.",
+		"job": "New Baden, IL",
+		"message": "Thank you for weeding through the scams to find the gems out there. I am truly grateful for the 100% telecommute jobs you post. It is exciting to see the many opportunities out there."
+	},
+	{
 		"id": 6,
-		"image": "/public/users/heather-h.jpg",
+		"image": "/users/heather-h.jpg",
 		"name": "heather h.",
 		"job": "remote",
 		"message": "It was so easy and straightforward to find jobs and apply through this site. I would recommend anyone and everyone looking for flexible or telecommuting jobs to do it now and here."
 	},
 	{
 		"id": 7,
-		"image": "/public/users/vincent-c.jpg",
-		"name": "vincent c.",
-		"job": "Remote",
-		"message": "I'm an IT professional and a new dad. My wife and I made the decision for her to stay home while our children went through their early years. This meant losing the income she'd provided via her job. I was in need of a way to bring in extra income, while not being out of the house and away from my family all the time with two jobs. this site gave me that opportunity. I found a part-time job that I enjoy, and I get to do it from my home office. For that, I'm grateful."
-	},
-	{
-		"id": 8,
-		"image": "/public/users/emily-p.jpg",
-		"name": "emily p.",
-		"job": "Birmingham, AL",
-		"message": "I am a military wife, so flexibility is very important in the workplace. I was able to find a job in my career field that allowed me to work from home wherever my family is located and advance my career."
-	},
-	{
-		"id": 9,
-		"image": "/public/users/chrissy-m.jpg",
-		"name": "chrissy m.",
-		"job": "Chicago, IL",
-		"message": "I found a lot of jobs easily in one place. I loved the experience and found that it made an overwhelming task (finding a job) almost pleasant."
-	},
-	{
-		"id": 10,
-		"image": "/public/users/leah-p.jpg",
+		"image": "/users/leah-p.jpg",
 		"name": "leah p.",
 		"job": "Seattle, WA",
 		"message": "Thank you! The search function was very detailed and let me set specific parameters. As a stay-at-home mom, I was able to find the perfect flexible job for me."
 	},
 	{
+		"id": 8,
+		"image": "/users/shelby-b.jpg",
+		"name": "shelby-b.",
+		"job": "Leeds, AL",
+		"message": "I'm so thankful for the opportunity to change my life. I found the job opening within a few day."
+	},
+	{
+		"id": 9,
+		"image": "/users/vincent-c.jpg",
+		"name": "vincent c.",
+		"job": "Remote",
+		"message": "I'm an IT professional and a new dad. My wife and I made the decision for her to stay home while our children went through their early years. This meant losing the income she'd provided via her job. I was in need of a way to bring in extra income, while not being out of the house and away from my family all the time with two jobs. this site gave me that opportunity. I found a part-time job that I enjoy, and I get to do it from my home office. For that, I'm grateful."
+	},
+	{
+		"id": 10,
+		"image": "/users/graeme-d.jpg",
+		"name": "graeme d.",
+		"job": "Slovenia",
+		"message": "Within a month, I found four work-at-home jobs that interested me and was offered two of them. Definitely worth the time!"
+	},
+
+	{
 		"id": 11,
-		"image": "/public/users/paul-c.jpg",
+		"image": "/users/emily-p.jpg",
+		"name": "emily p.",
+		"job": "Birmingham, AL",
+		"message": "I am a military wife, so flexibility is very important in the workplace. I was able to find a job in my career field that allowed me to work from home wherever my family is located and advance my career."
+	},
+
+	{
+		"id": 12,
+		"image": "/users/paul-c.jpg",
 		"name": "paul c.",
 		"job": "Bainbridge Island, WA",
 		"message": "Your site is fantastic. You have helped me make a change I really needed to make, and you made it so easy! Thank you!"
