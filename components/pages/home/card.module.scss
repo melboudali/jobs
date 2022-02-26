@@ -1,11 +1,9 @@
 @use "variables.module";
+@use "home.module";
 
 .root {
 	padding: 4px 0 0 4px;
-	background-color: variables.$bColor-secondary;
-	border: 1px solid variables.$borderGrayColor;
-	border-radius: 4px;
-	box-shadow: 0px 2px 6px 0 variables.$grayBoxShadow;
+	@include home.card;
 }
 
 .job {
@@ -64,7 +62,7 @@
 }
 
 .message {
-	padding: 20px 15px 19px 10px;
+	padding: 20px 14px 19px 10px;
 	font-size: 0.75rem;
 	line-height: 16px;
 	text-transform: capitalize;
