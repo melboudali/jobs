@@ -14,6 +14,7 @@ import cls from "classnames";
 import Callouts from "../components/pages/home/callouts";
 import testimonials from "../data/testimonials.json";
 import { flexThis } from "../utils";
+import Posts from "../components/pages/home/posts";
 
 const Home: NextPage = () => {
 	const containerRef = useRef<HTMLDivElement>(null);
@@ -40,7 +41,7 @@ const Home: NextPage = () => {
 						<a className={styles.hero__link}>post a job for free</a>
 					</Link>
 				</div>
-				<Image src="/hero.jpg" alt="hero image" priority layout="fill" objectFit="cover" quality={100} />
+				<Image src="/hero.jpg" alt="hero image" layout="fill" objectFit="cover" quality={100} priority />
 			</section>
 			<section className={styles.container}>
 				<div className={styles["title-wrapper"]}>
@@ -86,6 +87,15 @@ const Home: NextPage = () => {
 					))}
 					{}
 				</div>
+			</section>
+			<section className={styles.container}>
+				<div className={styles["title-wrapper"]}>
+					<Title>From the blog</Title>
+					<Link href="/blog">
+						<a className={styles["more-posts__button"]}>more posts</a>
+					</Link>
+				</div>
+				<Posts />
 			</section>
 			<section className={styles.container}>
 				<Title>we are trusted by</Title>
