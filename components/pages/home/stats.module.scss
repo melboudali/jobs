@@ -1,8 +1,11 @@
 @use "variables.module";
-
 .stats {
 	--translateY: 100px;
+	--flex-direction: column;
+	--gap: 100px;
 	display: flex;
+	flex-direction: var(--flex-direction);
+	gap: var(--gap);
 	align-items: center;
 	justify-content: space-between;
 	text-transform: capitalize;
@@ -10,6 +13,10 @@
 	transition: transform 0.6s cubic-bezier(0, 0.55, 0.45, 1);
 	&--reveal {
 		--translateY: 0;
+	}
+	@media (min-width: 750px) {
+		--flex-direction: row;
+		--gap: none;
 	}
 }
 
