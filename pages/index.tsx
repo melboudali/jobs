@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useCallback, useRef, useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
@@ -17,9 +17,11 @@ import { flexThis } from "../utils";
 import Posts from "../components/pages/home/posts";
 
 const Home: NextPage = () => {
+	console.log("rendered");
 	const containerRef = useRef<HTMLDivElement>(null);
 	const sliderRef = useRef<HTMLDivElement>(null);
 	const { translateValue, slideButtons, slideBack, slideNext } = useSlider({ containerRef, sliderRef });
+	const [more, setMore] = useState(false);
 
 	const nextBtnClass = cls(styles.button, {
 		[styles["button-disabled"]]: !slideButtons.next
@@ -28,6 +30,8 @@ const Home: NextPage = () => {
 	const backBtnClass = cls(styles.button, {
 		[styles["button-disabled"]]: !slideButtons.back
 	});
+
+	const testimonialsClass = cls(styles.testimonials, { [styles["testimonials__showAll"]]: more });
 
 	return (
 		<>
@@ -75,7 +79,7 @@ const Home: NextPage = () => {
 			</section>
 			<section className={styles.container}>
 				<Title>testimonials by people like you</Title>
-				<div className={styles.testimonials}>
+				<div className={testimonialsClass}>
 					{flexThis(testimonials).map((testimonials, idx) => (
 						<div key={idx} className={styles.testimonials__column}>
 							{testimonials.map(({ id, image, name, job, message }) => (
@@ -85,7 +89,11 @@ const Home: NextPage = () => {
 							))}
 						</div>
 					))}
-					{}
+
+					<div className={styles.testimonials__more__wrapper} />
+					<button className={styles.testimonials__more__button} type="button" onClick={() => setMore(!more)}>
+						show more
+					</button>
 				</div>
 			</section>
 			<section className={styles.container}>
