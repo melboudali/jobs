@@ -5,7 +5,7 @@
 		"title": "let the jobs find you",
 		"description": "create your free profile to get interview invites and jobs that work for you.",
 		"buttonText": "get hired",
-		"direction": "left"
+		"right": false
 	},
 	{
 		"id": 2,
@@ -13,7 +13,7 @@
 		"title": "your job is personal",
 		"description": "tell us more about your goals and we'll match you with the right jobs to help you reach them.",
 		"buttonText": "see jobs",
-		"direction": "right"
+		"right": true
 	},
 	{
 		"id": 3,
@@ -21,7 +21,7 @@
 		"title": "skip the paperwork",
 		"description": "your profile is your application. apply to jobs instantly.",
 		"buttonText": "create profile",
-		"direction": "left"
+		"right": false
 	},
 	{
 		"id": 4,
@@ -29,6 +29,6 @@
 		"title": "ready to level-up?",
 		"description": "excel with our jobs Hub. find tips to get ahead and make your goals a reality.",
 		"buttonText": "learn more",
-		"direction": "right"
+		"right": true
 	}
 ]
