@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const useAppearOnScroll = (ref: React.RefObject<HTMLDivElement>) => {
 	const [appear, setAppear] = useState(false);
