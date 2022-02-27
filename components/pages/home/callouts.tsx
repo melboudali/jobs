@@ -4,33 +4,29 @@ import styles from "./callouts.module.scss";
 import data from "../../../data/callouts.json";
 import cls from "classnames";
 
-interface Props {}
-
-const Callouts = ({}: Props) => {
+const Callouts = () => {
 	return (
 		<>
-			{data.map(({ id, image, title, description, buttonText, direction }) => (
-				<Callout key={id} image={image} title={title} description={description} buttonText={buttonText} direction={direction} />
+			{data.map(({ id, image, title, description, buttonText, right }) => (
+				<Callout key={id} image={image} title={title} description={description} buttonText={buttonText} right={right} />
 			))}
 		</>
 	);
 };
 
-const Callout: FC<{ image: string; title: string; description: string; buttonText: string; direction: string }> = ({
+const Callout: FC<{ image: string; title: string; description: string; buttonText: string; right: boolean }> = ({
 	image,
 	title,
 	description,
 	buttonText,
-	direction
+	right
 }) => {
 	const callout__image = cls(styles.callout__image, {
-		[styles["callout__image-right"]]: direction === "right",
-		[styles["callout__image-left"]]: direction === "left"
+		[styles["callout__image-right"]]: right
 	});
 
 	const callout__details = cls(styles.callout__details, {
-		[styles["callout__details-right"]]: direction === "right",
-		[styles["callout__details-left"]]: direction === "left"
+		[styles["callout__details-right"]]: right
 	});
 
 	return (

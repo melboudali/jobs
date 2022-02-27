@@ -12,13 +12,8 @@
 	grid-column: span var(--gtc);
 	order: var(--order);
 	height: 382px;
-
-	&-right {
-		--order: 1;
-	}
 	@media (min-width: 750px) {
 		--gtc: 6;
-		--order: 1;
 		&-right {
 			--order: 2;
 		}
@@ -42,7 +37,6 @@
 	grid-column: span var(--gtc);
 	order: var(--order);
 	height: 382px;
-
 	&__wrapper {
 		display: flex;
 		justify-content: center;
@@ -51,7 +45,6 @@
 		gap: 30px;
 		padding: 0 10px;
 		height: 100%;
-
 		h2 {
 			@include font(35, 700, 58, variables.$color-primary);
 		}
@@ -71,12 +64,8 @@
 			}
 		}
 	}
-	&-right {
-		--order: 2;
-	}
 	@media (min-width: 750px) {
 		--gtc: 6;
-		--order: 2;
 		&-right {
 			--order: 1;
 		}
