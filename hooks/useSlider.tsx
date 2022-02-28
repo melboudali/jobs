@@ -10,7 +10,7 @@ const useSlider = ({ containerRef, sliderRef }: Props) => {
 	const [translateValue, setTranslateValue] = useState(0);
 
 	const [slideButtons, setSlideButtons] = useState({
-		back: false,
+		prev: false,
 		next: true
 	});
 
@@ -20,7 +20,7 @@ const useSlider = ({ containerRef, sliderRef }: Props) => {
 			currentWidth.current! += 273;
 			setTranslateValue(currentWidth.current - containerRef.current!.clientWidth);
 			{
-				setSlideButtons({ back: true, next: true });
+				setSlideButtons({ prev: true, next: true });
 			}
 		} else {
 			sliderRef.current!.clientWidth - currentWidth.current > 0 ? (currentWidth.current += 273) : null;
@@ -36,13 +36,13 @@ const useSlider = ({ containerRef, sliderRef }: Props) => {
 			currentWidth.current -= 273;
 			setTranslateValue(currentWidth.current - containerRef.current!.clientWidth);
 			{
-				!slideButtons.next && slideButtons.back && setSlideButtons({ back: true, next: true });
+				!slideButtons.next && slideButtons.prev && setSlideButtons({ prev: true, next: true });
 			}
 		}
 		if (currentWidth.current === containerRef.current!.clientWidth) {
 			currentWidth.current = containerRef.current!.clientWidth;
 			{
-				slideButtons.back && setSlideButtons({ ...slideButtons, back: false });
+				slideButtons.prev && setSlideButtons({ ...slideButtons, prev: false });
 			}
 		}
 	};
