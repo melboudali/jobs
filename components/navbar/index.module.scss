@@ -40,28 +40,26 @@
 		line-height: 10px;
 		text-transform: uppercase;
 	}
-	&:last-child {
-		a {
-			display: flex;
-			align-items: center;
-			height: 40px;
-			padding: 0 10px;
-			background-color: variables.$color-secondary;
-			box-shadow: 0px 2px 6px variables.$grayBoxShadow;
-			border: 1px solid variables.$borderGrayColor;
-			border-radius: 2px;
-			line-height: 10px;
-			transition: background-color 400ms ease-in-out;
-			span {
-				font-weight: 500;
-				font-size: 0.875rem;
-				text-transform: capitalize;
-				color: variables.$color-white;
-				margin-right: 13px;
-			}
-			&:hover {
-				background-color: variables.$color-primary;
-			}
+	&:last-child a {
+		display: flex;
+		align-items: center;
+		height: 40px;
+		padding: 0 10px;
+		background-color: variables.$color-secondary;
+		box-shadow: 0px 2px 6px variables.$grayBoxShadow;
+		border: 1px solid variables.$borderGrayColor;
+		border-radius: 2px;
+		line-height: 10px;
+		transition: background-color 400ms ease-in-out;
+		span {
+			font-weight: 500;
+			font-size: 0.875rem;
+			text-transform: capitalize;
+			color: variables.$color-white;
+			margin-right: 13px;
+		}
+		&:hover {
+			background-color: variables.$color-primary;
 		}
 	}
 }
