@@ -22,11 +22,11 @@ const Callout: FC<{ image: string; title: string; description: string; buttonTex
 	right
 }) => {
 	const callout__image = cls(styles.callout__image, {
-		[styles["callout__image-right"]]: right
+		[styles["callout__image--right"]]: right
 	});
 
 	const callout__details = cls(styles.callout__details, {
-		[styles["callout__details-right"]]: right
+		[styles["callout__details--right"]]: right
 	});
 
 	return (
