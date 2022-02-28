@@ -159,7 +159,7 @@
 		bottom: 0;
 		left: 0;
 		height: 200px;
-		background-image: linear-gradient(to top, variables.$color-white, rgba(255, 255, 255, 0));
+		background-image: linear-gradient(to top, variables.$color-white, transparent);
 	}
 	&__more__button {
 		display: var(--more-display);
@@ -240,9 +240,9 @@
 
 // subscribe section
 .form {
-	width: 60%;
+	--width: 100%;
+	width: var(--width);
 	margin: 0 auto;
-	padding-bottom: 200px;
 	@mixin font {
 		font-size: 0.875rem;
 		line-height: 16px;
@@ -287,5 +287,8 @@
 		&:hover {
 			background-color: variables.$color-primary;
 		}
+	}
+	@media (min-width: 750px) {
+		--width: 60%;
 	}
 }
