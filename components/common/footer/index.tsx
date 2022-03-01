@@ -1,9 +1,15 @@
+import Subscribe from "./subscribe";
 import styles from "./footer.module.scss";
 
 interface Props {}
 
 const Footer = ({}: Props) => {
-	return <footer className={styles.root}></footer>;
+	return (
+		<>
+			<Subscribe />
+			<footer className={styles.footer}></footer>
+		</>
+	);
 };
 
 export default Footer;
