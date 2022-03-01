@@ -3,27 +3,19 @@ import { ParsedUrlQuery } from "querystring";
 import { getAllPostIds, getPostData } from "../../lib/blog";
 import Head from "next/head";
 import styles from "./blog.module.scss";
-import PropTypes from "prop-types";
 import Image from "next/image";
 import { parseISO, format } from "date-fns";
+import { Post } from "../../types";
 
 interface Props {
-	post: {
-		id: string;
-		cover: string;
-		title: string;
-		seo_description: string;
-		summary: string;
-		contentHtml: string;
-		date: string;
-	};
+	post: Post;
 }
 
 interface Params extends ParsedUrlQuery {
 	slug: string;
 }
 
-const Post: NextPage<Props> = ({ post: { title, cover, seo_description, summary, contentHtml, date } }) => {
+const Post: NextPage<Props> = ({ post: { title, cover, contentHtml, date } }) => {
 	return (
 		<>
 			<Head>
@@ -54,7 +46,6 @@ const Post: NextPage<Props> = ({ post: { title, cover, seo_description, summary,
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	const paths = getAllPostIds();
-
 	return {
 		paths,
 		fallback: false
@@ -68,7 +59,5 @@ export const getStaticProps: GetStaticProps = async context => {
 		props: { post }
 	};
 };
-
-// PageName.propTypes = {};
 
 export default Post;
