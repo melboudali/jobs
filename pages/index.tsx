@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import type { NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,8 +16,14 @@ import testimonials from "../data/testimonials.json";
 import { flexThis } from "../utils";
 import Posts from "../components/pages/home/posts";
 import Subscribe from "../components/pages/home/subscribe";
+import { getSortedPostsData } from "../lib/blog";
+import { Posts as PostsType } from "../types";
 
-const Home: NextPage = () => (
+interface Props {
+	posts: PostsType;
+}
+
+const Home: NextPage<Props> = ({ posts }) => (
 	<>
 		<Head>
 			<title>Jobs</title>
@@ -51,7 +57,7 @@ const Home: NextPage = () => (
 					<a className={styles["more-posts__button"]}>more posts</a>
 				</Link>
 			</div>
-			<Posts />
+			<Posts posts={posts} />
 		</section>
 		<section className={styles.container}>
 			<Title>we are trusted by</Title>
@@ -126,6 +132,13 @@ const Testimonials = () => {
 			</button>
 		</div>
 	);
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+	const posts = getSortedPostsData();
+	return {
+		props: { posts }
+	};
 };
 
 export default Home;
