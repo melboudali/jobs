@@ -1,0 +1,39 @@
+@use "variables.module";
+
+.image {
+	position: relative;
+	width: 100%;
+	height: 536px;
+	border-radius: 4px;
+	margin-bottom: 50px;
+}
+
+.title {
+	font-size: 2.5rem;
+	font-weight: 800;
+	line-height: 58px;
+	text-transform: capitalize;
+}
+
+.time {
+	margin-bottom: 50px;
+	font-weight: 700;
+}
+
+.content {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5 {
+		margin: 0.67em;
+	}
+	p {
+		font-size: 1.25rem;
+		line-height: 1.5;
+	}
+	img {
+		display: block;
+		margin: 0 auto;
+	}
+}
