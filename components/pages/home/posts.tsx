@@ -1,23 +1,24 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getSortedPostsData } from "../../../lib/blog";
+import { Posts } from "../../../types";
 import styles from "./home.module.scss";
 
-interface Props {}
+interface Props {
+	posts: Posts;
+}
 
-const Posts = ({}: Props) => {
+const Posts = ({ posts }: Props) => {
 	return (
 		<div className={styles.posts}>
-			{[1, 2, 3].map(e => (
-				<Link href="/posts/post-id" key={e}>
+			{posts.map(({ id, title, cover, summary }) => (
+				<Link href={`/blog/${id}`} key={id}>
 					<a className={styles.post}>
 						<div className={styles.post__image}>
-							<Image src="/callouts/callout-two.jpg" layout="fill" objectFit="cover" quality={100} priority alt="post" />
+							<Image src={cover} layout="fill" objectFit="cover" quality={100} priority alt={title} />
 						</div>
-						<h3>Lorem ipsum dolor sit amet, consectetur dfdfdfdfdfdfdfdfdfdfddfdf</h3>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tellus massa velit, varius venenatis ornare risus sit posuere nunc. Quam
-							pulvinar duis turpis tellus, cursus et. Orci quisque imperdiet in aliquam nullam enim non scelerisque.
-						</p>
+						<h3>{title}</h3>
+						<p>{summary}</p>
 					</a>
 				</Link>
 			))}
