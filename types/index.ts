@@ -7,3 +7,15 @@ export interface testimonial {
 }
 
 export type testimonials = testimonial[];
+
+export interface Post {
+	id: string;
+	title: string;
+	cover: string;
+	seo_description: string;
+	summary: string;
+	contentHtml: string;
+	date: string;
+}
+
+export type Posts = Post[];
