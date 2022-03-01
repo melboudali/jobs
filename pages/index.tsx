@@ -15,7 +15,6 @@ import Callouts from "../components/pages/home/callouts";
 import testimonials from "../data/testimonials.json";
 import { flexThis } from "../utils";
 import Posts from "../components/pages/home/posts";
-import Subscribe from "../components/pages/home/subscribe";
 import { getSortedPostsData } from "../lib/blog";
 import { Posts as PostsType } from "../types";
 
@@ -62,9 +61,6 @@ const Home: NextPage<Props> = ({ posts }) => (
 		<section className={styles.container}>
 			<Title>we are trusted by</Title>
 			<Icons />
-		</section>
-		<section className={styles.container}>
-			<Subscribe />
 		</section>
 	</>
 );
