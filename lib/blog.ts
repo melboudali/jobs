@@ -4,40 +4,38 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 import { cwd } from "process";
-import { URL } from "url";
+import { Posts } from "../types";
 
 export const postsDirectory = join(cwd(), "posts");
 
-// export const getSortedPostsData: () => { id: string; date?: number }[] = () => {
-// 	const fileNames = fs.readdirSync(postsDirectory);
-// 	const allPostsData: any = fileNames.map(fileName => {
-// 		// const id = fileName.replace(/\.md$/, "");
-// 		const id = fileName;
+export const getSortedPostsData = () => {
+	const fileNames = fs.readdirSync(postsDirectory);
+	const allPostsData: Posts = fileNames.map(fileName => {
+		const id = fileName.replace(/\.md$/, "");
+		const fileContents = fs.readFileSync(join(postsDirectory, fileName), "utf8");
+		const matterResult = matter(fileContents);
 
-// 		// Read markdown file as string
-// 		const fullPath = join(postsDirectory, fileName, "index.md");
-// 		const fileContents = fs.readFileSync(fullPath, "utf8");
+		return {
+			id,
+			title: matterResult.data.title,
+			cover: matterResult.data.cover,
+			seo_description: matterResult.data.seo_description,
+			summary: matterResult.data.summary,
+			contentHtml: "",
+			date: matterResult.data.date
+		};
+	});
 
-// 		// Use gray-matter to parse the post metadata section
-// 		const matterResult = matter(fileContents);
-
-// 		// Combine the data with the id
-// 		return {
-// 			id,
-// 			...matterResult.data
-// 		};
-// 	});
-// 	// Sort posts by date
-// 	return allPostsData.sort(({ date: a }, { date: b }) => {
-// 		if (a! < b!) {
-// 			return 1;
-// 		} else if (a! > b!) {
-// 			return -1;
-// 		} else {
-// 			return 0;
-// 		}
-// 	});
-// };
+	return allPostsData.sort(({ date: nDate }, { date: oDate }) => {
+		if (nDate < oDate) {
+			return 1;
+		} else if (nDate > oDate) {
+			return -1;
+		} else {
+			return 0;
+		}
+	});
+};
 
 export const getAllPostIds = () => {
 	const fileNames = fs.readdirSync(postsDirectory);
@@ -49,16 +47,9 @@ export const getAllPostIds = () => {
 };
 
 export async function getPostData(slug: string) {
-	const fullPath = join(postsDirectory, `${slug}.md`);
-	const fileContents = fs.readFileSync(fullPath, "utf8");
-
-	// Use gray-matter to parse the post metadata section
+	const fileContents = fs.readFileSync(join(postsDirectory, `${slug}.md`), "utf8");
 	const matterResult = matter(fileContents);
-	// Use remark to convert markdown into HTML string
-	const processedContent = await remark().use(html).process(matterResult.content);
-	const contentHtml = processedContent.toString();
-
-	// Combine the data with the id and contentHtml
+	const contentHtml = (await remark().use(html).process(matterResult.content)).toString();
 	return {
 		slug,
 		contentHtml,
