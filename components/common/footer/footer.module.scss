@@ -1,8 +1,61 @@
 @use "variables.module";
 
-.root {
-	margin-top: 100px;
+// subscribe section
+.form {
+	--width: 100%;
+	width: var(--width);
+	margin: 100px auto;
+	@mixin font {
+		font-size: 0.875rem;
+		line-height: 16px;
+		font-weight: 400;
+		color: variables.$color-gray;
+	}
+	&__title {
+		@include font;
+		margin-bottom: 8px;
+		span {
+			color: variables.$error-color;
+		}
+	}
+	&__input__wrapper {
+		border: 1px solid variables.$grayBoxShadow;
+		border-radius: 4px;
+		display: flex;
+		padding: 8px;
+		gap: 10px;
+		&-error {
+			border-color: variables.$error-color;
+		}
+	}
+	&__input {
+		@include font;
+		width: 100%;
+		padding: 0 8px;
+		border: none;
+	}
+	&__button {
+		padding: 16px 25px;
+		font-size: 0.875rem;
+		font-weight: 500;
+		line-height: 10px;
+		text-transform: capitalize;
+		color: variables.$color-white;
+		background-color: variables.$color-secondary;
+		box-shadow: 0px 2px 6px variables.$grayBoxShadow;
+		border: 1px solid variables.$borderGrayColor;
+		border-radius: 2px;
+		transition: background-color 400ms ease-in-out;
+		&:hover {
+			background-color: variables.$color-primary;
+		}
+	}
+	@media (min-width: 750px) {
+		--width: 60%;
+	}
+}
+
+.footer {
 	height: 500px;
 	background-color: variables.$color-primary;
-	width: 100%;
 }
