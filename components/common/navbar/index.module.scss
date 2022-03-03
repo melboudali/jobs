@@ -1,12 +1,5 @@
 @use "../../../styles/variables.module";
 
-.navbar {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	height: 100%;
-}
-
 .logo {
 	display: flex;
 	align-items: center;
@@ -25,52 +18,65 @@
 			fill: variables.$color-primary;
 		}
 	}
-}
-
-.navber__nav {
-	--display: none;
-	display: var(--display);
-	ul {
-		display: flex;
-	}
-	@media (min-width: 750px) {
-		--display: flex;
+	&--white {
+		color: variables.$color-white;
 	}
 }
 
-.navber__nav__li {
-	list-style: none;
+.navbar {
+	--nav-hamburger: block;
+	--nav-display: none;
 	display: flex;
 	align-items: center;
-	&:not(:last-child) {
-		margin-right: 20px;
-		font-size: 0.8125rem;
-		line-height: 10px;
-		text-transform: uppercase;
+	justify-content: space-between;
+	height: 100%;
+	&__nav {
+		display: var(--nav-display);
+		ul {
+			display: flex;
+		}
+		&__li {
+			list-style: none;
+			display: flex;
+			align-items: center;
+			&:not(:last-child) {
+				margin-right: 20px;
+				font-size: 0.8125rem;
+				line-height: 10px;
+				text-transform: uppercase;
+			}
+			&:last-child a {
+				display: flex;
+				align-items: center;
+				height: 40px;
+				padding: 0 10px;
+				background-color: variables.$color-secondary;
+				box-shadow: 0px 2px 6px variables.$grayBoxShadow;
+				border: 1px solid variables.$borderGrayColor;
+				border-radius: 2px;
+				line-height: 10px;
+				transition: background-color 400ms ease-in-out;
+				span {
+					font-weight: 500;
+					font-size: 0.875rem;
+					text-transform: capitalize;
+					color: variables.$color-white;
+					margin-right: 13px;
+				}
+				svg path {
+					stroke: variables.$color-white;
+				}
+				&:hover {
+					background-color: variables.$color-primary;
+				}
+			}
+		}
 	}
-	&:last-child a {
-		display: flex;
-		align-items: center;
-		height: 40px;
-		padding: 0 10px;
-		background-color: variables.$color-secondary;
-		box-shadow: 0px 2px 6px variables.$grayBoxShadow;
-		border: 1px solid variables.$borderGrayColor;
-		border-radius: 2px;
-		line-height: 10px;
-		transition: background-color 400ms ease-in-out;
-		span {
-			font-weight: 500;
-			font-size: 0.875rem;
-			text-transform: capitalize;
-			color: variables.$color-white;
-			margin-right: 13px;
-		}
-		svg path {
-			stroke: variables.$color-white;
-		}
-		&:hover {
-			background-color: variables.$color-primary;
-		}
+	&__hamburger {
+		display: var(--nav-hamburger);
+	}
+	@media (min-width: 850px) {
+		--nav-hamburger: none;
+		--nav-display: block;
 	}
 }
