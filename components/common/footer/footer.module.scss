@@ -4,7 +4,7 @@
 	font-size: 0.875rem;
 	line-height: 16px;
 	font-weight: 400;
-	color: variables.$logoLightGray;
+	color: variables.$color-gray;
 }
 
 @mixin footer-font($weight: 400, $color: variables.$logoLightGray) {
@@ -31,7 +31,7 @@
 	}
 	&__input__wrapper {
 		display: flex;
-		gap: 10px;
+		gap: 8px;
 		padding: 8px;
 		border: 1px solid variables.$grayBoxShadow;
 		border-radius: 4px;
