@@ -1,13 +1,14 @@
 @use "variables.module";
+
 .stats {
 	--translateY: 100px;
 	--flex-direction: column;
-	--gap: 100px;
+	--gap: 70px;
 	display: flex;
 	flex-direction: var(--flex-direction);
-	gap: var(--gap);
 	align-items: center;
 	justify-content: space-between;
+	gap: var(--gap);
 	text-transform: capitalize;
 	transform: translateY(var(--translateY));
 	transition: transform 0.6s cubic-bezier(0, 0.55, 0.45, 1);
@@ -21,20 +22,20 @@
 }
 
 .name {
-	font-weight: 700;
 	font-size: 3rem;
+	font-weight: 700;
 	line-height: 37px;
 	letter-spacing: -0.09em;
 }
 
 .number {
 	display: block;
-	background-color: variables.$color-primary;
-	color: variables.$color-white;
-	text-align: center;
 	margin: -6px 0 0 5px;
-	font-weight: 300;
 	font-size: 1.5rem;
+	font-weight: 300;
 	line-height: 35px;
+	text-align: center;
 	letter-spacing: 0.225em;
+	color: variables.$color-white;
+	background-color: variables.$color-primary;
 }
