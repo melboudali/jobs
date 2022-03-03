@@ -8,8 +8,9 @@
 }
 
 .hero {
+	--height: 414px;
 	position: relative;
-	height: 536px;
+	height: var(--height);
 	background-color: variables.$bColor-secondary;
 	&,
 	img {
@@ -24,6 +25,9 @@
 		background-color: variables.$heroBg;
 		z-index: 1;
 	}
+	@media (min-width: 750px) {
+		--height: 536px;
+	}
 }
 
 .hero__wrapper {
@@ -35,16 +39,28 @@
 }
 
 .hero__title {
-	margin-bottom: 50px;
+	--font-size: 1.875rem;
+	--margin-bottom: 40px;
+	--line-height: 36px;
+	margin-bottom: var(--margin-bottom);
 	text-align: center;
-	font-size: 3rem;
+	font-size: var(--font-size);
 	font-weight: 800;
-	line-height: 58px;
+	line-height: var(--line-height);
 	text-transform: capitalize;
 	color: variables.$color-primary;
+	@media (min-width: 750px) {
+		--line-height: 58px;
+		--font-size: 3rem;
+		--margin-bottom: 50px;
+	}
 }
 
 .hero__link {
+	--padding: 20px 22px;
+	--font-size: 0.875rem;
+	--line-height: 11px;
+
 	display: block;
 	width: fit-content;
 	margin: 0 auto;
@@ -52,20 +68,29 @@
 	box-shadow: 0px 2px 6px variables.$grayBoxShadow;
 	border: 1px solid variables.$borderGrayColor;
 	border-radius: 20px 0px;
-	padding: 26px 28px;
+	padding: var(--padding);
 	font-weight: 700;
-	font-size: 1.5rem;
-	line-height: 18px;
+	font-size: var(--font-size);
+	line-height: var(--line-height);
 	letter-spacing: -0.05em;
 	text-transform: capitalize;
 	transition: background-color 400ms ease-in-out;
 	&:hover {
 		background-color: variables.$color-primary;
 	}
+	@media (min-width: 750px) {
+		--padding: 26px 28px;
+		--line-height: 18px;
+		--font-size: 1.5rem;
+	}
 }
 
 .container {
-	margin-top: 100px;
+	--margin-top: 70px;
+	margin-top: var(--margin-top);
+	@media (min-width: 750px) {
+		--margin-top: 100px;
+	}
 }
 
 // sections title
@@ -133,8 +158,8 @@
 	--more-display: block;
 	--height: 300px;
 	--overflow: hidden;
-	display: grid;
 	position: relative;
+	display: grid;
 	grid-template-columns: repeat(var(--gtc), 1fr);
 	gap: 12px;
 	margin-top: 30px;
