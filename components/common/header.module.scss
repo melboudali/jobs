@@ -1,7 +1,7 @@
 @use "../../styles/variables.module";
 
 .header {
-	--width: 90%;
+	--width: calc(100% - 40px);
 	position: absolute;
 	z-index: 3;
 	height: 60px;
