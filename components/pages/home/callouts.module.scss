@@ -5,25 +5,10 @@
 	grid-template-columns: repeat(12, 1fr);
 }
 
-.callout__image {
-	--gtc: 12;
-	--order: 1;
-	position: relative;
-	grid-column: span var(--gtc);
-	order: var(--order);
-	height: 382px;
-	@media (min-width: 750px) {
-		--gtc: 6;
-		&--right {
-			--order: 2;
-		}
-	}
-}
-
 @mixin font($size, $weight, $height, $color) {
-	font-size: #{$size}px;
+	font-size: #{$size};
 	font-weight: $weight;
-	line-height: #{$height}px;
+	line-height: #{$height};
 	color: $color;
 	text-transform: capitalize;
 	&:not(button) {
@@ -31,33 +16,66 @@
 	}
 }
 
-.callout__details {
+.callout__image {
 	--gtc: 12;
-	--order: 2;
+	--order: 1;
+	--height: 200px;
+	position: relative;
 	grid-column: span var(--gtc);
+	height: var(--height);
 	order: var(--order);
-	height: 382px;
+	@media (min-width: 750px) {
+		--height: 382px;
+		--gtc: 6;
+		&--right {
+			--order: 2;
+		}
+	}
+}
+
+.callout__details {
+	--gc: 12;
+	--order: 2;
+	// root
+	--root-height: fit-content;
+	--gap: 20px;
+	--padding: 30px 0;
+	// elements
+	--height: fit-content;
+	//h2
+	--h2-size: 1.5rem;
+	--h2-height: 29px;
+	//p
+	--p-size: 0.875rem;
+	--p-height: 17px;
+	//button
+	--button-padding: 12px 15px;
+	--button-font-size: 0.8125rem;
+	--button-line-height: 10px;
+	grid-column: span var(--gc);
+	height: var(--root-height);
+	order: var(--order);
 	&__wrapper {
 		display: flex;
-		justify-content: center;
-		align-items: center;
 		flex-direction: column;
-		gap: 30px;
-		padding: 0 10px;
-		height: 100%;
+		align-items: center;
+		justify-content: center;
+		gap: var(--gap);
+		height: var(--height);
+		padding: var(--padding);
 		h2 {
-			@include font(35, 700, 58, variables.$color-primary);
+			@include font(var(--h2-size), 700, var(--h2-height), variables.$color-primary);
 		}
 		p {
-			@include font(18, 400, 29, variables.$color-primary);
+			@include font(var(--p-size), 400, var(--p-height), variables.$color-primary);
 		}
 		button {
-			@include font(16, 600, 18, variables.$color-white);
+			@include font(var(--button-font-size), 600, var(--button-line-height), variables.$color-white);
+			padding: var(--button-padding);
 			background-color: variables.$color-secondary;
 			box-shadow: 0px 2px 6px variables.$grayBoxShadow;
 			border: 1px solid variables.$borderGrayColor;
 			border-radius: 20px 0px;
-			padding: 16px 25px;
 			transition: background-color 200ms ease-in-out;
 			&:hover {
 				background-color: variables.$color-primary;
@@ -65,7 +83,23 @@
 		}
 	}
 	@media (min-width: 750px) {
-		--gtc: 6;
+		--gc: 6;
+		// root
+		--root-height: 382px;
+		--gap: 30px;
+		--padding: 0 10px;
+		// elements
+		--height: 100%;
+		//h2
+		--h2-size: 2.1875rem;
+		--h2-height: 42px;
+		//p
+		--p-size: 1.125rem;
+		--p-height: 22px;
+		//button
+		--button-padding: 16px 25px;
+		--button-font-size: 1rem;
+		--button-line-height: 18px;
 		&--right {
 			--order: 1;
 		}
