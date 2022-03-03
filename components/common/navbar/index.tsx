@@ -22,15 +22,22 @@ const Navbar = () => {
 	return (
 		<div className={styles.navbar}>
 			<Logo />
-			<nav className={styles.navber__nav}>
+			<nav className={styles.navbar__nav}>
 				<ul>
 					{links.map(({ name, href }, idx) => (
-						<li key={idx} className={styles.navber__nav__li}>
+						<li key={idx} className={styles.navbar__nav__li}>
 							<CustomLink name={name} href={href} last={idx === links.length - 1} />
 						</li>
 					))}
 				</ul>
 			</nav>
+			<button className={styles.navbar__hamburger} aria-label="menu" onClick={() => console.log("menu clicked")}>
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M2 5L22 5" stroke="#2B2E32" strokeWidth="3" strokeLinecap="round" />
+					<path d="M8 12L22 12" stroke="#2B2E32" strokeWidth="3" strokeLinecap="round" />
+					<path d="M14 19L22 19" stroke="#2B2E32" strokeWidth="3" strokeLinecap="round" />
+				</svg>
+			</button>
 		</div>
 	);
 };
