@@ -59,7 +59,7 @@ const Home: NextPage<Props> = ({ posts }) => (
 			<Posts posts={posts} />
 		</section>
 		<section className={styles.container}>
-			<Title>we are trusted by</Title>
+			<Title>trusted by</Title>
 			<Icons />
 		</section>
 	</>
