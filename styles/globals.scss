@@ -1,5 +1,5 @@
 @use "fonts";
-@use "variables.module.scss";
+@use "variables" as *;
 
 * {
 	box-sizing: border-box;
@@ -11,8 +11,8 @@ body {
 	margin: 0;
 	font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
 		sans-serif;
-	color: variables.$color-primary;
-	background-color: variables.$bColor-primary;
+	color: $color-primary;
+	background-color: $bColor-primary;
 	font-size: 1rem;
 	font-weight: 400;
 	font-style: normal;
