@@ -1,4 +1,4 @@
-@use "../../styles/variables.module";
+@use "variables" as *;
 
 .header {
 	--width: calc(100% - 40px);
@@ -10,8 +10,8 @@
 	top: 20px;
 	left: 50%;
 	transform: translateX(-50%);
-	background-color: variables.$bColor-primary;
-	border: 1px solid variables.$borderGrayColor;
+	background-color: $bColor-primary;
+	border: 1px solid $borderGrayColor;
 	border-radius: 4px;
 	padding: 0 10px;
 	@media (min-width: 750) {
