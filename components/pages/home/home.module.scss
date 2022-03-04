@@ -1,28 +1,30 @@
-@use "variables.module";
+@use "variables" as *;
+//@use "variables.module" as v;
+//@use "variables.module"; and use variables.variableName
 
 @mixin card {
-	background-color: variables.$bColor-secondary;
-	border: 1px solid variables.$borderGrayColor;
+	background-color: $bColor-secondary;
+	border: 1px solid $borderGrayColor;
 	border-radius: 4px;
-	box-shadow: 0px 2px 6px 0 variables.$grayBoxShadow;
+	box-shadow: 0px 2px 6px 0 $grayBoxShadow;
 }
 
 .hero {
 	--height: 414px;
 	position: relative;
 	height: var(--height);
-	background-color: variables.$bColor-secondary;
+	background-color: $bColor-secondary;
 	&,
 	img {
 		z-index: 0;
 		border-radius: 2px;
-		border: 1px solid variables.$borderGrayColor;
+		border: 1px solid $borderGrayColor;
 	}
 	&:before {
 		content: "";
 		position: absolute;
 		inset: 0;
-		background-color: variables.$heroBg;
+		background-color: $heroBg;
 		z-index: 1;
 	}
 	@media (min-width: 750px) {
@@ -35,7 +37,7 @@
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
-	color: variables.$color-white;
+	color: $color-white;
 }
 
 .hero__title {
@@ -48,7 +50,7 @@
 	font-weight: 800;
 	line-height: var(--line-height);
 	text-transform: capitalize;
-	color: variables.$color-primary;
+	color: $color-primary;
 	@media (min-width: 750px) {
 		--line-height: 58px;
 		--font-size: 3rem;
@@ -64,9 +66,9 @@
 	display: block;
 	width: fit-content;
 	margin: 0 auto;
-	background-color: variables.$color-secondary;
-	box-shadow: 0px 2px 6px variables.$grayBoxShadow;
-	border: 1px solid variables.$borderGrayColor;
+	background-color: $color-secondary;
+	box-shadow: 0px 2px 6px $grayBoxShadow;
+	border: 1px solid $borderGrayColor;
 	border-radius: 20px 0px;
 	padding: var(--padding);
 	font-weight: 700;
@@ -76,7 +78,7 @@
 	text-transform: capitalize;
 	transition: background-color 400ms ease-in-out;
 	&:hover {
-		background-color: variables.$color-primary;
+		background-color: $color-primary;
 	}
 	@media (min-width: 750px) {
 		--padding: 26px 28px;
@@ -115,8 +117,8 @@
 
 @mixin shared-button-style {
 	padding: 10px 15px;
-	background-color: variables.$bColor-secondary;
-	border: 1px solid variables.$borderGrayColor;
+	background-color: $bColor-secondary;
+	border: 1px solid $borderGrayColor;
 	border-radius: 4px;
 }
 
@@ -124,17 +126,17 @@
 	@include shared-button-style;
 
 	&:focus {
-		border-color: variables.$logoLightGray;
+		border-color: $logoLightGray;
 	}
 	svg path {
-		stroke: variables.$color-primary;
+		stroke: $color-primary;
 	}
 	&-disabled {
 		svg path {
-			stroke: variables.$logoLightGray;
+			stroke: $logoLightGray;
 		}
 		&:focus {
-			border-color: variables.$borderGrayColor;
+			border-color: $borderGrayColor;
 		}
 	}
 }
@@ -184,7 +186,7 @@
 		bottom: 0;
 		left: 0;
 		height: 200px;
-		background-image: linear-gradient(to top, variables.$color-white, transparent);
+		background-image: linear-gradient(to top, $color-white, transparent);
 	}
 	&__more__button {
 		display: var(--more-display);
@@ -192,12 +194,12 @@
 		bottom: 50px;
 		left: 50%;
 		transform: translateX(-50%);
-		background-color: variables.$color-secondary;
-		box-shadow: 0px 2px 6px variables.$grayBoxShadow;
-		border: 1px solid variables.$borderGrayColor;
+		background-color: $color-secondary;
+		box-shadow: 0px 2px 6px $grayBoxShadow;
+		border: 1px solid $borderGrayColor;
 		border-radius: 2px;
 		padding: 10px 25px;
-		color: variables.$color-white;
+		color: $color-white;
 		font-weight: 600;
 		font-size: 0.875rem;
 		text-transform: capitalize;
@@ -216,7 +218,7 @@
 	font-weight: 500;
 	line-height: 10px;
 	text-transform: capitalize;
-	color: variables.$color-primary;
+	color: $color-primary;
 }
 
 .posts {
@@ -259,6 +261,6 @@
 	}
 	p {
 		font-size: 0.75rem;
-		color: variables.$color-gray;
+		color: $color-gray;
 	}
 }
