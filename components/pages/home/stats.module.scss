@@ -1,4 +1,4 @@
-@use "variables.module";
+@use "variables" as *;
 
 .stats {
 	--translateY: 100px;
@@ -36,6 +36,6 @@
 	line-height: 35px;
 	text-align: center;
 	letter-spacing: 0.225em;
-	color: variables.$color-white;
-	background-color: variables.$color-primary;
+	color: $color-white;
+	background-color: $color-primary;
 }
