@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import Image from "next/image";
-import variables from "../../../styles/variables.module.scss";
 import styles from "./card.module.scss";
 import cls from "classnames";
 
@@ -48,7 +47,7 @@ const Card = ({ data: { logo, name, title, price, time, place }, testimonial, ch
 const DetailsItem = ({ path, children }: DetailsItemProps) => (
 	<div className={styles.details__item} title={children}>
 		<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-			<path d={path} fill={variables.colorGray} />
+			<path d={path} />
 		</svg>
 		<span>{children}</span>
 	</div>
