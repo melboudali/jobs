@@ -1,9 +1,9 @@
-@use "variables.module";
-@use "home.module";
+@use "variables" as *;
+@use "home.module" as h;
 
 .root {
 	padding: 4px 0 0 4px;
-	@include home.card;
+	@include h.card;
 }
 
 .job {
@@ -35,7 +35,7 @@
 		}
 		p {
 			line-height: 10px;
-			color: variables.$color-gray;
+			color: $color-gray;
 		}
 	}
 }
@@ -53,7 +53,10 @@
 			font-size: 0.75rem;
 			line-height: 12px;
 			text-transform: capitalize;
-			color: variables.$color-gray;
+			color: $color-gray;
+		}
+		svg path {
+			fill: $color-gray;
 		}
 		&:not(:last-child) {
 			margin-bottom: 10px;
@@ -66,5 +69,5 @@
 	font-size: 0.75rem;
 	line-height: 16px;
 	text-transform: capitalize;
-	color: variables.$color-gray;
+	color: $color-gray;
 }
