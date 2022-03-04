@@ -1,4 +1,4 @@
-@use "variables.module";
+@use "variables" as *;
 
 .root {
 	display: grid;
@@ -64,21 +64,21 @@
 		height: var(--height);
 		padding: var(--padding);
 		h2 {
-			@include font(var(--h2-size), 700, var(--h2-height), variables.$color-primary);
+			@include font(var(--h2-size), 700, var(--h2-height), $color-primary);
 		}
 		p {
-			@include font(var(--p-size), 400, var(--p-height), variables.$color-primary);
+			@include font(var(--p-size), 400, var(--p-height), $color-primary);
 		}
 		button {
-			@include font(var(--button-font-size), 600, var(--button-line-height), variables.$color-white);
+			@include font(var(--button-font-size), 600, var(--button-line-height), $color-white);
 			padding: var(--button-padding);
-			background-color: variables.$color-secondary;
-			box-shadow: 0px 2px 6px variables.$grayBoxShadow;
-			border: 1px solid variables.$borderGrayColor;
+			background-color: $color-secondary;
+			box-shadow: 0px 2px 6px $grayBoxShadow;
+			border: 1px solid $borderGrayColor;
 			border-radius: 20px 0px;
 			transition: background-color 200ms ease-in-out;
 			&:hover {
-				background-color: variables.$color-primary;
+				background-color: $color-primary;
 			}
 		}
 	}
