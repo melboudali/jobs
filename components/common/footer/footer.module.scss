@@ -1,13 +1,13 @@
-@use "variables.module";
+@use "variables" as *;
 
 @mixin font {
 	font-size: 0.875rem;
 	line-height: 16px;
 	font-weight: 400;
-	color: variables.$color-gray;
+	color: $color-gray;
 }
 
-@mixin footer-font($weight: 400, $color: variables.$logoLightGray) {
+@mixin footer-font($weight: 400, $color: $logoLightGray) {
 	font-weight: $weight;
 	font-size: 0.75rem;
 	line-height: 10px;
@@ -26,17 +26,17 @@
 		@include font;
 		margin-bottom: 8px;
 		span {
-			color: variables.$error-color;
+			color: $error-color;
 		}
 	}
 	&__input__wrapper {
 		display: flex;
 		gap: 8px;
 		padding: 8px;
-		border: 1px solid variables.$grayBoxShadow;
+		border: 1px solid $grayBoxShadow;
 		border-radius: 4px;
 		&-error {
-			border-color: variables.$error-color;
+			border-color: $error-color;
 		}
 	}
 	&__input {
@@ -51,14 +51,14 @@
 		font-weight: 500;
 		line-height: 10px;
 		text-transform: capitalize;
-		color: variables.$color-white;
-		background-color: variables.$color-secondary;
-		box-shadow: 0px 2px 6px variables.$grayBoxShadow;
-		border: 1px solid variables.$borderGrayColor;
+		color: $color-white;
+		background-color: $color-secondary;
+		box-shadow: 0px 2px 6px $grayBoxShadow;
+		border: 1px solid $borderGrayColor;
 		border-radius: 2px;
 		transition: background-color 400ms ease-in-out;
 		&:hover {
-			background-color: variables.$color-primary;
+			background-color: $color-primary;
 		}
 	}
 	@media (min-width: 750px) {
@@ -72,7 +72,7 @@
 	--gtc: 6;
 	--gap: 50px;
 	--main-padding: 70px 0;
-	background-color: variables.$color-primary;
+	background-color: $color-primary;
 	&__wrapper {
 		max-width: 1080px;
 		margin: 0 auto;
@@ -88,12 +88,12 @@
 		display: flex;
 		justify-content: space-between;
 		padding: 12px 0;
-		border-top: 3px solid variables.$logoLightGray;
+		border-top: 3px solid $logoLightGray;
 		p {
 			@include footer-font;
 		}
 		a:hover {
-			color: variables.$color-white;
+			color: $color-white;
 		}
 	}
 	@media (min-width: 750px) {
@@ -110,7 +110,7 @@
 		margin: 30px 0;
 		font-size: 0.875rem;
 		line-height: 16px;
-		color: variables.$logoLightGray;
+		color: $logoLightGray;
 	}
 	&__socialIcons ul {
 		display: flex;
@@ -121,11 +121,11 @@
 			list-style: none;
 			a {
 				path {
-					fill: variables.$logoLightGray;
+					fill: $logoLightGray;
 				}
 				&:hover {
 					path {
-						fill: variables.$color-white;
+						fill: $color-white;
 					}
 				}
 			}
@@ -136,7 +136,7 @@
 .links {
 	grid-column: span 3;
 	&__title {
-		@include footer-font(700, variables.$color-white);
+		@include footer-font(700, $color-white);
 	}
 	&__list {
 		margin: 30px 0 0;
@@ -147,7 +147,7 @@
 		margin-top: 20px;
 		list-style: none;
 		a:hover {
-			color: variables.$color-white;
+			color: $color-white;
 		}
 	}
 	--links-span: span 3;
