@@ -1,4 +1,4 @@
-@use "variables.module";
+@use "variables" as *;
 
 @mixin edges($direction) {
 	content: "";
@@ -7,7 +7,7 @@
 	bottom: 0;
 	#{$direction}: 0;
 	width: 50px;
-	background-image: linear-gradient(to $direction, transparent, variables.$color-white);
+	background-image: linear-gradient(to $direction, transparent, $color-white);
 	z-index: 1;
 }
 
@@ -30,7 +30,7 @@
 	gap: 100px;
 	animation: slider 70s linear infinite;
 	svg path {
-		fill: variables.$color-primary;
+		fill: $color-primary;
 	}
 	&:hover {
 		animation-play-state: paused;
@@ -46,9 +46,9 @@
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		background: variables.$color-white;
+		background: $color-white;
 		text-align: center;
-		color: variables.$color-primary;
+		color: $color-primary;
 		font-size: 0.7rem;
 		font-weight: 700;
 		text-transform: uppercase;
