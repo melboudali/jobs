@@ -1,4 +1,4 @@
-@use "../../../styles/variables.module";
+@use "variables" as *;
 
 .logo {
 	display: flex;
@@ -12,14 +12,14 @@
 	}
 	svg path {
 		&:nth-child(odd) {
-			fill: variables.$logoLightGray;
+			fill: $logoLightGray;
 		}
 		&:nth-child(even) {
-			fill: variables.$color-primary;
+			fill: $color-primary;
 		}
 	}
 	&--white {
-		color: variables.$color-white;
+		color: $color-white;
 	}
 }
 
@@ -50,9 +50,9 @@
 				align-items: center;
 				height: 40px;
 				padding: 0 10px;
-				background-color: variables.$color-secondary;
-				box-shadow: 0px 2px 6px variables.$grayBoxShadow;
-				border: 1px solid variables.$borderGrayColor;
+				background-color: $color-secondary;
+				box-shadow: 0px 2px 6px $grayBoxShadow;
+				border: 1px solid $borderGrayColor;
 				border-radius: 2px;
 				line-height: 10px;
 				transition: background-color 400ms ease-in-out;
@@ -60,14 +60,14 @@
 					font-weight: 500;
 					font-size: 0.875rem;
 					text-transform: capitalize;
-					color: variables.$color-white;
+					color: $color-white;
 					margin-right: 13px;
 				}
 				svg path {
-					stroke: variables.$color-white;
+					stroke: $color-white;
 				}
 				&:hover {
-					background-color: variables.$color-primary;
+					background-color: $color-primary;
 				}
 			}
 		}
