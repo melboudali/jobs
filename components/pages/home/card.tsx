@@ -20,7 +20,7 @@ const Card = ({ data: { logo, name, title, price, time, place }, testimonial, ch
 		<div className={root}>
 			<div className={styles.top}>
 				<Image className={styles.top__img} src={logo} height={34} width={34} objectFit="cover" alt="logo" quality={100} />
-				<div className={styles.top__titleandcname}>
+				<div className={styles.top__titleAndCName}>
 					<h3 title={title}>{title}</h3>
 					<p>{name}</p>
 				</div>
