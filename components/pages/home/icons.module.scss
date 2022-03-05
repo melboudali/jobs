@@ -1,25 +1,15 @@
 @use "variables" as *;
-
-@mixin edges($direction) {
-	content: "";
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	#{$direction}: 0;
-	width: 50px;
-	background-image: linear-gradient(to $direction, transparent, $color-white);
-	z-index: 1;
-}
+@use "mixins";
 
 .wrapper {
 	position: relative;
 	margin-top: 30px;
 	overflow-x: hidden;
 	&::before {
-		@include edges(left);
+		@include mixins.edges(left);
 	}
 	&::after {
-		@include edges(right);
+		@include mixins.edges(right);
 	}
 }
 
@@ -35,28 +25,27 @@
 	&:hover {
 		animation-play-state: paused;
 	}
-}
-
-.svgs__svg {
-	position: relative;
-	span {
-		display: none;
-		position: absolute;
-		width: 100%;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		background: $color-white;
-		text-align: center;
-		color: $color-primary;
-		font-size: 0.7rem;
-		font-weight: 700;
-		text-transform: uppercase;
-		cursor: default;
-	}
-	&:hover {
+	&__svg {
+		position: relative;
 		span {
-			display: block;
+			display: none;
+			position: absolute;
+			width: 100%;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background: $color-white;
+			text-align: center;
+			color: $color-primary;
+			font-size: 0.7rem;
+			font-weight: 700;
+			text-transform: uppercase;
+			cursor: default;
+		}
+		&:hover {
+			span {
+				display: block;
+			}
 		}
 	}
 }
