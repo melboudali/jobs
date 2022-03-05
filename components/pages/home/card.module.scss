@@ -1,9 +1,9 @@
 @use "variables" as *;
-@use "home.module" as h;
+@use "mixins";
 
 .root {
 	padding: 4px 0 0 4px;
-	@include h.card;
+	@include mixins.card;
 }
 
 .job {
@@ -21,7 +21,7 @@
 	&__img {
 		border-radius: 50%;
 	}
-	&__titleandcname {
+	&__titleAndCName {
 		font-size: 0.7rem;
 		text-transform: capitalize;
 		h3 {
