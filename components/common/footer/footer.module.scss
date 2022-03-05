@@ -1,19 +1,5 @@
 @use "variables" as *;
-
-@mixin font {
-	font-size: 0.875rem;
-	line-height: 16px;
-	font-weight: 400;
-	color: $color-gray;
-}
-
-@mixin footer-font($weight: 400, $color: $logoLightGray) {
-	font-weight: $weight;
-	font-size: 0.75rem;
-	line-height: 10px;
-	text-transform: capitalize;
-	color: $color;
-}
+@use "mixins";
 
 // subscribe section
 .form {
@@ -23,7 +9,7 @@
 	margin: 100px auto;
 	padding: var(--padding);
 	&__title {
-		@include font;
+		@include mixins.form-font;
 		margin-bottom: 8px;
 		span {
 			color: $error-color;
@@ -40,7 +26,7 @@
 		}
 	}
 	&__input {
-		@include font;
+		@include mixins.form-font;
 		width: 100%;
 		padding: 0 8px;
 		border: none;
@@ -90,7 +76,7 @@
 		padding: 12px 0;
 		border-top: 3px solid $logoLightGray;
 		p {
-			@include footer-font;
+			@include mixins.footer-font;
 		}
 		a:hover {
 			color: $color-white;
@@ -136,14 +122,14 @@
 .links {
 	grid-column: span 3;
 	&__title {
-		@include footer-font(700, $color-white);
+		@include mixins.footer-font(700, $color-white);
 	}
 	&__list {
 		margin: 30px 0 0;
 		padding: 0;
 	}
 	&__item {
-		@include footer-font;
+		@include mixins.footer-font;
 		margin-top: 20px;
 		list-style: none;
 		a:hover {
