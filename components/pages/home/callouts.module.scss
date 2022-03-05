@@ -1,19 +1,9 @@
 @use "variables" as *;
+@use "mixins";
 
 .root {
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
-}
-
-@mixin font($size, $weight, $height, $color) {
-	font-size: #{$size};
-	font-weight: $weight;
-	line-height: #{$height};
-	color: $color;
-	text-transform: capitalize;
-	&:not(button) {
-		text-align: center;
-	}
 }
 
 .callout__image {
@@ -64,13 +54,13 @@
 		height: var(--height);
 		padding: var(--padding);
 		h2 {
-			@include font(var(--h2-size), 700, var(--h2-height), $color-primary);
+			@include mixins.font(var(--h2-size), 700, var(--h2-height), $color-primary);
 		}
 		p {
-			@include font(var(--p-size), 400, var(--p-height), $color-primary);
+			@include mixins.font(var(--p-size), 400, var(--p-height), $color-primary);
 		}
 		button {
-			@include font(var(--button-font-size), 600, var(--button-line-height), $color-white);
+			@include mixins.font(var(--button-font-size), 600, var(--button-line-height), $color-white);
 			padding: var(--button-padding);
 			background-color: $color-secondary;
 			box-shadow: 0px 2px 6px $grayBoxShadow;
