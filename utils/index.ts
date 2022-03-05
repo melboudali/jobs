@@ -1,5 +1,9 @@
 import { testimonials } from "../types";
 
+/** the flexThis take one array and returns three arrays for masonry layout.
+ *
+ * (testimonials[]) => [testimonials[], testimonials[], testimonials[]]
+ */
 export const flexThis = (arr: testimonials) => {
 	const res: testimonials[] = [];
 	let subRes: testimonials = [];
