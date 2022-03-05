@@ -1,0 +1,61 @@
+@use "variables" as *;
+
+@mixin title-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+@mixin card {
+	background-color: $bColor-secondary;
+	border: 1px solid $borderGrayColor;
+	border-radius: 4px;
+	box-shadow: 0px 2px 6px 0 $grayBoxShadow;
+}
+
+@mixin shared-button-style {
+	padding: 10px 15px;
+	background-color: $bColor-secondary;
+	border: 1px solid $borderGrayColor;
+	border-radius: 4px;
+}
+
+// callouts-section
+@mixin font($size, $weight, $height, $color) {
+	font-size: #{$size};
+	font-weight: $weight;
+	line-height: #{$height};
+	color: $color;
+	text-transform: capitalize;
+	&:not(button) {
+		text-align: center;
+	}
+}
+
+// icons-section
+@mixin edges($direction) {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	#{$direction}: 0;
+	width: 50px;
+	background-image: linear-gradient(to $direction, transparent, $color-white);
+	z-index: 1;
+}
+
+// footer-section
+@mixin form-font {
+	font-size: 0.875rem;
+	line-height: 16px;
+	font-weight: 400;
+	color: $color-gray;
+}
+
+@mixin footer-font($weight: 400, $color: $logoLightGray) {
+	font-weight: $weight;
+	font-size: 0.75rem;
+	line-height: 10px;
+	text-transform: capitalize;
+	color: $color;
+}
