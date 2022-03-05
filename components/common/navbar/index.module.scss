@@ -74,6 +74,9 @@
 	}
 	&__hamburger {
 		display: var(--nav-hamburger);
+		svg path {
+			stroke: $color-primary;
+		}
 	}
 	@media (min-width: 850px) {
 		--nav-hamburger: none;
