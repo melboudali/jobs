@@ -30,6 +30,7 @@ interface DetailsItemProps {
 	path: string;
 }
 
+// type predicates https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates
 function isTestimonial(props: testimonial | job): props is testimonial {
 	return !!(props as testimonial).testimonial;
 }
