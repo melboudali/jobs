@@ -31,9 +31,7 @@ interface DetailsItemProps {
 }
 
 // type predicates https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates
-function isTestimonial(props: testimonial | job): props is testimonial {
-	return !!(props as testimonial).testimonial;
-}
+const isTestimonial = (props: testimonial | job): props is testimonial => !!(props as testimonial).testimonial;
 
 const Card = (props: testimonial | job) => {
 	const root = cls(styles.root, { [styles["testimonial"]]: props.testimonial, [styles["job"]]: !props.testimonial });
