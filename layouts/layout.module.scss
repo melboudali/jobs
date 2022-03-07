@@ -1,9 +1,0 @@
-.main {
-	--padding: 0 10px;
-	padding: var(--padding);
-	max-width: 1080px;
-	margin: 51px auto 0;
-	@media (min-width: 1080px) {
-		--padding: 0;
-	}
-}
