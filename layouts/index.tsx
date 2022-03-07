@@ -1,6 +1,6 @@
 import Header from "../components/common/header";
 import Footer from "../components/common/footer";
-import styles from "./layout.module.scss";
+import styles from "./layouts.module.scss";
 
 interface Props {
 	children: React.ReactNode;
