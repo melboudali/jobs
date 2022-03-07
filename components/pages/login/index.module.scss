@@ -1,0 +1,65 @@
+@use "variables" as *;
+@use "mixins";
+
+.logo {
+	margin-bottom: 20px;
+	text-align: center;
+	&__title {
+		margin-bottom: 20px;
+		font-weight: 300;
+		font-size: 1.25rem;
+		line-height: 27px;
+		text-transform: capitalize;
+		color: $color-primary;
+	}
+}
+
+.form {
+	@include mixins.card;
+	margin: 0 auto;
+	width: 450px;
+	height: 600px;
+	padding: 30px;
+}
+
+.input__wrapper {
+	position: relative;
+	margin-bottom: 20px;
+	&::before {
+		content: "";
+		display: none;
+		position: absolute;
+		height: 4px;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: $color-primary;
+		z-index: 1000;
+	}
+}
+
+.label {
+	font-size: 0.75rem;
+	line-height: 10px;
+	font-weight: 700;
+	text-transform: capitalize;
+	color: $color-primary;
+}
+
+.input {
+	width: 100%;
+	margin-top: 10px;
+	padding: 10px;
+	font-size: 1.1rem;
+	font-weight: 500;
+	background-color: #efefef;
+	border: 0;
+	&:focus {
+		outline: none;
+		.label__wrapper {
+			&::before {
+				display: bliock;
+			}
+		}
+	}
+}
