@@ -23,6 +23,18 @@
 	}
 }
 
+.logo--large {
+	margin: 0 auto;
+	svg path {
+		&:nth-child(odd) {
+			fill: $logoLightGray;
+		}
+		&:nth-child(even) {
+			fill: $color-primary;
+		}
+	}
+}
+
 .navbar {
 	--nav-hamburger: block;
 	--nav-display: none;
