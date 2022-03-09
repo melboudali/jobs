@@ -7,11 +7,11 @@ import Stats from "../components/pages/home/stats";
 import Testimonials from "../components/pages/home/testimonials";
 import Posts from "../components/pages/home/posts";
 import Icons from "../components/pages/home/icons";
-import styles from "../components/pages/home/index.module.scss";
+import styles from "./index.module.scss";
 import { getSortedPostsData } from "../lib/blog";
 import { Posts as PostsType } from "../types";
 import Layout from "../layouts";
-import { ReactElement, ReactNode } from "react";
+import { ReactNode } from "react";
 
 interface Props {
 	posts: PostsType;
