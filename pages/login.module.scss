@@ -2,18 +2,7 @@
 @use "mixins";
 
 .form {
-	@include mixins.card;
-	margin: 0 auto;
-	width: 450px;
-	padding: 30px;
-}
-
-.recaptcha {
-	text-align: center;
-	height: 78px;
-	div[style="width: 304px; height: 78px;"] {
-		display: inline-block;
-	}
+	@include mixins.loginSignCard(0 auto, 30px);
 }
 
 .submit {
