@@ -1,5 +1,5 @@
-import Logo from "../navbar/logo";
-import styles from "./largeLogo.module.scss";
+import Logo from "../Navbar/Logo";
+import styles from "./LargeLogo.module.scss";
 
 const LargeLogo = () => (
 	<div className={styles.logo}>
