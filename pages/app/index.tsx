@@ -1,11 +1,8 @@
+import { ReactNode } from "react";
 import type { MyNextPage } from "next";
-import { ReactElement, ReactNode } from "react";
-import AppLayout from "../../layouts/appLayout";
-import PropTypes from "prop-types";
+import AppLayout from "../../layouts/AppLayout";
 
-interface Props {}
-
-const App: MyNextPage<Props> = props => {
+const App: MyNextPage = () => {
 	return (
 		<div>
 			<p>
@@ -19,29 +16,6 @@ const App: MyNextPage<Props> = props => {
 		</div>
 	);
 };
-
-// export const getStaticPaths: GetStaticPaths = async () => {
-//     const res = await fetch('');
-//     const posts = await res.json();
-//     const paths = posts.map((post: any) => ({
-//         params: { id: post.id },
-//     }))
-//     return { paths, fallback: false }
-// }
-
-// export const getStaticProps: GetStaticProps = async context => {
-//     const res = await fetch(``)
-//     const post = await res.json()
-//     return { props: { post } }
-// }
-
-// export const getServerSideProps: GetServerSideProps = async context => {
-//     const res = await fetch(``);
-//     const data = await res.json()
-//     return { props:{data}}
-// }
-
-App.propTypes = {};
 
 App.getLayout = (page: ReactNode) => <AppLayout>{page}</AppLayout>;
 
