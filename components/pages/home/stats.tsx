@@ -1,8 +1,8 @@
 import { FC, useRef } from "react";
 import useAppearOnScroll from "../../../hooks/useAppearOnScroll";
-import styles from "./stats.module.scss";
 import CountUp from "react-countup";
 import cls from "classnames";
+import styles from "./Stats.module.scss";
 
 interface Props {
 	number: number;
