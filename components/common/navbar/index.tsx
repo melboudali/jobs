@@ -1,6 +1,6 @@
 import Link from "next/link";
-import styles from "./index.module.scss";
-import Logo from "./logo";
+import Logo from "./Logo";
+import styles from "./Navbar.module.scss";
 
 interface Props {
 	name: string;
