@@ -1,13 +1,16 @@
-import styles from "./layouts.module.scss";
+import Footer from "../components/common/LoginSignup/Footer";
+import styles from "./Layouts.module.scss";
 
 interface Props {
-	children: React.ReactNode;
+	question: string;
+	suggestion: string;
+	to: "/login" | "/signup";
 }
 
-const SignLayout = ({ children }: Props) => (
+const SignLayout: React.FC<Props> = ({ children, question, suggestion, to }) => (
 	<>
 		<main className={styles.signMain}>{children}</main>
-		<footer></footer>
+		<Footer question={question} suggestion={suggestion} to={to} />
 	</>
 );
 
