@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Title from "../../pages/home/title";
-import Card from "./card";
+import Title from "./Title";
+import Card from "./Card";
 import { flexThis } from "../../../utils";
-import cls from "classnames";
-import styles from "./testimonials.module.scss";
 import data from "../../../data/testimonials.json";
+import cls from "classnames";
+import styles from "./Testimonials.module.scss";
 
 const Testimonials = () => {
 	const [more, setMore] = useState(false);
