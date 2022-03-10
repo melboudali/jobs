@@ -1,6 +1,6 @@
 import { FC, ReactNode } from "react";
 import Image from "next/image";
-import styles from "./card.module.scss";
+import styles from "./Card.module.scss";
 import cls from "classnames";
 
 interface SmallData {
