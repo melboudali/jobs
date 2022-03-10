@@ -1,7 +1,5 @@
-interface Props {
-	children: React.ReactNode;
-}
+import { FC } from "react";
 
-const AppLayout = ({ children }: Props) => <main style={{ backgroundColor: "red" }}>{children}</main>;
+const AppLayout: FC = ({ children }) => <main style={{ backgroundColor: "red" }}>{children}</main>;
 
 export default AppLayout;
