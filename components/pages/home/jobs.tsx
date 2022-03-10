@@ -1,10 +1,10 @@
 import { useRef } from "react";
 import useSlider from "../../../hooks/useSlider";
-import Title from "./title";
-import Card from "./card";
+import Title from "./Title";
+import Card from "./Card";
 import data from "../../../data/jobs.json";
 import cls from "classnames";
-import styles from "./jobs.module.scss";
+import styles from "./Jobs.module.scss";
 
 const Jobs = () => {
 	const containerRef = useRef<HTMLDivElement>(null);
