@@ -1,8 +1,16 @@
-import Image from "next/image";
 import { FC } from "react";
-import styles from "./callouts.module.scss";
-import data from "../../../data/callouts.json";
+import Image from "next/image";
 import cls from "classnames";
+import data from "../../../data/callouts.json";
+import styles from "./Callouts.module.scss";
+
+interface Props {
+	image: string;
+	title: string;
+	description: string;
+	buttonText: string;
+	right: boolean;
+}
 
 const Callouts = () => {
 	return (
@@ -14,13 +22,7 @@ const Callouts = () => {
 	);
 };
 
-const Callout: FC<{ image: string; title: string; description: string; buttonText: string; right: boolean }> = ({
-	image,
-	title,
-	description,
-	buttonText,
-	right
-}) => {
+const Callout = ({ image, title, description, buttonText, right }: Props) => {
 	const callout__image = cls(styles.callout__image, {
 		[styles["callout__image--right"]]: right
 	});
