@@ -1,10 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import cls from "classnames";
-import styles from "./footer.module.scss";
+import styles from "./Footer.module.scss";
 
-interface Props {}
-
-const Subscribe = ({}: Props) => {
+const Subscribe = () => {
 	const [formValue, setFormValue] = useState("");
 	const [error, setError] = useState("");
 	const [loading, setLoading] = useState(false);

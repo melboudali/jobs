@@ -1,60 +1,56 @@
-import Subscribe from "./subscribe";
-import styles from "./footer.module.scss";
-import Logo from "../navbar/logo";
 import Link from "next/link";
-
-interface Props {}
+import Subscribe from "./Subscribe";
+import Logo from "../Navbar/Logo";
+import styles from "./Footer.module.scss";
 
 interface CustomLinkProps {
 	name: string;
 	url: string;
 }
 
-const Footer = ({}: Props) => {
-	return (
-		<>
-			<Subscribe />
-			<footer className={styles.footer}>
-				<div className={styles.footer__wrapper}>
-					<div className={styles.footer__main}>
-						<div className={styles.about}>
-							<Logo white />
-							<p>We&apos;re here to make hiring a little easier. Let&apos;s give it a try.</p>
-							<Icons />
-						</div>
-						<div className={styles.links}>
-							<h4 className={styles.links__title}>Job Search Resources</h4>
-							<ul className={styles.links__list}>
-								<CustomLink name="browse jobs" url="#" />
-								<CustomLink name="find candidates" url="#" />
-								<CustomLink name="post a job" url="#" />
-								<CustomLink name="small business hiring" url="#" />
-								<CustomLink name="blog" url="/blog" />
-							</ul>
-						</div>
-						<div className={styles.links}>
-							<h4 className={styles.links__title}>support</h4>
-							<ul className={styles.links__list}>
-								<CustomLink name="about" url="#" />
-								<CustomLink name="Contact Us" url="#" />
-								<CustomLink name="FAQ" url="#" />
-								<CustomLink name="Terms of Use" url="#" />
-							</ul>
-						</div>
+const Footer = () => (
+	<>
+		<Subscribe />
+		<footer className={styles.footer}>
+			<div className={styles.footer__wrapper}>
+				<div className={styles.footer__main}>
+					<div className={styles.about}>
+						<Logo white />
+						<p>We&apos;re here to make hiring a little easier. Let&apos;s give it a try.</p>
+						<Icons />
 					</div>
-					<div className={styles.footer__end}>
-						<p>© {new Date().getFullYear()} Jobs All Rights Reserved</p>
-						<p>
-							<Link href="#">
-								<a>Privacy Policy</a>
-							</Link>
-						</p>
+					<div className={styles.links}>
+						<h4 className={styles.links__title}>Job Search Resources</h4>
+						<ul className={styles.links__list}>
+							<CustomLink name="browse jobs" url="#" />
+							<CustomLink name="find candidates" url="#" />
+							<CustomLink name="post a job" url="#" />
+							<CustomLink name="small business hiring" url="#" />
+							<CustomLink name="blog" url="/blog" />
+						</ul>
+					</div>
+					<div className={styles.links}>
+						<h4 className={styles.links__title}>support</h4>
+						<ul className={styles.links__list}>
+							<CustomLink name="about" url="#" />
+							<CustomLink name="Contact Us" url="#" />
+							<CustomLink name="FAQ" url="#" />
+							<CustomLink name="Terms of Use" url="#" />
+						</ul>
 					</div>
 				</div>
-			</footer>
-		</>
-	);
-};
+				<div className={styles.footer__end}>
+					<p>© {new Date().getFullYear()} Jobs All Rights Reserved</p>
+					<p>
+						<Link href="#">
+							<a>Privacy Policy</a>
+						</Link>
+					</p>
+				</div>
+			</div>
+		</footer>
+	</>
+);
 
 const Icons = () => {
 	const icons = [
