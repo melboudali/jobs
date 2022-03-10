@@ -3,17 +3,6 @@
 .root {
 	position: relative;
 	margin-bottom: 20px;
-	// &::before {
-	// 	content: "";
-	// 	display: none;
-	// 	position: absolute;
-	// 	height: 4px;
-	// 	left: 0;
-	// 	right: 0;
-	// 	bottom: 0;
-	// 	background-color: $color-primary;
-	// 	z-index: 1000;
-	// }
 }
 
 .label {
@@ -31,8 +20,38 @@
 	padding: 10px;
 	font-size: 0.95rem;
 	font-weight: 500;
-	background-color: #e0e0e0;
+	background-color: $input-bg;
 	border: 0;
 	border-radius: 4px;
 	color: $color-primary;
+}
+
+.password {
+	display: flex;
+	align-items: center;
+	height: 35px;
+	margin-top: 10px;
+	background-color: $input-bg;
+	border-radius: 4px;
+}
+
+.password__input {
+	height: 100%;
+	padding: 10px;
+	font-size: 0.95rem;
+	font-weight: 500;
+	border: 0;
+	color: $color-primary;
+	background-color: transparent;
+	flex: 1;
+}
+
+.password__button {
+	display: flex;
+	align-items: center;
+	height: 100%;
+	padding: 0 5px;
+	svg path {
+		fill: $color-primary;
+	}
 }
