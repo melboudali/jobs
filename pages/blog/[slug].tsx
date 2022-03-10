@@ -1,13 +1,13 @@
-import type { NextPage, GetStaticProps, GetStaticPaths, MyNextPage } from "next";
+import { ReactElement, ReactNode } from "react";
+import type { GetStaticProps, GetStaticPaths, MyNextPage } from "next";
+import Image from "next/image";
+import Head from "next/head";
+import { parseISO, format } from "date-fns";
 import { ParsedUrlQuery } from "querystring";
 import { getAllPostIds, getPostData } from "../../lib/blog";
-import Head from "next/head";
-import styles from "./blog.module.scss";
-import Image from "next/image";
-import { parseISO, format } from "date-fns";
 import { Post } from "../../types";
-import { ReactElement, ReactNode } from "react";
-import Layout from "../../layouts/index";
+import Layout from "../../layouts/Layout";
+import styles from "./blog.module.scss";
 
 interface Props {
 	post: Post;
@@ -18,7 +18,7 @@ interface Params extends ParsedUrlQuery {
 	slug: string;
 }
 
-const Post: MyNextPage<Props> = ({ post: { title, cover, contentHtml, date } }, getLayout) => {
+const Post: MyNextPage<Props> = ({ post: { title, cover, contentHtml, date } }) => {
 	return (
 		<>
 			<Head>
