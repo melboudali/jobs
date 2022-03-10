@@ -1,6 +1,6 @@
-import Title from "./title";
+import Title from "./Title";
 import data from "../../../data/icons.json";
-import styles from "./icons.module.scss";
+import styles from "./Icons.module.scss";
 
 const Icons = () => (
 	<>
