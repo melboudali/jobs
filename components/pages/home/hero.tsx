@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
-import styles from "./hero.module.scss";
+import Image from "next/image";
+import styles from "./Hero.module.scss";
 
 const Hero = () => (
 	<section className={styles.root}>
