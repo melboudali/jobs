@@ -5,6 +5,18 @@
 	margin-bottom: 20px;
 }
 
+.loginPasswordLabel {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	a {
+		font-size: 0.75rem;
+		line-height: 10px;
+		text-transform: capitalize;
+		color: $color-secondary;
+	}
+}
+
 .label {
 	font-size: 0.75rem;
 	line-height: 10px;
