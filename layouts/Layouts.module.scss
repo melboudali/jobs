@@ -1,9 +1,9 @@
 @use "mixins" as *;
 
 .main {
-	@include layout-main(51px);
+   @include layout-main(51px);
 }
 
 .signMain {
-	@include layout-main(80px);
+   @include layout-main(30px);
 }
