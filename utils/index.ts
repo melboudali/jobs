@@ -17,3 +17,17 @@ export const flexThis = (arr: testimonials) => {
 
 	return res;
 };
+
+// export const flexThis = Array<T>(arr: T): T[] => {
+// 	const res: U ;
+// 	let subRes: T = [];
+// 	for (let i = 0; i < arr.length; i++) {
+// 		subRes.push(arr[i]);
+// 		if (arr[i].id % 3 === 0 || i === arr.length - 1) {
+// 			res.push(subRes);
+// 			subRes = [];
+// 		}
+// 	}
+
+// 	return res;
+// };
