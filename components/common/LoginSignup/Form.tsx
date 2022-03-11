@@ -69,7 +69,6 @@ const Inputs = ({ variant, values, updateValue }: InputsProps) => {
                name="firstName"
                label="First Name"
                type="text"
-               placeHolder="Enter your first name"
                value={values.firstName ?? ""}
                onChange={updateValue}
             />
@@ -78,7 +77,6 @@ const Inputs = ({ variant, values, updateValue }: InputsProps) => {
                name="lastName"
                label="Last Name"
                type="text"
-               placeHolder="Enter your last name"
                value={values.lastName ?? ""}
                onChange={updateValue}
             />
@@ -87,7 +85,6 @@ const Inputs = ({ variant, values, updateValue }: InputsProps) => {
                name="email"
                label="email address"
                type="email"
-               placeHolder="Enter your email address"
                value={values.email}
                onChange={updateValue}
             />
@@ -96,7 +93,6 @@ const Inputs = ({ variant, values, updateValue }: InputsProps) => {
                name="password"
                label="password"
                type="password"
-               placeHolder="Enter your password"
                value={values.password}
                onChange={updateValue}
             />
