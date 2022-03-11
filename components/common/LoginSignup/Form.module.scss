@@ -1,5 +1,5 @@
 @use "mixins" as *;
 
 .form {
-    @include loginSignCard(0 auto, 30px);
+   @include loginSignCard(0 auto, 30px);
 }
