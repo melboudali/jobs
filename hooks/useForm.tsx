@@ -1,18 +1,11 @@
 import { ChangeEvent, useState } from "react";
+import { useFormValues } from "../types";
 
-interface Props {
-	firstName?: string;
-	lastName?: string;
-	email: string;
-	password: string;
-}
-
-const useForm = (defaults: Props) => {
+const useForm = (defaults: useFormValues) => {
 	const [values, setValues] = useState(defaults);
 
 	const updateValue = (e: ChangeEvent<HTMLInputElement>) => {
 		let { name, value } = e.target;
-		console.log(name, value);
 		setValues({ ...values, [name]: value });
 	};
 
