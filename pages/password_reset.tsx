@@ -1,12 +1,20 @@
 import type { MyNextPage } from "next";
 import { ReactElement } from "react";
+import Form from "../components/common/LoginSignup/Form";
+import LargeLogo from "../components/common/LoginSignup/LargeLogo";
+import SignLayout from "../layouts/SignLayout";
 
-interface Props {}
+const PasswordReset: MyNextPage = () => (
+  <>
+    <LargeLogo variant="password-rest" />
+    <Form variant="password-rest" />
+  </>
+);
 
-const PasswordReset: MyNextPage<Props> = props => {
-	return <div>This is PageName Component/Page</div>;
-};
-
-PasswordReset.getLayout = (page: ReactElement) => page;
+PasswordReset.getLayout = (page: ReactElement) => (
+  <SignLayout question="Already have an account" suggestion="Log in" to="/login">
+    {page}
+  </SignLayout>
+);
 
 export default PasswordReset;
