@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import cls from "classnames";
-import styles from "./Footer.module.scss";
+import styles from "./index.module.scss";
 
 const Subscribe = () => {
    const [formValue, setFormValue] = useState("");
