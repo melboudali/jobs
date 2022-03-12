@@ -1,11 +1,11 @@
 import Link from "next/link";
 import Subscribe from "./Subscribe";
 import Logo from "../Navbar/Logo";
-import styles from "./Footer.module.scss";
+import styles from "./index.module.scss";
 
-interface CustomLinkProps {
-   name: string;
-   url: string;
+interface CustomLinkProps<T> {
+   name: T;
+   url: T;
 }
 
 const Footer = () => (
@@ -93,7 +93,7 @@ const Icons = () => {
    );
 };
 
-const CustomLink = ({ name, url }: CustomLinkProps) => (
+const CustomLink = ({ name, url }: CustomLinkProps<string>) => (
    <li className={styles.links__item}>
       <Link href={url}>
          <a>{name}</a>
