@@ -4,30 +4,30 @@ import { testimonials } from "../types";
  *
  * (testimonials[]) => [testimonials[], testimonials[], testimonials[]]
  */
-export const flexThis = (arr: testimonials) => {
-	const res: testimonials[] = [];
-	let subRes: testimonials = [];
-	for (let i = 0; i < arr.length; i++) {
-		subRes.push(arr[i]);
-		if (arr[i].id % 3 === 0 || i === arr.length - 1) {
-			res.push(subRes);
-			subRes = [];
-		}
-	}
+// export const flexThis = (arr: testimonials) => {
+//    const res: testimonials[] = [];
+//    let subRes: testimonials = [];
+//    for (let i = 0; i < arr.length; i++) {
+//       subRes.push(arr[i]);
+//       if (arr[i].id % 3 === 0 || i === arr.length - 1) {
+//          res.push(subRes);
+//          subRes = [];
+//       }
+//    }
 
-	return res;
-};
-
-// export const flexThis = Array<T>(arr: T): T[] => {
-// 	const res: U ;
-// 	let subRes: T = [];
-// 	for (let i = 0; i < arr.length; i++) {
-// 		subRes.push(arr[i]);
-// 		if (arr[i].id % 3 === 0 || i === arr.length - 1) {
-// 			res.push(subRes);
-// 			subRes = [];
-// 		}
-// 	}
-
-// 	return res;
+//    return res;
 // };
+
+export const flexThis = <T extends { id: number }>(arr: T[]): T[][] => {
+   const res: T[][] = [];
+   let subRes: T[] = [];
+   for (let i = 0; i < arr.length; i++) {
+      subRes.push(arr[i]);
+      if (arr[i].id % 3 === 0 || i === arr.length - 1) {
+         res.push(subRes);
+         subRes = [];
+      }
+   }
+
+   return res;
+};
