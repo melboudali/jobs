@@ -1,97 +1,179 @@
 @use "variables" as *;
+@use "breakpoints" as media;
 
 .logo {
-	display: flex;
-	align-items: center;
-	span {
-		margin-left: 5px;
-		font-size: 1.25rem;
-		font-weight: 600;
-		letter-spacing: -0.05em;
-		line-height: 15px;
-	}
-	svg path {
-		&:nth-child(odd) {
-			fill: $logoLightGray;
-		}
-		&:nth-child(even) {
-			fill: $color-primary;
-		}
-	}
-	&--white {
-		color: $color-white;
-	}
+   display: flex;
+   align-items: center;
+   span {
+      margin-left: 5px;
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.05em;
+      line-height: 15px;
+   }
+   svg path {
+      &:nth-child(odd) {
+         fill: $logoLightGray;
+      }
+      &:nth-child(even) {
+         fill: $color-primary;
+      }
+   }
+   &--white {
+      color: $color-white;
+   }
 }
 
 .logo--large {
-	margin: 0 auto;
-	svg path {
-		&:nth-child(odd) {
-			fill: $logoLightGray;
-		}
-		&:nth-child(even) {
-			fill: $color-primary;
-		}
-	}
+   margin: 0 auto;
+   svg path {
+      &:nth-child(odd) {
+         fill: $logoLightGray;
+      }
+      &:nth-child(even) {
+         fill: $color-primary;
+      }
+   }
 }
 
 .navbar {
-	--nav-hamburger: block;
-	--nav-display: none;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	height: 100%;
-	&__nav {
-		display: var(--nav-display);
-		ul {
-			display: flex;
-		}
-		&__li {
-			list-style: none;
-			display: flex;
-			align-items: center;
-			&:not(:last-child) {
-				margin-right: 20px;
-				font-size: 0.8125rem;
-				line-height: 10px;
-				text-transform: uppercase;
-			}
-			&:last-child a {
-				display: flex;
-				align-items: center;
-				height: 40px;
-				padding: 0 10px;
-				background-color: $color-secondary;
-				box-shadow: 0px 2px 6px $grayBoxShadow;
-				border: 1px solid $borderGrayColor;
-				border-radius: 2px;
-				line-height: 10px;
-				transition: background-color 400ms ease-in-out;
-				span {
-					font-weight: 500;
-					font-size: 0.875rem;
-					text-transform: capitalize;
-					color: $color-white;
-					margin-right: 13px;
-				}
-				svg path {
-					stroke: $color-white;
-				}
-				&:hover {
-					background-color: $color-primary;
-				}
-			}
-		}
-	}
-	&__hamburger {
-		display: var(--nav-hamburger);
-		svg path {
-			stroke: $color-primary;
-		}
-	}
-	@media (min-width: 850px) {
-		--nav-hamburger: none;
-		--nav-display: block;
-	}
+   --nav-hamburger: flex;
+   --nav-display: none;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   height: 60px;
+   &__nav {
+      display: var(--nav-display);
+      align-items: center;
+      justify-content: center;
+   }
+   &__hamburger {
+      display: var(--nav-hamburger);
+      .svg {
+         path {
+            fill: none;
+            stroke: $color-primary;
+            stroke-width: 6;
+            transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+               stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+            &:nth-child(1) {
+               stroke-dasharray: 60 207;
+               stroke-width: 6;
+            }
+            &:nth-child(2) {
+               stroke-dasharray: 60 60;
+               stroke-width: 6;
+            }
+            &:nth-child(3) {
+               stroke-dasharray: 60 207;
+               stroke-width: 6;
+            }
+         }
+         &--active path {
+            &:nth-child(1) {
+               stroke-dasharray: 90 207;
+               stroke-dashoffset: -134;
+               stroke-width: 6;
+            }
+            &:nth-child(2) {
+               stroke-dasharray: 1 60;
+               stroke-dashoffset: -30;
+               stroke-width: 6;
+            }
+            &:nth-child(3) {
+               stroke-dasharray: 90 207;
+               stroke-dashoffset: -134;
+               stroke-width: 6;
+            }
+         }
+      }
+   }
+   @include media.break(tablet) {
+      --nav-hamburger: none;
+      --nav-display: block;
+   }
+}
+
+.links {
+   display: flex;
+   justify-content: center;
+   @mixin commonlastChild {
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      background-color: $color-secondary;
+      box-shadow: 0px 2px 6px $grayBoxShadow;
+      border: 1px solid $borderGrayColor;
+      border-radius: 2px;
+      line-height: 10px;
+      transition: background-color 400ms ease-in-out;
+      span {
+         font-weight: 500;
+         text-transform: capitalize;
+         color: $color-white;
+         margin-right: 13px;
+      }
+      svg path {
+         stroke: $color-white;
+      }
+   }
+
+   &--mobile {
+      --visibility: hidden;
+      visibility: var(--visibility);
+      flex-direction: column;
+      justify-content: space-between;
+      height: calc(100% - 60px);
+      padding: 50px 10px;
+      animation: show 0s 450ms forwards;
+      li {
+         &:not(:last-child) a {
+            display: flex;
+            align-items: center;
+            height: 45px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+         }
+
+         &:last-child a {
+            @include commonlastChild;
+            justify-content: center;
+            height: 45px;
+         }
+      }
+      @keyframes show {
+         to {
+            --visibility: visible;
+         }
+      }
+      @include media.break(tablet) {
+         display: none;
+      }
+   }
+
+   &--desktop {
+      li {
+         display: flex;
+         align-items: center;
+         &:not(:last-child) {
+            margin-right: 20px;
+            font-size: 0.8125rem;
+            line-height: 10px;
+            text-transform: uppercase;
+         }
+         &:last-child a {
+            @include commonlastChild;
+            height: 40px;
+            span {
+               font-size: 0.875rem;
+            }
+            &:hover {
+               background-color: $color-primary;
+            }
+         }
+      }
+   }
 }
