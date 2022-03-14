@@ -10,7 +10,7 @@ const Subscribe = () => {
    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
       setFormValue(e.target.value);
    };
-
+   //TODO fix later
    const onSubmit = (e: FormEvent) => {
       e.preventDefault();
       console.log("submited");
