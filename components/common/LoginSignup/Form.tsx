@@ -1,10 +1,10 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
+import type { useFormValues, YupError } from "../../../types";
 import * as yup from "yup";
 import useForm from "../../../hooks/useForm";
 import Input from "./Input";
 import Recaptcha from "./Recaptcha";
 import SubmitButton from "./SubmitButton";
-import { useFormValues, YupError } from "../../../types";
 import styles from "./Form.module.scss";
 
 interface Props {
