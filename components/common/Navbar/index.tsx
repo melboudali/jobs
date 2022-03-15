@@ -1,5 +1,3 @@
-import { Dispatch, SetStateAction, useState } from "react";
-import Link from "next/link";
 import Logo from "./Logo";
 import cls from "classnames";
 import styles from "./Navbar.module.scss";
