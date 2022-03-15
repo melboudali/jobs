@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 import cls from "classnames";
 import styles from "./index.module.scss";
 
