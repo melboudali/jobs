@@ -1,3 +1,8 @@
+import { object, number, string, ObjectSchema } from "yup";
+import { ObjectShape, OptionalObjectSchema } from "yup/lib/object";
+import type { RequiredStringSchema } from "yup/lib/string";
+import type { AnyObject } from "yup/lib/types";
+
 export interface testimonial {
    id: number;
    image: string;
@@ -25,11 +30,13 @@ export interface useFormValues {
    firstName?: string;
    lastName?: string;
    email: string;
-   password: string;
-   resetPassword?: string;
+   password?: string;
 }
 
 // Yup
 export interface YupError {
-   message: { field: string; message: string };
+   message: { field: string; message: string } | string;
 }
+
+// Form, login, signup ans password-reset
+export type Variant = "login" | "signup" | "password-rest";
