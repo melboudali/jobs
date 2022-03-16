@@ -1,5 +1,3 @@
-import type { testimonials } from "../types";
-
 /** the flexThis take one array and returns three arrays for masonry layout.
  *
  * (testimonials[]) => testimonials[][]
