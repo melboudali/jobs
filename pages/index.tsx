@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import type { GetStaticProps } from "next";
 import Head from "next/head";
 import Layout from "../layouts/Layout";
@@ -10,45 +10,45 @@ import Testimonials from "../components/pages/home/Testimonials";
 import Posts from "../components/pages/home/Posts";
 import Icons from "../components/pages/home/Icons";
 import styles from "./index.module.scss";
-import { Posts as PostsType } from "../types";
+import type { Posts as PostsType } from "../types";
 import { getSortedPostsData } from "../lib/blog";
 
 interface Props {
-	posts: PostsType;
+   posts: PostsType;
 }
 
 const Home = ({ posts }: Props) => (
-	<>
-		<Head>
-			<title>Jobs</title>
-		</Head>
-		<Hero />
-		<section className={styles.container}>
-			<Jobs />
-		</section>
-		<section className={styles.container}>
-			<Callouts />
-		</section>
-		<section className={styles.container}>
-			<Stats />
-		</section>
-		<section className={styles.container}>
-			<Testimonials />
-		</section>
-		<section className={styles.container}>
-			<Posts posts={posts} />
-		</section>
-		<section className={styles.container}>
-			<Icons />
-		</section>
-	</>
+   <>
+      <Head>
+         <title>Jobs</title>
+      </Head>
+      <Hero />
+      <section className={styles.container}>
+         <Jobs />
+      </section>
+      <section className={styles.container}>
+         <Callouts />
+      </section>
+      <section className={styles.container}>
+         <Stats />
+      </section>
+      <section className={styles.container}>
+         <Testimonials />
+      </section>
+      <section className={styles.container}>
+         <Posts posts={posts} />
+      </section>
+      <section className={styles.container}>
+         <Icons />
+      </section>
+   </>
 );
 
 export const getStaticProps: GetStaticProps = async () => {
-	const posts = getSortedPostsData();
-	return {
-		props: { posts }
-	};
+   const posts = getSortedPostsData();
+   return {
+      props: { posts },
+   };
 };
 
 Home.getLayout = (page: ReactNode) => <Layout>{page}</Layout>;
