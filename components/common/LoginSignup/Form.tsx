@@ -25,9 +25,7 @@ const Form = ({ variant }: Props) => {
 
    const onSubmit = async (e: FormEvent) => {
       e.preventDefault();
-      const fromValidation = new FormValidation(variant, values, recaptcha);
-      const vl = await fromValidation.validate();
-      console.log(vl);
+      const fromValidation = new FormValidation(variant, values, recaptcha).validate();
    };
 
    return (
