@@ -5,12 +5,12 @@ import Head from "next/head";
 import { parseISO, format } from "date-fns";
 import { ParsedUrlQuery } from "querystring";
 import { getAllPostIds, getPostData } from "../../lib/blog";
-import type { Post } from "../../types";
+import type { Post as PostType } from "../../types";
 import Layout from "../../layouts/Layout";
 import styles from "./blog.module.scss";
 
 interface Props {
-   post: Post;
+   post: PostType;
    getLayout: (page: ReactElement) => ReactNode;
 }
 
