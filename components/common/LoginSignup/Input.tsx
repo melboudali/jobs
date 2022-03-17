@@ -1,6 +1,7 @@
 import { useState, type ChangeEvent } from "react";
 import Link from "next/link";
 import styles from "./Input.module.scss";
+import cls from "classnames";
 
 interface Props {
    label: string;
@@ -10,11 +11,17 @@ interface Props {
    placeHolder?: string;
    value: string;
    isLoginPage: boolean;
+   errorField?: string;
    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input = ({ label, id, name, type, placeHolder, value, isLoginPage, onChange }: Props) => {
+const Input = ({ label, id, name, type, placeHolder, value, isLoginPage, errorField, onChange }: Props) => {
    const [showPassword, setShowPassword] = useState(false);
+
+   const InputStyles = cls(styles.input, { [styles["input--error"]]: errorField && errorField === id });
+   const PasswordStyles = cls(styles.password, {
+      [styles["password--error"]]: errorField && errorField === id,
+   });
 
    if (type === "password") {
       return (
@@ -33,7 +40,7 @@ const Input = ({ label, id, name, type, placeHolder, value, isLoginPage, onChang
                   {label}
                </label>
             )}
-            <div className={styles.password}>
+            <div className={PasswordStyles}>
                <input
                   className={styles.password__input}
                   name={name}
@@ -85,7 +92,7 @@ const Input = ({ label, id, name, type, placeHolder, value, isLoginPage, onChang
             {label}
          </label>
          <input
-            className={styles.input}
+            className={InputStyles}
             name={name}
             id={id}
             type={type}
