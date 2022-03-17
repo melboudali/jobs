@@ -1,15 +1,30 @@
+import type { Variant } from "../../../types";
 import styles from "./SubmitButton.module.scss";
+import cls from "classnames";
 
 interface Props {
-	variant: "login" | "signup" | "password-rest";
+   variant: Variant;
+   loading: boolean;
 }
 
-const SubmitButton = ({ variant }: Props) => (
-	<input
-		className={styles.root}
-		type="submit"
-		value={variant === "login" ? "sign in" : variant === "signup" ? "Create Free Account" : "Send password reset email"}
-	/>
-);
+const SubmitButton = ({ variant, loading }: Props) => {
+   const inputStyles = cls(styles.root, { [styles["root--loading"]]: loading });
+
+   const Value = () => {
+      if (loading) {
+         return "loading...";
+      } else {
+         if (variant === "login") {
+            return "sign in";
+         } else if (variant === "signup") {
+            return "Create Free Account";
+         } else {
+            return "Send password reset email";
+         }
+      }
+   };
+
+   return <input className={inputStyles} type="submit" value={Value()} disabled={loading} />;
+};
 
 export default SubmitButton;
