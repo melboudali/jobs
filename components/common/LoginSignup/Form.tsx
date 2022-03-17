@@ -23,19 +23,21 @@ const Form = ({ variant }: Props) => {
    });
    const [recaptcha, setRecaptcha] = useState("");
    const [error, setError] = useState<{ field: string; message: string } | null>(null);
+   const [loading, setLoading] = useState(false);
 
    const onSubmit = async (e: FormEvent) => {
       e.preventDefault();
+      setLoading(true);
+      setError(null);
       const fromValidation = new FormValidation(variant, values, recaptcha);
       const { user, ok, error } = await fromValidation.validate();
-
       if (ok) {
          clearValues();
-         setError(null);
          console.log(user);
       } else {
          setError(error);
       }
+      setLoading(false);
    };
 
    return (
@@ -66,7 +68,7 @@ const Form = ({ variant }: Props) => {
          {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && (
             <Recaptcha sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY} setRecaptcha={setRecaptcha} />
          )}
-         <SubmitButton variant={variant} />
+         <SubmitButton variant={variant} loading={loading} />
       </form>
    );
 };
