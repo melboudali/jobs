@@ -16,10 +16,10 @@ export default class FormValidation {
       switch (this.variant) {
          case "login":
             return yup.object({
-               email: yup
-                  .string()
-                  .email({ field: "email", message: "Invalid email address." })
-                  .required({ field: "email", message: "Email Required." }),
+               recaptcha: yup.string().required({
+                  field: "recaptcha",
+                  message: "Please verify that you are not a robot.",
+               }),
                password: yup
                   .string()
                   .min(6, {
@@ -32,26 +32,37 @@ export default class FormValidation {
                   })
                   .matches(
                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/,
-                     "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+                     "Must Contain One Uppercase, One Lowercase, One Number and One Special Case Character."
                   ),
+               email: yup
+                  .string()
+                  .email({ field: "email", message: "Invalid email address." })
+                  .required({ field: "email", message: "Email Required." }),
+            });
+         case "signup":
+            return yup.object({
                recaptcha: yup.string().required({
                   field: "recaptcha",
                   message: "Please verify that you are not a robot.",
                }),
-            });
-         case "signup":
-            return yup.object({
-               firstName: yup
+               password: yup
                   .string()
                   .min(6, {
-                     field: "firstName",
-                     message: "First Name is too short - should be 6 chars minimum.",
+                     field: "password",
+                     message: "Password is too short - should be 6 chars minimum.",
                   })
-                  .max(30, {
-                     field: "firstName",
-                     message: "First Name is too long - should be 30 chars maximum.",
+                  .required({
+                     field: "password",
+                     message: "Password Required.",
                   })
-                  .required({ field: "firstName", message: "First Name Required." }),
+                  .matches(
+                     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/,
+                     "Must Contain One Uppercase, One Lowercase, One Number and One Special Case Character."
+                  ),
+               email: yup
+                  .string()
+                  .email({ field: "email", message: "Invalid email address." })
+                  .required({ field: "email", message: "Email Required." }),
                lastName: yup
                   .string()
                   .min(6, {
@@ -63,40 +74,28 @@ export default class FormValidation {
                      message: "Last Name is too long - should be 30 chars maximum.",
                   })
                   .required({ field: "lastName", message: "Last Name Required." }),
-               email: yup
-                  .string()
-                  .email({ field: "email", message: "Invalid email address." })
-                  .required({ field: "email", message: "Email Required." }),
-               password: yup
+               firstName: yup
                   .string()
                   .min(6, {
-                     field: "password",
-                     message: "Password is too short - should be 6 chars minimum.",
+                     field: "firstName",
+                     message: "First Name is too short - should be 6 chars minimum.",
                   })
-                  .required({
-                     field: "password",
-                     message: "Password Required.",
+                  .max(30, {
+                     field: "firstName",
+                     message: "First Name is too long - should be 30 chars maximum.",
                   })
-                  .matches(
-                     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/,
-                     "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
-                  ),
+                  .required({ field: "firstName", message: "First Name Required." }),
+            });
+         default:
+            return yup.object({
                recaptcha: yup.string().required({
                   field: "recaptcha",
                   message: "Please verify that you are not a robot.",
                }),
-            });
-
-         default:
-            return yup.object({
                email: yup
                   .string()
                   .email({ field: "email", message: "Invalid email address." })
                   .required({ field: "email", message: "Email Required." }),
-               recaptcha: yup.string().required({
-                  field: "recaptcha",
-                  message: "Please verify that you are not a robot.",
-               }),
             });
       }
    }
