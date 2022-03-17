@@ -18,7 +18,7 @@
    box-shadow: 0px 2px 6px 0 $grayBoxShadow;
    border-radius: 4px;
    padding: 0 10px;
-   transition: all 400ms ease-in-out;
+   transition: height 400ms ease-in-out, background-color 400ms ease-in-out, box-shadow 400ms ease-in-out;
    &--open {
       --height: calc(100vh - 40px);
       --bg: #{$bColor-secondary};
