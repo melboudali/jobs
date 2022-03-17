@@ -31,7 +31,7 @@ export default class FormValidation {
                      message: "Password Required.",
                   })
                   .matches(
-                     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+                     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/,
                      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
                   ),
                recaptcha: yup.string().required({
@@ -78,8 +78,8 @@ export default class FormValidation {
                      message: "Password Required.",
                   })
                   .matches(
-                     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-                     "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character."
+                     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/,
+                     "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
                   ),
                recaptcha: yup.string().required({
                   field: "recaptcha",
@@ -106,7 +106,7 @@ export default class FormValidation {
       const recaptcha = this.recaptcha;
       try {
          const user = await this.schemaBuilder().validate({ ...values, recaptcha });
-         return { user, ok: true, error: { field: "", message: "" } };
+         return { user, ok: true, error: null };
       } catch (err) {
          let field: string, message: string;
          const error = err as YupError;
