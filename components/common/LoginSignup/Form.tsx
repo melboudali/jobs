@@ -31,6 +31,7 @@ const Form = ({ variant }: Props) => {
 
       if (ok) {
          clearValues();
+         setError(null);
          console.log(user);
       } else {
          setError(error);
