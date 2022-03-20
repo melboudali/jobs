@@ -2,16 +2,17 @@ import { useState, type ChangeEvent } from "react";
 import Link from "next/link";
 import styles from "./Input.module.scss";
 import cls from "classnames";
+import type { Fields } from "../../../types";
 
 interface Props {
    label: string;
-   id: string;
-   name: string;
+   id: Fields;
+   name: Fields;
    type: string;
    placeHolder?: string;
    value: string;
    isLoginPage: boolean;
-   errorField?: string;
+   errorField?: Fields;
    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
