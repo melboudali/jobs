@@ -1,5 +1,8 @@
 import * as yup from "yup";
-import type { useFormValues, Variant, YupError } from "../types";
+import { AssertsShape } from "yup/lib/object";
+import { RequiredStringSchema } from "yup/lib/string";
+import { AnyObject } from "yup/lib/types";
+import type { ValidateFuncResponse, useFormValues, UserValidationRes, Variant, YupError } from "../types";
 
 export default class FormValidation {
    variant: Variant;
@@ -18,13 +21,13 @@ export default class FormValidation {
             return yup.object({
                recaptcha: yup.string().required({
                   field: "recaptcha",
-                  message: "Please verify that you are not a robot.",
+                  message: "Please verify that you are not a robot",
                }),
                password: yup
                   .string()
                   .min(6, {
                      field: "password",
-                     message: "Password is too short - should be 6 chars minimum.",
+                     message: "Password is too short - should be 6 chars minimum",
                   })
                   .required({
                      field: "password",
@@ -32,59 +35,59 @@ export default class FormValidation {
                   })
                   .matches(
                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/,
-                     "Must Contain One Uppercase, One Lowercase, One Number and One Special Case Character."
+                     "Must Contain One Uppercase, One Lowercase, One Number and One Special Case Character"
                   ),
                email: yup
                   .string()
-                  .email({ field: "email", message: "Invalid email address." })
-                  .required({ field: "email", message: "Email Required." }),
+                  .email({ field: "email", message: "Invalid email address" })
+                  .required({ field: "email", message: "Email Required" }),
             });
          case "signup":
             return yup.object({
                recaptcha: yup.string().required({
                   field: "recaptcha",
-                  message: "Please verify that you are not a robot.",
+                  message: "Please verify that you are not a robot",
                }),
                password: yup
                   .string()
                   .min(6, {
                      field: "password",
-                     message: "Password is too short - should be 6 chars minimum.",
+                     message: "Password is too short - should be 6 chars minimum",
                   })
                   .required({
                      field: "password",
-                     message: "Password Required.",
+                     message: "Password Required",
                   })
                   .matches(
                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/,
-                     "Must Contain One Uppercase, One Lowercase, One Number and One Special Case Character."
+                     "Must Contain One Uppercase, One Lowercase, One Number and One Special Case Character"
                   ),
                email: yup
                   .string()
-                  .email({ field: "email", message: "Invalid email address." })
-                  .required({ field: "email", message: "Email Required." }),
+                  .email({ field: "email", message: "Invalid email address" })
+                  .required({ field: "email", message: "Email Required" }),
                lastName: yup
                   .string()
                   .min(6, {
                      field: "lastName",
-                     message: "Last Name is too short - should be 6 chars minimum.",
+                     message: "Last Name is too short - should be 6 chars minimum",
                   })
                   .max(30, {
                      field: "lastName",
-                     message: "Last Name is too long - should be 30 chars maximum.",
+                     message: "Last Name is too long - should be 30 chars maximum",
                   })
-                  .required({ field: "lastName", message: "Last Name Required." }),
+                  .required({ field: "lastName", message: "Last Name Required" }),
                firstName: yup
                   .string()
                   .min(6, {
                      field: "firstName",
-                     message: "First Name is too short - should be 6 chars minimum.",
+                     message: "First Name is too short - should be 6 chars minimum",
                   })
                   .max(30, {
                      field: "firstName",
-                     message: "First Name is too long - should be 30 chars maximum.",
+                     message: "First Name is too long - should be 30 chars maximum",
                   })
-                  .required({ field: "firstName", message: "First Name Required." }),
+                  .required({ field: "firstName", message: "First Name Required" }),
             });
          default:
             return yup.object({
@@ -100,23 +103,22 @@ export default class FormValidation {
       }
    }
 
-   async validate() {
+   async validate(): Promise<ValidateFuncResponse> {
       const values = this.values;
       const recaptcha = this.recaptcha;
+      let res: ValidateFuncResponse = { user: null, ok: false, error: null };
+
       try {
-         const user = await this.schemaBuilder().validate({ ...values, recaptcha });
-         return { user, ok: true, error: null };
+         const user: UserValidationRes = await this.schemaBuilder().validate({ ...values, recaptcha });
+         res = { ...res, user, ok: true };
       } catch (err) {
-         let field: string, message: string;
-         const error = err as YupError;
-         if (typeof error.message === "string") {
-            field = "password";
-            message = error.message;
+         const { message } = err as YupError;
+         if (typeof message === "string") {
+            res = { ...res, error: { field: "password", message: message } };
          } else {
-            field = error.message.field;
-            message = error.message.message;
+            res = { ...res, error: { field: message.field, message: message.message } };
          }
-         return { user: null, ok: false, error: { field, message } };
       }
+      return res;
    }
 }
