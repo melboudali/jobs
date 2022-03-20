@@ -1,11 +1,15 @@
-import { useState, type ChangeEvent, type FormEvent } from "react";
-import type { useFormValues, Variant } from "../../../types";
+import { useRef, useState, type ChangeEvent, type FormEvent } from "react";
+import type { FieldError, Fields, useFormValues, Variant } from "../../../types";
 import useForm from "../../../hooks/useForm";
 import FormValidation from "../../../utils/FormValidation";
 import Input from "./Input";
 import Recaptcha from "./Recaptcha";
 import SubmitButton from "./SubmitButton";
 import styles from "./Form.module.scss";
+import { useAppDispatch, useAppSelector } from "../../../lib/react-redux/hooks";
+import FormSubmit from "../../../utils/FormSubmit";
+import ReCAPTCHA from "react-google-recaptcha";
+import { setUser } from "../../../features/loginSlice";
 
 interface Props {
    variant: Variant;
@@ -13,27 +17,84 @@ interface Props {
 
 interface InputsProps extends Props {
    values: useFormValues;
-   errorField?: string;
+   errorField?: Fields;
    updateValue: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Form = ({ variant }: Props) => {
+   // Redux Hooks
+   const login = useAppSelector((state) => state.login.value);
+   const dispatch = useAppDispatch();
+
+   // Form Hooks
    const { values, updateValue, clearValues } = useForm({
       email: "",
    });
    const [recaptcha, setRecaptcha] = useState("");
-   const [error, setError] = useState<{ field: string; message: string } | null>(null);
+   const [error, setError] = useState<FieldError | null>(null);
    const [loading, setLoading] = useState(false);
+   const recaptchaRef = useRef<ReCAPTCHA>(null);
+
+   // Validation and submit classes
+   const fromValidation = new FormValidation(variant, values, recaptcha);
+   const formSubmit = new FormSubmit(recaptcha);
+
+   // error function
+   const onError = (error: FieldError) => {
+      setRecaptcha("");
+      recaptchaRef.current!.reset();
+      setLoading(false);
+      setError(error);
+   };
 
    const onSubmit = async (e: FormEvent) => {
       e.preventDefault();
       setLoading(true);
       setError(null);
-      const fromValidation = new FormValidation(variant, values, recaptcha);
+
+      // Form Validation
       const { user, ok, error } = await fromValidation.validate();
-      if (ok) {
+
+      if (ok && user) {
+         // recaptcha verification using recaptcha API
+         const { error: recaptchaError } = await formSubmit.recaptchaValidation();
+
+         // invalid recaptcha
+         if (recaptchaError) {
+            onError({ field: "recaptcha", message: recaptchaError.message });
+         }
+
+         // login form
+         if (variant === "login") {
+            const { nUser, error } = await formSubmit.login({
+               email: user.email,
+               password: user.password!,
+            });
+            if (error) {
+               onError(error);
+               return null;
+            }
+            dispatch(setUser(nUser!));
+         }
+
+         // signup form
+         if (variant === "signup") {
+            const newUser = {
+               firstName: user.firstName!,
+               lastName: user.lastName!,
+               email: user.email,
+               password: user.password!,
+            };
+            const { nUser, error } = await formSubmit.signUp(newUser);
+            if (error) {
+               onError(error);
+               return null;
+            }
+            dispatch(setUser(nUser!));
+         }
          clearValues();
-         console.log(user);
+         setRecaptcha("");
+         recaptchaRef.current!.reset();
       } else {
          setError(error);
       }
@@ -66,7 +127,11 @@ const Form = ({ variant }: Props) => {
             </div>
          )}
          {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && (
-            <Recaptcha sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY} setRecaptcha={setRecaptcha} />
+            <Recaptcha
+               sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+               setRecaptcha={setRecaptcha}
+               recaptchaRef={recaptchaRef}
+            />
          )}
          <SubmitButton variant={variant} loading={loading} />
       </form>
