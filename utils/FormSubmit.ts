@@ -46,11 +46,11 @@ export default class FormSubmit {
 
    // login
    async login({ email, password }: Required<Pick<useFormValues, "email" | "password">>): Promise<SignUpAndLoginResponse> {
-      let res: SignUpAndLoginResponse = { nUser: null, ok: false, error: null };
+      let res: SignUpAndLoginResponse = { nUser: null, error: null };
       try {
          const userCredential = await signInWithEmailAndPassword(auth, email, password);
          const querySnapshot = await getDoc(doc(Firestore, "users", userCredential.user.uid));
-         res = { ...res, nUser: querySnapshot.data() as User, ok: true };
+         res = { ...res, nUser: querySnapshot.data() as User };
       } catch (error) {
          const { message } = error as FieldError;
          res = { ...res, error: { message } };
@@ -62,7 +62,6 @@ export default class FormSubmit {
    async signUp({ firstName, lastName, email, password }: Required<useFormValues>): Promise<SignUpAndLoginResponse> {
       let res: SignUpAndLoginResponse = {
          nUser: null,
-         ok: false,
          error: null,
       };
 
@@ -77,7 +76,7 @@ export default class FormSubmit {
 
          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
          await setDoc(doc(Firestore, "users", userCredential.user.uid), newUser);
-         res = { ...res, nUser: newUser, ok: true };
+         res = { ...res, nUser: newUser };
       } catch (error) {
          const { message } = error as FieldError;
          res = { ...res, error: { message } };
