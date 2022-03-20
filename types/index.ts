@@ -65,6 +65,6 @@ export interface ValidateFuncResponse extends Response {
    user: UserValidationRes | null;
 }
 
-export interface SignUpAndLoginResponse extends Response {
+export interface SignUpAndLoginResponse extends Omit<Response, "ok"> {
    nUser: User | null;
 }
