@@ -9,7 +9,7 @@ import styles from "./Form.module.scss";
 import { useAppDispatch, useAppSelector } from "../../../lib/react-redux/hooks";
 import FormSubmit from "../../../utils/FormSubmit";
 import ReCAPTCHA from "react-google-recaptcha";
-import { setUser } from "../../../features/loginSlice";
+import { setUser } from "../../../features/userSlice";
 
 interface Props {
    variant: Variant;
