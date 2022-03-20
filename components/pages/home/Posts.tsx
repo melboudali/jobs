@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getSortedPostsData } from "../../../lib/blog";
 import Title from "./Title";
 import type { Posts as PostsType } from "../../../types";
 import styles from "./Posts.module.scss";
