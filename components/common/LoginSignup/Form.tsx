@@ -23,7 +23,7 @@ interface InputsProps extends Props {
 
 const Form = ({ variant }: Props) => {
    // Redux Hooks
-   const login = useAppSelector((state) => state.login.value);
+   const login = useAppSelector((state) => state);
    const dispatch = useAppDispatch();
 
    // Form Hooks
@@ -57,11 +57,11 @@ const Form = ({ variant }: Props) => {
 
       if (ok && user) {
          // recaptcha verification using recaptcha API
-         const { error: recaptchaError } = await formSubmit.recaptchaValidation();
+         const { error } = await formSubmit.recaptchaValidation();
 
          // invalid recaptcha
-         if (recaptchaError) {
-            onError({ field: "recaptcha", message: recaptchaError.message });
+         if (error) {
+            onError({ field: "recaptcha", message: error.message });
          }
 
          // login form
