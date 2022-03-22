@@ -23,7 +23,7 @@ interface InputsProps extends Props {
 
 const Form = ({ variant }: Props) => {
    // Redux Hooks
-   const login = useAppSelector((state) => state);
+   const theUser = useAppSelector(state => state.user);
    const dispatch = useAppDispatch();
 
    // Form Hooks
@@ -74,7 +74,9 @@ const Form = ({ variant }: Props) => {
                onError(error);
                return null;
             }
-            dispatch(setUser(nUser!));
+            if (nUser) {
+               dispatch(setUser(nUser));
+            }
          }
 
          // signup form
@@ -104,6 +106,8 @@ const Form = ({ variant }: Props) => {
    return (
       <form className={styles.form} onSubmit={onSubmit}>
          <Inputs variant={variant} values={values} updateValue={updateValue} errorField={error?.field} />
+         {/* {theUser.value.displayName && theUser.value.displayName}
+         {theUser.loading ? "true" : "false"} */}
          {error && (
             <div className={styles.form__error}>
                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -224,7 +228,7 @@ const Inputs = ({ variant, values, updateValue, errorField }: InputsProps) => {
 };
 
 Form.defaultProps = {
-   isSignUp: false,
+   variant: "login",
 };
 
 export default Form;
