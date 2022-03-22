@@ -45,6 +45,9 @@
 
 // icons-section
 @mixin edges($direction) {
+   @if $direction != left and $direction != right {
+      @error "Property #{$direction} must be either left or right.";
+   }
    content: "";
    position: absolute;
    top: 0;
@@ -71,7 +74,7 @@
    color: $color;
 }
 
-@mixin blue-button() {
+@mixin blue-button {
    background-color: $color-secondary;
    box-shadow: 0px 2px 6px $grayBoxShadow;
    border: 1px solid $borderGrayColor;
