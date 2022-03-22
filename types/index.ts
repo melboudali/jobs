@@ -36,6 +36,7 @@ export interface useFormValues {
 
 // Yup
 export type FieldError = {
+   code?: string;
    field?: Fields;
    message: string;
 };
