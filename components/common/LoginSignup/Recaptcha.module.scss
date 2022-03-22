@@ -9,6 +9,7 @@
       display: inline-block;
    }
    &::after {
+      @warn "you should added error border";
       position: absolute;
       content: "";
       left: 50%;
