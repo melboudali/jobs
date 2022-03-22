@@ -1,20 +1,46 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { User } from "../types/react-redux";
+import type { User, UserReducer } from "../types/react-redux";
 
-const initialState: User = {
-   displayName: "",
-   firstName: "",
-   lastName: "",
-   email: "",
-   photoURL: "",
+const initialState: UserReducer = {
+   value: {
+      displayName: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      photoURL: "",
+      date: "",
+   },
+   loading: false,
+   error: null,
 };
 
 export const userSlice = createSlice({
    name: "user",
    initialState,
    reducers: {
-      setUser: (state, action: PayloadAction<User>) => {
-         state = { ...state, ...action.payload };
+      // setUser: (state, action: PayloadAction<User>) => {
+      //    state.loading = true;
+      //    state.value = action.payload;
+      //    state.loading = false;
+      // },
+      // OR we can use the reducer and prepare to modifie the action lika a middleware
+      setUser: {
+         reducer(state, action: PayloadAction<User>) {
+            state.value = action.payload; //the payload from prepare function
+         },
+         prepare({ displayName, firstName, lastName, email, photoURL }: User) {
+            return {
+               payload: {
+                  displayName: displayName + "KEKW",
+                  firstName,
+                  lastName,
+                  email,
+                  photoURL,
+                  date: new Date().toISOString(),
+               },
+            };
+         },
+         resetUser: () => initialState,
       },
    },
 });
