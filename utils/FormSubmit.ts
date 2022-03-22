@@ -52,8 +52,9 @@ export default class FormSubmit {
          const querySnapshot = await getDoc(doc(Firestore, "users", userCredential.user.uid));
          res = { ...res, nUser: querySnapshot.data() as User };
       } catch (error) {
-         const { message } = error as FieldError;
-         res = { ...res, error: { message } };
+         const { code } = error as FieldError;
+         const errorMessage = this.firebaseErrors(code as string);
+         res = { ...res, error: { message: errorMessage } };
       }
       return res;
    }
@@ -78,12 +79,28 @@ export default class FormSubmit {
          await setDoc(doc(Firestore, "users", userCredential.user.uid), newUser);
          res = { ...res, nUser: newUser };
       } catch (error) {
-         const { message } = error as FieldError;
-         res = { ...res, error: { message } };
+         const { code } = error as FieldError;
+         const errorMessage = this.firebaseErrors(code as string);
+         res = { ...res, error: { message: errorMessage } };
       }
       return res;
    }
 
    // passwordReset
    passwordReset() {}
+
+   firebaseErrors(code: string) {
+      switch (code) {
+         case "auth/user-not-found":
+            return "There is no user record corresponding to this identifier.";
+         case "auth/wrong-password":
+            return "The password is invalid.";
+         case "auth/email-already-in-use":
+            return "The email address is already in use by another account.";
+         case "quota-exceeded":
+            return "The project's quota for this operation has been exceeded.";
+         default:
+            return "An internal error has occurred.";
+      }
+   }
 }
