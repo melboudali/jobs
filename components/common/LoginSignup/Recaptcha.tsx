@@ -1,4 +1,4 @@
-import { type RefObject, useRef } from "react";
+import { type RefObject, memo } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import styles from "./Recaptcha.module.scss";
 
@@ -22,4 +22,4 @@ const Recaptcha = ({ sitekey, recaptchaRef, setRecaptcha }: Props) => (
    />
 );
 
-export default Recaptcha;
+export default memo(Recaptcha);
