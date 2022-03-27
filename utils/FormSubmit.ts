@@ -2,7 +2,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "fire
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { boolean } from "yup";
 import Firestore, { auth } from "../lib/firebase";
-import { FieldError, Response, SignUpAndLoginResponse, useFormValues } from "../types";
+import { Codes, FieldError, Response, SignUpAndLoginResponse, useFormValues } from "../types";
 import { User } from "../types/react-redux";
 
 interface Data {
@@ -53,7 +53,7 @@ export default class FormSubmit {
          res = { ...res, nUser: querySnapshot.data() as User };
       } catch (error) {
          const { code } = error as FieldError;
-         const errorMessage = this.firebaseErrors(code as string);
+         const errorMessage = this.firebaseErrors(code as keyof Codes);
          res = { ...res, error: { message: errorMessage } };
       }
       return res;
@@ -80,7 +80,7 @@ export default class FormSubmit {
          res = { ...res, nUser: newUser };
       } catch (error) {
          const { code } = error as FieldError;
-         const errorMessage = this.firebaseErrors(code as string);
+         const errorMessage = this.firebaseErrors(code as keyof Codes);
          res = { ...res, error: { message: errorMessage } };
       }
       return res;
@@ -89,18 +89,14 @@ export default class FormSubmit {
    // passwordReset
    passwordReset() {}
 
-   firebaseErrors(code: string) {
-      switch (code) {
-         case "auth/user-not-found":
-            return "There is no user record corresponding to this identifier.";
-         case "auth/wrong-password":
-            return "The password is invalid.";
-         case "auth/email-already-in-use":
-            return "The email address is already in use by another account.";
-         case "quota-exceeded":
-            return "The project's quota for this operation has been exceeded.";
-         default:
-            return "An internal error has occurred.";
-      }
+   firebaseErrors(code: keyof Codes) {
+      const codes: Codes = {
+         "auth/user-not-found": "There is no user record corresponding to this identifier.",
+         "auth/wrong-password": "The password is invalid.",
+         "auth/email-already-in-use": "The email address is already in use by another account.",
+         "quota-exceeded": "The project's quota for this operation has been exceeded.",
+         default: "An internal error has occurred.",
+      };
+      return codes[code] || codes.default;
    }
 }
