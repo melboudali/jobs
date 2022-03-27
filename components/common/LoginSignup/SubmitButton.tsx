@@ -1,3 +1,4 @@
+import { memo } from "react";
 import type { Variant } from "../../../types";
 import styles from "./SubmitButton.module.scss";
 import cls from "classnames";
@@ -27,4 +28,4 @@ const SubmitButton = ({ variant, loading }: Props) => {
    return <input className={inputStyles} type="submit" value={Value()} disabled={loading} />;
 };
 
-export default SubmitButton;
+export default memo(SubmitButton);
