@@ -35,9 +35,7 @@ const Stats = () => {
 const Item: FC<Props> = ({ number, children, appear }) => (
    <div>
       <h4 className={styles.name}>{children}</h4>
-      {appear && (
-         <CountUp className={styles.number} end={number} duration={4} useEasing={true} separator="," />
-      )}
+      {appear && <CountUp className={styles.number} end={number} duration={4} useEasing={true} separator="," />}
    </div>
 );
 
