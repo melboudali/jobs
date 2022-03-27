@@ -69,3 +69,11 @@ export interface ValidateFuncResponse extends Response {
 export interface SignUpAndLoginResponse extends Omit<Response, "ok"> {
    nUser: User | null;
 }
+
+export interface Codes {
+   "auth/user-not-found": string;
+   "auth/wrong-password": string;
+   "auth/email-already-in-use": string;
+   "quota-exceeded": string;
+   default: string;
+}
