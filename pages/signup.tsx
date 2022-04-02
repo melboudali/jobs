@@ -2,6 +2,7 @@ import type { MyNextPage } from "next";
 import type { ReactElement } from "react";
 import Form from "../components/common/LoginSignup/Form";
 import LargeLogo from "../components/common/LoginSignup/LargeLogo";
+import withoutAuth from "../hoc/withoutAuth";
 import SignLayout from "../layouts/SignLayout";
 
 const Signup: MyNextPage = () => (
@@ -17,4 +18,4 @@ Signup.getLayout = (page: ReactElement) => (
    </SignLayout>
 );
 
-export default Signup;
+export default withoutAuth(Signup);
