@@ -1,4 +1,4 @@
-import { FieldError } from ".";
+import type { Variant } from ".";
 
 export interface User {
    displayName: string;
@@ -6,11 +6,17 @@ export interface User {
    lastName: string;
    email: string;
    photoURL: string;
-   date?: string;
+   date: string;
+}
+
+interface Error {
+   variant: Variant;
+   message: string;
 }
 
 export interface UserReducer {
    value: User;
-   loading: boolean;
-   error: FieldError | null;
+   authenticated: boolean;
+   status: "idle" | "loading" | "succeeded" | "failed";
+   error: Error | null;
 }
