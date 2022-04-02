@@ -74,6 +74,7 @@ export interface Codes {
    "auth/user-not-found": string;
    "auth/wrong-password": string;
    "auth/email-already-in-use": string;
+   "auth/too-many-requests": string;
    "quota-exceeded": string;
    default: string;
 }
