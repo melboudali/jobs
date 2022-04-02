@@ -1,4 +1,6 @@
 import Footer from "../components/common/LoginSignup/Footer";
+import withAuth from "../hoc/withAuth";
+import withoutAuth from "../hoc/withoutAuth";
 import styles from "./Layouts.module.scss";
 
 interface Props {
@@ -14,4 +16,4 @@ const SignLayout: React.FC<Props> = ({ children, question, suggestion, to }) => 
    </>
 );
 
-export default SignLayout;
+export default withoutAuth(SignLayout);
