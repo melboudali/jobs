@@ -2,6 +2,7 @@ import type { ReactElement } from "react";
 import SignLayout from "../layouts/SignLayout";
 import LargeLogo from "../components/common/LoginSignup/LargeLogo";
 import Form from "../components/common/LoginSignup/Form";
+import withoutAuth from "../hoc/withoutAuth";
 
 const Login = () => (
    <>
