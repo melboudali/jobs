@@ -2,7 +2,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "fire
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { boolean } from "yup";
 import Firestore, { auth } from "../lib/firebase";
-import { Codes, FieldError, Response, SignUpAndLoginResponse, useFormValues } from "../types";
+import { Codes, FieldError, Response, SignUpAndLoginResponse, useFormValues, Variant } from "../types";
 import { User } from "../types/react-redux";
 
 interface Data {
@@ -11,13 +11,8 @@ interface Data {
 }
 
 export default class FormSubmit {
-   recaptcha: string;
-   constructor(recaptcha: string) {
-      this.recaptcha = recaptcha;
-   }
-
    // recaptcha validation
-   async recaptchaValidation(): Promise<Response> {
+   async recaptchaValidation(recaptcha: string): Promise<Response> {
       let res: Response = { ok: false, error: null };
 
       try {
@@ -26,7 +21,7 @@ export default class FormSubmit {
             headers: {
                "Content-Type": "application/json",
             },
-            body: JSON.stringify({ key: this.recaptcha }),
+            body: JSON.stringify({ key: recaptcha }),
          });
 
          const data: Data = await response.json();
@@ -44,56 +39,32 @@ export default class FormSubmit {
       return res;
    }
 
-   // login
-   async login({ email, password }: Required<Pick<useFormValues, "email" | "password">>): Promise<SignUpAndLoginResponse> {
-      let res: SignUpAndLoginResponse = { nUser: null, error: null };
-      try {
-         const userCredential = await signInWithEmailAndPassword(auth, email, password);
-         const querySnapshot = await getDoc(doc(Firestore, "users", userCredential.user.uid));
-         res = { ...res, nUser: querySnapshot.data() as User };
-      } catch (error) {
-         const { code } = error as FieldError;
-         const errorMessage = this.firebaseErrors(code as keyof Codes);
-         res = { ...res, error: { message: errorMessage } };
-      }
-      return res;
-   }
-
-   // signup
-   async signUp({ firstName, lastName, email, password }: Required<useFormValues>): Promise<SignUpAndLoginResponse> {
-      let res: SignUpAndLoginResponse = {
-         nUser: null,
-         error: null,
+   defaultValues(variant: Variant): useFormValues {
+      const values = {
+         login: {
+            email: "",
+            password: "",
+         },
+         signup: {
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
+         },
+         "password-rest": {
+            email: "",
+         },
       };
 
-      try {
-         const newUser: User = {
-            displayName: firstName + " " + lastName,
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            photoURL: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
-         };
-
-         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-         await setDoc(doc(Firestore, "users", userCredential.user.uid), newUser);
-         res = { ...res, nUser: newUser };
-      } catch (error) {
-         const { code } = error as FieldError;
-         const errorMessage = this.firebaseErrors(code as keyof Codes);
-         res = { ...res, error: { message: errorMessage } };
-      }
-      return res;
+      return values[variant];
    }
-
-   // passwordReset
-   passwordReset() {}
 
    firebaseErrors(code: keyof Codes) {
       const codes: Codes = {
          "auth/user-not-found": "There is no user record corresponding to this identifier.",
          "auth/wrong-password": "The password is invalid.",
          "auth/email-already-in-use": "The email address is already in use by another account.",
+         "auth/too-many-requests": "Access to this account has been temporarily disabled due to many failed login attempts.",
          "quota-exceeded": "The project's quota for this operation has been exceeded.",
          default: "An internal error has occurred.",
       };
