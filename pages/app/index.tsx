@@ -21,4 +21,4 @@ const App: MyNextPage = () => {
 
 App.getLayout = (page: ReactNode) => <AppLayout>{page}</AppLayout>;
 
-export default withAuth(App);
+export default App;

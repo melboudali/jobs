@@ -17,4 +17,4 @@ Login.getLayout = (page: ReactElement) => (
    </SignLayout>
 );
 
-export default withoutAuth(Login);
+export default Login;

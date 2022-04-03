@@ -18,4 +18,4 @@ PasswordReset.getLayout = (page: ReactElement) => (
    </SignLayout>
 );
 
-export default withoutAuth(PasswordReset);
+export default PasswordReset;
