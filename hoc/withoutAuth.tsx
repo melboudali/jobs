@@ -1,11 +1,12 @@
-import { MyNextPage, NextComponentType } from "next";
+import { MyNextPage, NextComponentType, NextPage } from "next";
 import Error from "next/error";
 import Router from "next/router";
+import { ReactNode } from "react";
 import { authenticatedSelector, statusSelector, userSelector } from "../react-redux/features/userSlice";
 import { useSelector } from "../react-redux/store";
 
-function withoutAuth(Component: any) {
-   const Auth = (props: any) => {
+function withoutAuth<T>(Component: MyNextPage<T>) {
+   const Auth = (props: T) => {
       const user = useSelector(userSelector);
       const status = useSelector(statusSelector);
       const authenticated = useSelector(authenticatedSelector);
@@ -15,7 +16,7 @@ function withoutAuth(Component: any) {
          return <p>Loading ...</p>;
       }
 
-      if (!authenticated && !loading) {
+      if (authenticated && !loading) {
          //  Router.push("/app");
          //  return null;
          return <Error statusCode={404} />;
