@@ -16,4 +16,4 @@ const SignLayout: React.FC<Props> = ({ children, question, suggestion, to }) => 
    </>
 );
 
-export default withoutAuth(SignLayout);
+export default SignLayout;
