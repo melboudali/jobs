@@ -1,9 +1,15 @@
 import { createAsyncThunk, createSelector, createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+   signInWithEmailAndPassword,
+   createUserWithEmailAndPassword,
+   onAuthStateChanged,
+   NextOrObserver,
+   User,
+} from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import Firestore, { auth } from "../../lib/firebase";
 import { Codes, FieldError, useFormValues } from "../../types";
-import type { User, UserReducer } from "../../types/react-redux";
+import type { User as UserType, UserReducer } from "../../types/react-redux";
 import FormSubmit from "../../utils/FormSubmit";
 import { RootState } from "../store";
 
@@ -15,7 +21,7 @@ export const login = createAsyncThunk(
       try {
          const userCredential = await signInWithEmailAndPassword(auth, email, password);
          const querySnapshot = await getDoc(doc(Firestore, "users", userCredential.user.uid));
-         return { ...querySnapshot.data(), date: new Date().toISOString() } as User;
+         return { ...querySnapshot.data(), date: new Date().toISOString() } as UserType;
       } catch (error) {
          const { code } = error as FieldError;
          const errorMessage = formSubmit.firebaseErrors(code as keyof Codes);
@@ -28,7 +34,7 @@ export const signUp = createAsyncThunk(
    "user/signUp",
    async ({ firstName, lastName, email, password }: Required<useFormValues>, thunkAPI) => {
       try {
-         const newUser: User = {
+         const newUser: UserType = {
             displayName: firstName + " " + lastName,
             firstName: firstName,
             lastName: lastName,
@@ -47,6 +53,29 @@ export const signUp = createAsyncThunk(
       }
    }
 );
+
+export const myAuth = createAsyncThunk("user/myAuth", async (user: User | null, thunkAPI) => {
+   try {
+      if (!user) {
+         throw { code: "auth/user-not-found" } as FieldError;
+      }
+
+      const querySnapshot = await getDoc(doc(Firestore, "users", user.uid));
+      const value: UserType = {
+         displayName: querySnapshot.data()?.displayName,
+         firstName: querySnapshot.data()?.firstName,
+         lastName: querySnapshot.data()?.lastName,
+         email: querySnapshot.data()?.email,
+         photoURL: user.photoURL ?? querySnapshot.data()?.photoURL,
+         date: new Date().toISOString(),
+      };
+      return value;
+   } catch (error) {
+      const { code } = error as FieldError;
+      const errorMessage = formSubmit.firebaseErrors(code as keyof Codes);
+      return thunkAPI.rejectWithValue(errorMessage);
+   }
+});
 
 const initialState: UserReducer = {
    value: {
@@ -72,7 +101,7 @@ export const userSlice = createSlice({
             state.status = "loading";
             state.error = null;
          })
-         .addCase(login.fulfilled, (state, action: PayloadAction<User>) => {
+         .addCase(login.fulfilled, (state, action: PayloadAction<UserType>) => {
             state.authenticated = true;
             state.status = "succeeded";
             Object.assign(state.value, action.payload);
@@ -86,12 +115,27 @@ export const userSlice = createSlice({
             state.status = "loading";
             state.error = null;
          })
-         .addCase(signUp.fulfilled, (state, action: PayloadAction<User>) => {
+         .addCase(signUp.fulfilled, (state, action: PayloadAction<UserType>) => {
             state.authenticated = true;
             state.status = "succeeded";
             Object.assign(state.value, action.payload);
          })
          .addCase(signUp.rejected, (state, action) => {
+            state.status = "failed";
+            state.error = { variant: "signup", message: action.payload as string };
+         });
+      builder
+         .addCase(myAuth.pending, state => {
+            state.status = "loading";
+            state.error = null;
+         })
+         .addCase(myAuth.fulfilled, (state, action: PayloadAction<UserType>) => {
+            state.authenticated = true;
+            state.status = "succeeded";
+
+            Object.assign(state.value, action.payload);
+         })
+         .addCase(myAuth.rejected, (state, action) => {
             state.status = "failed";
             state.error = { variant: "signup", message: action.payload as string };
          });
