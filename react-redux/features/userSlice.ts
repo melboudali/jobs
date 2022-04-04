@@ -153,3 +153,5 @@ export const errorSelector = createSelector(selectUser, user => user.error);
 export const userSelector = createSelector(selectUser, user => user.value);
 
 export const statusSelector = createSelector(selectUser, user => user.status);
+
+export const isLoadingSelector = createSelector(selectUser, user => user.status === "loading");
