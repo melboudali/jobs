@@ -1,35 +1,34 @@
-import { ReactNode, useEffect } from "react";
+import { type FC, type ReactNode, useEffect } from "react";
 import type { AppPropsWithLayout } from "next/app";
-import store, { useDispatch } from "../react-redux/store";
 import { Provider } from "react-redux";
+import store, { useDispatch, useSelector } from "../react-redux/store";
+import { auth } from "../lib/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { authenticatedSelector, isLoadingSelector, myAuth } from "../react-redux/features/userSlice";
 import "../styles/globals.scss";
 
-import { myAuth } from "../react-redux/features/userSlice";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../lib/firebase";
-
-const Auth = () => {
+const AppWrapper: FC = ({ children }) => {
    const dispatch = useDispatch();
-
+   const authenticated = useSelector(authenticatedSelector);
+   const isLoading = useSelector(isLoadingSelector);
    useEffect(() => {
-      const unsubscribe = onAuthStateChanged(auth, async user => {
-         dispatch(myAuth(user));
-         console.log("rendered");
-      });
-
-      return () => {
-         unsubscribe();
-      };
-   }, [dispatch]);
-   return null;
+      if (!authenticated && !isLoading) {
+         const unsubscribe = onAuthStateChanged(auth, async user => {
+            dispatch(myAuth(null));
+         });
+         return () => {
+            unsubscribe();
+         };
+      }
+   }, [authenticated, isLoading, dispatch]);
+   return <>{children}</>;
 };
 
 const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
    const getLayout = Component.getLayout || ((page: ReactNode) => page);
-   return getLayout(
+   return (
       <Provider store={store}>
-         <Auth />
-         <Component {...pageProps} />
+         <AppWrapper>{getLayout(<Component {...pageProps} />)}</AppWrapper>
       </Provider>
    );
 };
