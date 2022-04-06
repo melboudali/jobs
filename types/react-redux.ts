@@ -10,7 +10,7 @@ export interface User {
 }
 
 interface Error {
-   variant: Variant;
+   variant: Variant | "auth";
    message: string;
 }
 
