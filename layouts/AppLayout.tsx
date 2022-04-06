@@ -1,5 +1,10 @@
-import type { FC } from "react";
+import type { ReactNode } from "react";
+import withAuth from "@hoc/withAuth";
 
-const AppLayout: FC = ({ children }) => <main style={{ backgroundColor: "red" }}>{children}</main>;
+interface Props {
+   children: ReactNode;
+}
 
-export default AppLayout;
+const AppLayout = ({ children }: Props) => <main>{children}</main>;
+
+export default withAuth(false, AppLayout);
