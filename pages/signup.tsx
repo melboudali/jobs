@@ -1,21 +1,23 @@
-import type { MyNextPage } from "next";
 import type { ReactElement } from "react";
-import Form from "../components/common/LoginSignup/Form";
-import LargeLogo from "../components/common/LoginSignup/LargeLogo";
-import withoutAuth from "../hoc/withoutAuth";
-import SignLayout from "../layouts/SignLayout";
+import SignLayout from "@layouts/SignLayout";
+import type { SignLayoutProps } from "@globalTypes";
+import LargeLogo from "@components/common/LoginSignup/LargeLogo";
+import Form from "@components/common/LoginSignup/Form";
 
-const Signup: MyNextPage = () => (
+const Signup = () => (
    <>
       <LargeLogo variant="signup" />
       <Form variant="signup" />
    </>
 );
 
-Signup.getLayout = (page: ReactElement) => (
-   <SignLayout question="Already have an account" suggestion="Log in" to="/login">
-      {page}
-   </SignLayout>
-);
+Signup.getLayout = (page: ReactElement) => {
+   const Props: Omit<SignLayoutProps, "children"> = {
+      question: "Already have an account",
+      suggestion: "Log in",
+      to: "/login",
+   };
+   return <SignLayout {...Props}>{page}</SignLayout>;
+};
 
 export default Signup;
