@@ -1,5 +1,5 @@
-import { useState, type ChangeEvent } from "react";
-import type { useFormValues } from "../types";
+import { type ChangeEvent, useState } from "react";
+import type { useFormValues } from "@globalTypes";
 
 const useForm = (defaults: useFormValues) => {
    const [values, setValues] = useState(defaults);
