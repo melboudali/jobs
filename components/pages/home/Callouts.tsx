@@ -1,6 +1,6 @@
 import Image from "next/image";
 import cls from "classnames";
-import data from "../../../data/callouts.json";
+import data from "@data/callouts.json";
 import styles from "./Callouts.module.scss";
 
 interface Props {
@@ -15,14 +15,7 @@ const Callouts = () => {
    return (
       <>
          {data.map(({ id, image, title, description, buttonText, right }) => (
-            <Callout
-               key={id}
-               image={image}
-               title={title}
-               description={description}
-               buttonText={buttonText}
-               right={right}
-            />
+            <Callout key={id} image={image} title={title} description={description} buttonText={buttonText} right={right} />
          ))}
       </>
    );
