@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Navar from "./Navbar";
 import cls from "classnames";
-import styles from "./Header.module.scss";
+import data from "@data/navbarLinks.json";
+import Navar from "./Navbar";
 import Links from "./Navbar/Links";
-import data from "../../data/navbarLinks.json";
+import styles from "./Header.module.scss";
 
 const Header = () => {
    const [showHamburgerMenu, setShowHamburgerMenu] = useState(false);
