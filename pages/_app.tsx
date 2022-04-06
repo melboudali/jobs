@@ -1,26 +1,39 @@
-import { type FC, type ReactNode, useEffect } from "react";
+import { type ReactNode, useEffect } from "react";
 import type { AppPropsWithLayout } from "next/app";
 import { Provider } from "react-redux";
-import store, { useDispatch, useSelector } from "../react-redux/store";
-import { auth } from "../lib/firebase";
+import store, { useDispatch, useSelector } from "@redux/store";
+import { auth } from "@firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { authenticatedSelector, isLoadingSelector, myAuth } from "../react-redux/features/userSlice";
+import {
+   authenticatedSelector,
+   errorVariantSelector,
+   isLoadingSelector,
+   myAuth,
+   statusSelector,
+} from "@redux/features/userSlice";
 import "../styles/globals.scss";
 
-const AppWrapper: FC = ({ children }) => {
+interface Props {
+   children: ReactNode;
+}
+
+const AppWrapper = ({ children }: Props) => {
    const dispatch = useDispatch();
    const authenticated = useSelector(authenticatedSelector);
    const isLoading = useSelector(isLoadingSelector);
+   const errorVariant = useSelector(errorVariantSelector);
+   const status = useSelector(statusSelector);
+
    useEffect(() => {
-      if (!authenticated && !isLoading) {
+      if (!authenticated && status === "idle" && errorVariant !== "auth") {
          const unsubscribe = onAuthStateChanged(auth, async user => {
-            dispatch(myAuth(null));
+            dispatch(myAuth(user));
          });
          return () => {
             unsubscribe();
          };
       }
-   }, [authenticated, isLoading, dispatch]);
+   }, [authenticated, status, dispatch, errorVariant]);
    return <>{children}</>;
 };
 
