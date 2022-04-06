@@ -1,4 +1,4 @@
-import type { FC, ReactNode } from "react";
+import type { ReactNode } from "react";
 import Image from "next/image";
 import styles from "./Card.module.scss";
 import cls from "classnames";
@@ -27,6 +27,7 @@ interface job {
 }
 
 interface DetailsItemProps {
+   children: ReactNode;
    path: string;
 }
 
@@ -75,7 +76,7 @@ const Card = (props: testimonial | job) => {
    );
 };
 
-const DetailsItem: FC<DetailsItemProps> = ({ path, children }) => (
+const DetailsItem = ({ path, children }: DetailsItemProps) => (
    <div className={styles.details__item} title={children as string}>
       <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path d={path} />
