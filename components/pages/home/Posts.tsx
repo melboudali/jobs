@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Title from "./Title";
-import type { Posts as PostsType } from "../../../types";
+import type { Posts as PostsType } from "@globalTypes";
 import styles from "./Posts.module.scss";
 
 interface Props {
