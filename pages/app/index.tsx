@@ -1,11 +1,11 @@
-import type { ReactNode } from "react";
+import type { ReactElement } from "react";
 import type { MyNextPage } from "next";
-import AppLayout from "../../layouts/AppLayout";
-import withAuth from "../../hoc/withAuth";
+import AppLayout from "@layouts/AppLayout";
 
 const App: MyNextPage = () => {
    return (
       <div>
+         <h1>This is a private route</h1>
          <p>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis dolore minima fugit quis obcaecati ut vitae cum
             adipisci. Illum perferendis dolores nemo ad, alias dolorem veniam repellat molestias similique accusantium non
@@ -19,6 +19,6 @@ const App: MyNextPage = () => {
    );
 };
 
-App.getLayout = (page: ReactNode) => <AppLayout>{page}</AppLayout>;
+App.getLayout = (page: ReactElement) => <AppLayout>{page}</AppLayout>;
 
 export default App;
