@@ -1,6 +1,10 @@
-import { type FC, memo } from "react";
+import { memo, type ReactNode } from "react";
 import styles from "../../../pages/index.module.scss";
 
-const Title: FC = ({ children }) => <h2 className={styles.title}>{children}</h2>;
+interface Props {
+   children: ReactNode;
+}
 
-export default memo<FC>(Title);
+const Title = ({ children }: Props) => <h2 className={styles.title}>{children}</h2>;
+
+export default memo<Props>(Title);
