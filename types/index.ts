@@ -1,5 +1,5 @@
-import { object, number, string, ObjectSchema } from "yup";
-import { AssertsShape, ObjectShape, OptionalObjectSchema } from "yup/lib/object";
+import { type ReactNode } from "react";
+import { AssertsShape } from "yup/lib/object";
 import type { RequiredStringSchema } from "yup/lib/string";
 import type { AnyObject } from "yup/lib/types";
 import { User } from "./react-redux";
@@ -77,4 +77,13 @@ export interface Codes {
    "auth/too-many-requests": string;
    "quota-exceeded": string;
    default: string;
+}
+
+// Layouts
+
+export interface SignLayoutProps {
+   children: ReactNode;
+   question: string;
+   suggestion: string;
+   to: "/login" | "/signup";
 }
