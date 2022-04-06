@@ -14,7 +14,22 @@
       "isolatedModules": true,
       "jsx": "preserve",
       "incremental": true,
-      "strictNullChecks": true
+      "strictNullChecks": true,
+      "baseUrl": ".",
+      "paths": {
+         "@components/*": ["components/*"],
+         "@data/*": ["data/*"],
+         "@hoc/*": ["hoc/*"],
+         "@hooks/*": ["hooks/*"],
+         "@layouts/*": ["layouts/*"],
+         "@lib/*": ["lib/*"],
+         "@firebase": ["lib/firebase.ts"],
+         "@redux/*": ["react-redux/*"],
+         "@customTypes/*": ["types/*"],
+         "@globalTypes": ["types/index.ts"],
+         "@utils/*": ["utils/*"],
+         "@globalUtils": ["utils/index.ts"]
+      }
    },
    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
    "exclude": ["node_modules"]
