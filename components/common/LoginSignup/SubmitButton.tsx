@@ -1,7 +1,7 @@
 import { memo } from "react";
-import type { Variant } from "../../../types";
-import styles from "./SubmitButton.module.scss";
 import cls from "classnames";
+import type { Variant } from "@globalTypes";
+import styles from "./SubmitButton.module.scss";
 
 interface Props {
    variant: Variant;
@@ -11,21 +11,17 @@ interface Props {
 const SubmitButton = ({ variant, loading }: Props) => {
    const inputStyles = cls(styles.root, { [styles["root--loading"]]: loading });
 
-   const Value = () => {
-      if (loading) {
-         return "loading...";
-      } else {
-         if (variant === "login") {
-            return "sign in";
-         } else if (variant === "signup") {
-            return "Create Free Account";
-         } else {
-            return "Send password reset email";
-         }
-      }
+   const Values = {
+      login: "sign in",
+      signup: "Create Free Account",
+      "password-rest": "Send password reset email",
    };
 
-   return <input className={inputStyles} type="submit" value={Value()} disabled={loading} />;
+   return (
+      <button className={inputStyles} type="submit" disabled={loading}>
+         <span>{Values[variant]}</span>
+      </button>
+   );
 };
 
 export default memo(SubmitButton);
