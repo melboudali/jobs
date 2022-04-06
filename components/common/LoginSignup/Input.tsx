@@ -1,8 +1,8 @@
-import { useState, type ChangeEvent } from "react";
+import { type ChangeEvent, useState } from "react";
 import Link from "next/link";
-import styles from "./Input.module.scss";
+import type { Fields } from "@globalTypes";
 import cls from "classnames";
-import type { Fields } from "../../../types";
+import styles from "./Input.module.scss";
 
 interface Props {
    label: string;
