@@ -1,8 +1,5 @@
 import * as yup from "yup";
-import { AssertsShape } from "yup/lib/object";
-import { RequiredStringSchema } from "yup/lib/string";
-import { AnyObject } from "yup/lib/types";
-import type { ValidateFuncResponse, useFormValues, UserValidationRes, Variant, YupError } from "../types";
+import type { ValidateFuncResponse, useFormValues, UserValidationRes, Variant, YupError } from "@globalTypes";
 
 export default class FormValidation {
    variant: Variant;
