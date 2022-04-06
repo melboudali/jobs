@@ -1,10 +1,11 @@
-import { useRef, type FC } from "react";
-import useAppearOnScroll from "../../../hooks/useAppearOnScroll";
+import { type ReactNode, useRef } from "react";
+import useAppearOnScroll from "@hooks/useAppearOnScroll";
 import CountUp from "react-countup";
 import cls from "classnames";
 import styles from "./Stats.module.scss";
 
 interface Props {
+   children: ReactNode;
    number: number;
    appear: boolean;
 }
@@ -32,7 +33,7 @@ const Stats = () => {
    );
 };
 
-const Item: FC<Props> = ({ number, children, appear }) => (
+const Item = ({ number, children, appear }: Props) => (
    <div>
       <h4 className={styles.name}>{children}</h4>
       {appear && <CountUp className={styles.number} end={number} duration={4} useEasing={true} separator="," />}
