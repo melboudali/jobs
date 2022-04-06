@@ -1,17 +1,11 @@
 import { createAsyncThunk, createSelector, createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import {
-   signInWithEmailAndPassword,
-   createUserWithEmailAndPassword,
-   onAuthStateChanged,
-   NextOrObserver,
-   User,
-} from "firebase/auth";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, User } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
-import Firestore, { auth } from "../../lib/firebase";
-import { Codes, FieldError, useFormValues } from "../../types";
-import type { User as UserType, UserReducer } from "../../types/react-redux";
-import FormSubmit from "../../utils/FormSubmit";
-import { RootState } from "../store";
+import Firestore, { auth } from "@firebase";
+import { RootState } from "@redux/store";
+import { Codes, FieldError, useFormValues } from "@globalTypes";
+import type { User as UserType, UserReducer } from "@customTypes/react-redux";
+import FormSubmit from "@utils/FormSubmit";
 
 const formSubmit = new FormSubmit();
 
@@ -137,7 +131,7 @@ export const userSlice = createSlice({
          })
          .addCase(myAuth.rejected, (state, action) => {
             state.status = "failed";
-            state.error = { variant: "signup", message: action.payload as string };
+            state.error = { variant: "auth", message: action.payload as string };
          });
    },
 });
@@ -155,3 +149,5 @@ export const userSelector = createSelector(selectUser, user => user.value);
 export const statusSelector = createSelector(selectUser, user => user.status);
 
 export const isLoadingSelector = createSelector(selectUser, user => user.status === "loading");
+
+export const errorVariantSelector = createSelector(selectUser, user => user.error?.variant);
