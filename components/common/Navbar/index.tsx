@@ -1,8 +1,8 @@
-import Logo from "./Logo";
 import cls from "classnames";
-import styles from "./Navbar.module.scss";
+import data from "@data/navbarLinks.json";
+import Logo from "./Logo";
 import Links from "./Links";
-import data from "../../../data/navbarLinks.json";
+import styles from "./Navbar.module.scss";
 
 interface Props {
    showHamburgerMenu: boolean;
