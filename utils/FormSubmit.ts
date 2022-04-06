@@ -1,9 +1,4 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { doc, getDoc, setDoc } from "firebase/firestore";
-import { boolean } from "yup";
-import Firestore, { auth } from "../lib/firebase";
-import { Codes, FieldError, Response, SignUpAndLoginResponse, useFormValues, Variant } from "../types";
-import { User } from "../types/react-redux";
+import { Codes, FieldError, Response, useFormValues, Variant } from "@globalTypes";
 
 interface Data {
    status: number;
