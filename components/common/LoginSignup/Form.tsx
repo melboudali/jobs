@@ -1,25 +1,17 @@
-import { useRef, useState, type ChangeEvent, type FormEvent } from "react";
-import type { FieldError, Fields, useFormValues, Variant } from "../../../types";
-import useForm from "../../../hooks/useForm";
-import FormValidation from "../../../utils/FormValidation";
+import { type ChangeEvent, type FormEvent, useRef, useState } from "react";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "@redux/store";
+import { login, errorSelector, signUp, statusSelector, authenticatedSelector } from "@redux/features/userSlice";
+import useForm from "@hooks/useForm";
+import FormValidation from "@utils/FormValidation";
+import type { FieldError, Fields, useFormValues, Variant } from "@globalTypes";
+import ReCAPTCHA from "react-google-recaptcha";
+import FormSubmit from "@utils/FormSubmit";
 import Input from "./Input";
 import Recaptcha from "./Recaptcha";
 import SubmitButton from "./SubmitButton";
-import styles from "./Form.module.scss";
-import FormSubmit from "../../../utils/FormSubmit";
-import ReCAPTCHA from "react-google-recaptcha";
-// import { setUser } from "../../../react-redux/features/userSlice";
-import { useDispatch, useSelector } from "../../../react-redux/store";
-import {
-   login,
-   errorSelector,
-   signUp,
-   statusSelector,
-   selectUser,
-   authenticatedSelector,
-} from "../../../react-redux/features/userSlice";
 import Error from "./Error";
-import { useRouter } from "next/router";
+import styles from "./Form.module.scss";
 
 interface Props {
    variant: Variant;
@@ -98,13 +90,14 @@ const Form = ({ variant }: Props) => {
             }
 
             if (fulfilled) {
-               clearValues();
-               // router.push("/app");
+               router.push("/app");
+               return null;
             }
 
             stopLoading();
          } else {
             setError(error);
+            setLoading(false);
          }
       } else {
          setLoading(false);
