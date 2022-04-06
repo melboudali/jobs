@@ -4,19 +4,48 @@
 .root {
    @include blue-button;
    --opacity: 1;
+   --spanDisplay: block;
+   --animationDisplay: none;
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
    width: 100%;
-   padding: 10px 0;
+   height: 35px;
    margin-top: 20px;
    opacity: var(--opacity);
-   font-weight: 500;
-   font-size: 0.875rem;
-   line-height: 16px;
-   text-transform: capitalize;
-   color: $color-white;
-   cursor: pointer;
-   user-select: none;
+   span {
+      display: var(--spanDisplay);
+      font-weight: 500;
+      font-size: 0.875rem;
+      line-height: 16px;
+      text-transform: capitalize;
+      color: $color-white;
+   }
+   &::after {
+      content: "";
+      display: var(--animationDisplay);
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      border: 2px solid $color-white;
+      border-top-color: transparent;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: loading 1s infinite linear;
+      @keyframes loading {
+         to {
+            transform: translate(-50%, -50%) rotate(360deg);
+         }
+      }
+   }
    &--loading {
-      cursor: progress;
       --opacity: 0.6;
+      --spanDisplay: none;
+      --animationDisplay: block;
+      user-select: none;
+      cursor: progress;
    }
 }
