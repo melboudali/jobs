@@ -1,4 +1,4 @@
-import { useRef, useState, type RefObject } from "react";
+import { type RefObject, useRef, useState } from "react";
 
 interface Props {
    sliderRef: RefObject<HTMLDivElement>;
@@ -16,10 +16,7 @@ const useSlider = ({ containerRef, sliderRef }: Props) => {
 
    const slideNext = () => {
       if (!currentWidth.current) currentWidth.current = containerRef.current!.clientWidth;
-      if (
-         currentWidth.current < sliderRef.current!.clientWidth &&
-         sliderRef.current!.clientWidth - currentWidth.current > 273
-      ) {
+      if (currentWidth.current < sliderRef.current!.clientWidth && sliderRef.current!.clientWidth - currentWidth.current > 273) {
          currentWidth.current! += 273;
          setTranslateValue(currentWidth.current - containerRef.current!.clientWidth);
          {
