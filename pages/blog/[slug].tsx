@@ -4,9 +4,9 @@ import Image from "next/image";
 import Head from "next/head";
 import { parseISO, format } from "date-fns";
 import { ParsedUrlQuery } from "querystring";
-import { getAllPostIds, getPostData } from "../../lib/blog";
-import type { Post as PostType } from "../../types";
-import Layout from "../../layouts/Layout";
+import { getAllPostIds, getPostData } from "@lib/blog";
+import type { Post as PostType } from "@globalTypes";
+import Layout from "@layouts/Layout";
 import styles from "./blog.module.scss";
 
 interface Props {
@@ -55,7 +55,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
    };
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async context => {
    const params = context.params as Params;
    const post = await getPostData(params.slug);
    return {
