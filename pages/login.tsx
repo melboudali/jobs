@@ -1,8 +1,8 @@
 import type { ReactElement } from "react";
-import SignLayout from "../layouts/SignLayout";
-import LargeLogo from "../components/common/LoginSignup/LargeLogo";
-import Form from "../components/common/LoginSignup/Form";
-import withoutAuth from "../hoc/withoutAuth";
+import { SignLayoutProps } from "@globalTypes";
+import SignLayout from "@layouts/SignLayout";
+import LargeLogo from "@components/common/LoginSignup/LargeLogo";
+import Form from "@components/common/LoginSignup/Form";
 
 const Login = () => (
    <>
@@ -11,10 +11,13 @@ const Login = () => (
    </>
 );
 
-Login.getLayout = (page: ReactElement) => (
-   <SignLayout question="New to jobs" suggestion="Create an account" to="/signup">
-      {page}
-   </SignLayout>
-);
+Login.getLayout = (page: ReactElement) => {
+   const Props: Omit<SignLayoutProps, "children"> = {
+      question: "New to jobs",
+      suggestion: "Create an account",
+      to: "/signup",
+   };
+   return <SignLayout {...Props}>{page}</SignLayout>;
+};
 
 export default Login;
