@@ -1,7 +1,7 @@
 import withAuth from "@hoc/withAuth";
 import { SignLayoutProps } from "@globalTypes";
 import Footer from "@components/common/LoginSignup/Footer";
-import styles from "@Layouts.module.scss";
+import styles from "./Layouts.module.scss";
 
 const SignLayout = ({ children, question, suggestion, to }: SignLayoutProps) => (
    <>
