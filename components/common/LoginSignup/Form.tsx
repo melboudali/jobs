@@ -1,7 +1,7 @@
 import { type ChangeEvent, type FormEvent, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "@redux/store";
-import { login, errorSelector, signUp, statusSelector, authenticatedSelector } from "@redux/features/userSlice";
+import { login, errorSelector, signUp, statusSelector, isAuthenticatedSelector, passwordReset } from "@redux/features/userSlice";
 import useForm from "@hooks/useForm";
 import FormValidation from "@utils/FormValidation";
 import type { FieldError, Fields, useFormValues, Variant } from "@globalTypes";
@@ -12,6 +12,7 @@ import Recaptcha from "./Recaptcha";
 import SubmitButton from "./SubmitButton";
 import Error from "./Error";
 import styles from "./Form.module.scss";
+import PasswordReset from "pages/password_reset";
 
 interface Props {
    variant: Variant;
@@ -31,7 +32,7 @@ const Form = ({ variant }: Props) => {
    // redux selectors
    const authError = useSelector(errorSelector);
    const status = useSelector(statusSelector);
-   const authenticated = useSelector(authenticatedSelector);
+   const authenticated = useSelector(isAuthenticatedSelector);
 
    const formSubmit = new FormSubmit();
 
@@ -89,6 +90,12 @@ const Form = ({ variant }: Props) => {
                fulfilled = res.meta.requestStatus === "fulfilled";
             }
 
+            // password reset
+            if (variant === "password-rest") {
+               console.log("password reset form");
+               await dispatch(passwordReset(user.email));
+            }
+
             if (fulfilled) {
                router.push("/app");
                return null;
@@ -100,7 +107,9 @@ const Form = ({ variant }: Props) => {
             setLoading(false);
          }
       } else {
-         setLoading(false);
+         if (loading) {
+            setLoading(false);
+         }
       }
    };
 
