@@ -63,16 +63,16 @@
 
 .password__input {
    @include sharedInput;
-   height: 100%;
+   height: inherit;
    border: 0;
    background-color: transparent;
    flex: 1;
 }
 
 .password__button {
-   display: flex;
-   align-items: center;
-   height: 100%;
+   display: inherit;
+   align-items: inherit;
+   height: inherit;
    padding: 0 5px;
    svg path {
       fill: $color-primary;
