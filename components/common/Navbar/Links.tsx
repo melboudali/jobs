@@ -1,14 +1,10 @@
 import Link from "next/link";
 import cls from "classnames";
+import { navbarProps } from "@customTypes/index";
 import styles from "./Navbar.module.scss";
 
-interface Props {
+interface Props extends navbarProps {
    variant: "desktop" | "mobile";
-   data: {
-      name: string;
-      href: string;
-   }[];
-   showHamburgerMenu: boolean;
 }
 
 interface CustomLinkProps {
@@ -51,6 +47,7 @@ const CustomLink = ({ name, href, last }: CustomLinkProps) => (
 );
 
 Links.defaultProps = {
+   variant: "desktop",
    showHamburgerMenu: false,
 };
 
