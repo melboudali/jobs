@@ -4,6 +4,16 @@ import type { RequiredStringSchema } from "yup/lib/string";
 import type { AnyObject } from "yup/lib/types";
 import { User } from "./react-redux";
 
+// Navbar
+export interface navbarProps {
+   data: {
+      name: string;
+      href: string;
+   }[];
+   showHamburgerMenu: boolean;
+}
+
+//
 export interface testimonial {
    id: number;
    image: string;
