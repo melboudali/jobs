@@ -78,7 +78,14 @@
    background-color: $color-secondary;
    box-shadow: 0px 2px 6px $grayBoxShadow;
    border: 1px solid $borderGrayColor;
+   border-radius: 20px 0px;
+   transition: background-color 200ms ease-in-out;
    border-radius: 2px;
+   color: $color-white !important;
+   text-transform: capitalize;
+   &:hover {
+      background-color: $color-primary;
+   }
 }
 
 // login/signup
