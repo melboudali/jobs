@@ -1,11 +1,15 @@
-import { createAsyncThunk, createSelector, createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, User } from "firebase/auth";
+import { AsyncThunk, createAsyncThunk, createSelector, createSlice, isAnyOf, type PayloadAction } from "@reduxjs/toolkit";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, User, sendPasswordResetEmail } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import Firestore, { auth } from "@firebase";
 import { RootState } from "@redux/store";
 import { Codes, FieldError, useFormValues } from "@globalTypes";
 import type { User as UserType, UserReducer } from "@customTypes/react-redux";
 import FormSubmit from "@utils/FormSubmit";
+
+type GenericAsyncThunk = AsyncThunk<unknown, unknown, any>;
+type PendingAction = ReturnType<GenericAsyncThunk["pending"]>;
+type FulfilledAction = ReturnType<GenericAsyncThunk["fulfilled"]>;
 
 const formSubmit = new FormSubmit();
 
@@ -71,6 +75,17 @@ export const myAuth = createAsyncThunk("user/myAuth", async (user: User | null, 
    }
 });
 
+export const passwordReset = createAsyncThunk("user/psswordReset", async (email: string, thunkAPI) => {
+   try {
+      // await sendPasswordResetEmail(auth, email);
+      console.log("email reseting fired for the email: ", email);
+   } catch (error) {
+      const { code, message } = error as FieldError;
+      console.log(code, message);
+      return thunkAPI.rejectWithValue(message);
+   }
+});
+
 const initialState: UserReducer = {
    value: {
       displayName: "",
@@ -80,7 +95,8 @@ const initialState: UserReducer = {
       photoURL: "",
       date: "",
    },
-   authenticated: false,
+   isAuthenticated: false,
+   isFetching: true,
    status: "idle",
    error: null,
 };
@@ -91,47 +107,32 @@ export const userSlice = createSlice({
    reducers: {},
    extraReducers: builder => {
       builder
-         .addCase(login.pending, state => {
-            state.status = "loading";
-            state.error = null;
-         })
-         .addCase(login.fulfilled, (state, action: PayloadAction<UserType>) => {
-            state.authenticated = true;
-            state.status = "succeeded";
-            Object.assign(state.value, action.payload);
+         .addCase(myAuth.rejected, (state, action) => {
+            state.isFetching = false;
+            state.status = "failed";
+            state.error = { variant: "auth", message: action.payload as string };
          })
          .addCase(login.rejected, (state, action) => {
             state.status = "failed";
             state.error = { variant: "login", message: action.payload as string };
-         });
-      builder
-         .addCase(signUp.pending, state => {
-            state.status = "loading";
-            state.error = null;
-         })
-         .addCase(signUp.fulfilled, (state, action: PayloadAction<UserType>) => {
-            state.authenticated = true;
-            state.status = "succeeded";
-            Object.assign(state.value, action.payload);
          })
          .addCase(signUp.rejected, (state, action) => {
             state.status = "failed";
             state.error = { variant: "signup", message: action.payload as string };
-         });
-      builder
-         .addCase(myAuth.pending, state => {
+         })
+         .addCase(passwordReset.rejected, (state, action) => {
+            state.status = "failed";
+            state.error = { variant: "password-rest", message: action.payload as string };
+         })
+         .addMatcher(isAnyOf(login.pending, signUp.pending), state => {
             state.status = "loading";
             state.error = null;
          })
-         .addCase(myAuth.fulfilled, (state, action: PayloadAction<UserType>) => {
-            state.authenticated = true;
+         .addMatcher(isAnyOf(login.fulfilled, signUp.fulfilled, myAuth.fulfilled), (state, action) => {
+            state.isFetching = false;
+            state.isAuthenticated = true;
             state.status = "succeeded";
-
             Object.assign(state.value, action.payload);
-         })
-         .addCase(myAuth.rejected, (state, action) => {
-            state.status = "failed";
-            state.error = { variant: "auth", message: action.payload as string };
          });
    },
 });
@@ -140,7 +141,7 @@ export default userSlice.reducer;
 
 export const selectUser: (state: RootState) => UserReducer = state => state.user;
 
-export const authenticatedSelector = createSelector(selectUser, user => user.authenticated);
+export const isAuthenticatedSelector = createSelector(selectUser, user => user.isAuthenticated);
 
 export const errorSelector = createSelector(selectUser, user => user.error);
 
@@ -151,3 +152,5 @@ export const statusSelector = createSelector(selectUser, user => user.status);
 export const isLoadingSelector = createSelector(selectUser, user => user.status === "loading");
 
 export const errorVariantSelector = createSelector(selectUser, user => user.error?.variant);
+
+export const isFetchingSelector = createSelector(selectUser, user => user.isFetching);
