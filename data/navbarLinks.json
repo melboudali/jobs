@@ -4,6 +4,5 @@
    { "name": "blog", "href": "/blog" },
    { "name": "about", "href": "/about" },
    { "name": "support", "href": "/support" },
-   { "name": "contact", "href": "/contact" },
-   { "name": "Start Free", "href": "/login" }
+   { "name": "contact", "href": "/contact" }
 ]
