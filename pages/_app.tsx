@@ -5,7 +5,7 @@ import store, { useDispatch, useSelector } from "@redux/store";
 import { auth } from "@firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import {
-   authenticatedSelector,
+   isAuthenticatedSelector,
    errorVariantSelector,
    isLoadingSelector,
    myAuth,
@@ -19,8 +19,7 @@ interface Props {
 
 const AppWrapper = ({ children }: Props) => {
    const dispatch = useDispatch();
-   const authenticated = useSelector(authenticatedSelector);
-   const isLoading = useSelector(isLoadingSelector);
+   const authenticated = useSelector(isAuthenticatedSelector);
    const errorVariant = useSelector(errorVariantSelector);
    const status = useSelector(statusSelector);
 
