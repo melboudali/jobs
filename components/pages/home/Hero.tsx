@@ -6,7 +6,7 @@ const Hero = () => (
    <section className={styles.root}>
       <div className={styles.hero}>
          <h1 className={styles.hero__title}>We&apos;re here to make hiring a little easier. Let&apos;s give it a try.</h1>
-         <Link href="/">
+         <Link href="/login">
             <a className={styles.hero__link}>post a job for free</a>
          </Link>
       </div>
