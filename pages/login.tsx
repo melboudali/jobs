@@ -6,7 +6,7 @@ import Form from "@components/common/LoginSignup/Form";
 
 const Login = () => (
    <>
-      <LargeLogo variant="login" />
+      <LargeLogo />
       <Form />
    </>
 );
