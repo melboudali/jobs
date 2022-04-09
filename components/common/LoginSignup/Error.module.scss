@@ -1,27 +1,24 @@
 @use "variables" as *;
 
 .error {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-    margin-bottom: 20px;
-    background-color: $error-color;
-    border-radius: 4px;
-
-    svg {
-        width: 15px;
-
-        path {
-            fill: $color-white;
-        }
-    }
-
-    &__message {
-        flex: 1;
-        font-size: 0.8rem;
-        line-height: 15px;
-        // font-weight: 500;
-        color: $color-white;
-    }
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   min-height: 35px;
+   padding: 10px;
+   margin-bottom: 20px;
+   background-color: $error-color;
+   border-radius: 4px;
+   svg {
+      width: 15px;
+      path {
+         fill: $color-white;
+      }
+   }
+   &__message {
+      flex: 1;
+      font-size: 0.8rem;
+      line-height: 15px;
+      color: $color-white;
+   }
 }
