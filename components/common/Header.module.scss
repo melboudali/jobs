@@ -5,6 +5,8 @@
    --width: calc(100% - 40px);
    --height: 62px;
    --bg: #{$bColor-primary};
+   --transform: translate(-50%, 0);
+   --boxShadow: none;
    position: fixed;
    z-index: 3;
    height: var(--height);
@@ -12,18 +14,26 @@
    max-width: 864px;
    top: 20px;
    left: 50%;
-   transform: translateX(-50%);
+   transform: var(--transform);
    background-color: var(--bg);
    border: 1px solid $borderGrayColor;
-   box-shadow: 0px 2px 6px 0 $grayBoxShadow;
+   box-shadow: var(--boxShadow);
    border-radius: 4px;
    padding: 0 10px;
-   transition: height 400ms ease-in-out, background-color 400ms ease-in-out, box-shadow 400ms ease-in-out;
+   transition: height 400ms ease-in-out, background-color 400ms ease-in-out, box-shadow 1.5s ease-out,
+      transform 500ms cubic-bezier(1, 0.38, 0, 1.52);
    &--open {
       --height: calc(100vh - 40px);
       --bg: #{$bColor-secondary};
-      box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px,
-         rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+      --boxShadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px,
+         rgba(0, 0, 0, 0.12) 0px 4px 6px rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+   }
+   &--hide {
+      --transform: translate(-50%, -84px);
+   }
+   &--show {
+      --transform: translate(-50%, 0);
+      --boxShadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
    }
    @include media.break(tablet) {
       --width: 100%;
