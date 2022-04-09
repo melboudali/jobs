@@ -1,17 +1,21 @@
 import type { MyNextPage } from "next";
 import { useRouter } from "next/router";
 import { useSelector } from "@redux/store";
-import { authenticatedSelector, statusSelector } from "@redux/features/userSlice";
+import { isAuthenticatedSelector, isFetchingSelector, statusSelector } from "@redux/features/userSlice";
 import Loading from "@components/common/Loading";
 
 function withAuth<T, U>(isPublic: U, Component: MyNextPage<T>) {
    const Auth = (props: T) => {
       const router = useRouter();
-      const authenticated = useSelector(authenticatedSelector);
+      const isAuthenticated = useSelector(isAuthenticatedSelector);
       const status = useSelector(statusSelector);
-      const [isAuth, route] = isPublic ? [authenticated, "/app"] : [!authenticated, "/login"];
+      const isFetching = useSelector(isFetchingSelector);
 
-      if (status === "loading" || status === "idle") {
+      const [isAuth, route] = isPublic ? [isAuthenticated, "/app"] : [!isAuthenticated, "/login"];
+
+      // ! fix this later
+      // if (status === "loading" || status === "idle") {
+      if (isFetching) {
          return <Loading />;
       }
 
