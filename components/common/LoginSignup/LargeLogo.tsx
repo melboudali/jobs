@@ -5,17 +5,21 @@ interface Props {
    variant: "login" | "signup" | "password-rest";
 }
 
+const variants = {
+   login: "Sign in to jobs",
+   signup: "Sign up to jobs",
+   "password-rest": "Reset your password",
+};
+
 const LargeLogo = ({ variant }: Props) => (
    <div className={styles.logo}>
       <Logo large />
-      <p className={styles.logo__name}>
-         {variant === "login" ? "Sign in to jobs" : variant === "signup" ? "Sign up to jobs" : "Reset your password"}
-      </p>
+      <p className={styles.logo__name}>{variants[variant]}</p>
    </div>
 );
 
 LargeLogo.defaultProps = {
-   isSignUp: false,
+   variant: "login",
 };
 
 export default LargeLogo;
