@@ -2,6 +2,7 @@ import Image from "next/image";
 import cls from "classnames";
 import data from "@data/callouts.json";
 import styles from "./Callouts.module.scss";
+import Link from "next/link";
 
 interface Props {
    image: string;
@@ -47,7 +48,9 @@ const Callout = ({ image, title, description, buttonText, right }: Props) => {
             <div className={styles.callout__details__wrapper}>
                <h2>{title}</h2>
                <p>{description}</p>
-               <button>{buttonText}</button>
+               <Link href="/login">
+                  <a>{buttonText}</a>
+               </Link>
             </div>
          </div>
       </div>
