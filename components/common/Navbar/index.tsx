@@ -1,22 +1,21 @@
 import cls from "classnames";
-import data from "@data/navbarLinks.json";
+import { navbarProps } from "@customTypes/index";
 import Logo from "./Logo";
 import Links from "./Links";
 import styles from "./Navbar.module.scss";
 
-interface Props {
-   showHamburgerMenu: boolean;
+interface Props extends navbarProps {
    toggle: () => void;
 }
 
-const Navbar = ({ toggle, showHamburgerMenu }: Props) => {
+const Navbar = ({ data, toggle, showHamburgerMenu }: Props) => {
    const svgStyles = cls(styles.svg, { [styles["svg--active"]]: showHamburgerMenu });
 
    return (
       <div className={styles.navbar}>
          <Logo />
          <nav className={styles.navbar__nav}>
-            <Links variant="desktop" data={data} />
+            <Links data={data} />
          </nav>
          <button className={styles.navbar__hamburger} aria-label="menu" onClick={toggle}>
             <svg className={svgStyles} width="40" height="40" viewBox="0 0 100 100">
