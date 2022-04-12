@@ -31,7 +31,13 @@ const Links = ({ variant, data, showHamburgerMenu }: Props) => (
 
 const CustomLink = ({ name, href, last }: CustomLinkProps) => (
    <Link href={href}>
-      <a>
+      <a
+         onClick={() => {
+            if (document.documentElement.style.overflowY === "hidden") {
+               document.documentElement.style.overflowY = "visible";
+            }
+         }}
+      >
          {last ? (
             <>
                <span>{name}</span>
