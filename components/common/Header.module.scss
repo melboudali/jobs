@@ -21,7 +21,7 @@
    border-radius: 4px;
    padding: 0 10px;
    transition: height 400ms ease-in-out, background-color 400ms ease-in-out, box-shadow 1.5s ease-out,
-      transform 500ms cubic-bezier(1, 0.38, 0, 1.52);
+      transform 400ms cubic-bezier(1, 0.38, 0, 1.52);
    &--open {
       --height: calc(100vh - 40px);
       --bg: #{$bColor-secondary};
