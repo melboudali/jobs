@@ -6,6 +6,7 @@ export interface User {
    lastName: string;
    email: string;
    photoURL: string;
+   type: "seeker" | "poster" | null;
    date: string;
 }
 
