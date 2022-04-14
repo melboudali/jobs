@@ -1,3 +1,4 @@
+@use "variables";
 @use "mixins" as *;
 
 .main {
@@ -6,4 +7,12 @@
 
 .signMain {
    @include layout-main(30px);
+}
+
+.app {
+   background-color: variables.$bColor-secondary;
+   min-height: 100vh;
+   &__main {
+      @include layout-main(40px);
+   }
 }
