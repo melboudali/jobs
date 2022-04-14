@@ -1,0 +1,50 @@
+@use "variables";
+@use "mixins";
+
+.root {
+   background-color: variables.$color-white;
+   height: 50px;
+}
+
+.container {
+   @include mixins.layout-main(0);
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   height: inherit;
+}
+
+.links {
+   display: flex;
+   gap: 20px;
+}
+
+.link {
+   display: flex;
+   align-items: center;
+   svg path {
+      fill: variables.$color-primary;
+   }
+   a {
+      display: inherit;
+      align-items: inherit;
+      gap: 5px;
+      height: 30px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      line-height: 12px;
+      text-transform: capitalize;
+   }
+   &:hover {
+      a {
+         color: variables.$color-gray;
+      }
+      svg path {
+         fill: variables.$color-gray;
+      }
+   }
+}
+
+.profileImg {
+   border-radius: 50%;
+}
