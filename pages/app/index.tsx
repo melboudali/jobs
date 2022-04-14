@@ -1,10 +1,11 @@
 import type { ReactElement } from "react";
 import type { MyNextPage } from "next";
 import AppLayout from "@layouts/AppLayout";
+import Navbar from "@components/pages/app/Navbar";
 
 const App: MyNextPage = () => {
    return (
-      <div>
+      <>
          <h1>This is a private route</h1>
          <p>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis dolore minima fugit quis obcaecati ut vitae cum
@@ -15,7 +16,7 @@ const App: MyNextPage = () => {
             eaque nisi voluptas sit, perspiciatis accusantium optio deleniti doloribus minus. Cum unde molestiae amet ducimus
             distinctio deleniti maiores officia vel neque hic? Aspernatur, nostrum?
          </p>
-      </div>
+      </>
    );
 };
 
