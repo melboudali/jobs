@@ -1,5 +1,5 @@
 import { AsyncThunk, createAsyncThunk, createSelector, createSlice, isAnyOf, type PayloadAction } from "@reduxjs/toolkit";
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, User, sendPasswordResetEmail } from "firebase/auth";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, User, sendPasswordResetEmail, signOut } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import Firestore, { auth } from "@firebase";
 import { RootState } from "@redux/store";
@@ -19,7 +19,7 @@ export const login = createAsyncThunk(
       try {
          const userCredential = await signInWithEmailAndPassword(auth, email, password);
          const querySnapshot = await getDoc(doc(Firestore, "users", userCredential.user.uid));
-         return { ...querySnapshot.data(), date: new Date().toISOString() } as UserType;
+         return { ...querySnapshot.data(), date: new Date().toISOString() };
       } catch (error) {
          const { code } = error as FieldError;
          const errorMessage = formSubmit.firebaseErrors(code as keyof Codes);
@@ -38,6 +38,7 @@ export const signUp = createAsyncThunk(
             lastName: lastName,
             email: email,
             photoURL: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
+            type: null,
             date: new Date().toISOString(),
          };
 
@@ -65,6 +66,7 @@ export const myAuth = createAsyncThunk("user/myAuth", async (user: User | null, 
          lastName: querySnapshot.data()?.lastName,
          email: querySnapshot.data()?.email,
          photoURL: user.photoURL ?? querySnapshot.data()?.photoURL,
+         type: querySnapshot.data()?.type,
          date: new Date().toISOString(),
       };
       return value;
@@ -86,6 +88,16 @@ export const passwordReset = createAsyncThunk("user/psswordReset", async (email:
    }
 });
 
+export const signOutThunk = createAsyncThunk("user/signOut", async (_, thunkAPI) => {
+   try {
+      await signOut(auth);
+   } catch (error) {
+      const { code, message } = error as FieldError;
+      console.log(code, message);
+      return thunkAPI.rejectWithValue(message);
+   }
+});
+
 const initialState: UserReducer = {
    value: {
       displayName: "",
@@ -93,6 +105,7 @@ const initialState: UserReducer = {
       lastName: "",
       email: "",
       photoURL: "",
+      type: null,
       date: "",
    },
    isAuthenticated: false,
@@ -124,7 +137,8 @@ export const userSlice = createSlice({
             state.status = "failed";
             state.error = { variant: "password-rest", message: action.payload as string };
          })
-         .addMatcher(isAnyOf(login.pending, signUp.pending), state => {
+         .addCase(signOutThunk.fulfilled, () => ({ ...initialState, isFetching: false, status: "succeeded" }))
+         .addMatcher(isAnyOf(login.pending, signUp.pending, signOutThunk.pending), state => {
             state.status = "loading";
             state.error = null;
          })
@@ -154,3 +168,5 @@ export const isLoadingSelector = createSelector(selectUser, user => user.status 
 export const errorVariantSelector = createSelector(selectUser, user => user.error?.variant);
 
 export const isFetchingSelector = createSelector(selectUser, user => user.isFetching);
+
+export const typeSelector = createSelector(selectUser, user => user.value.type);
