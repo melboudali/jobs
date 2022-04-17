@@ -6,11 +6,10 @@
    position: relative;
    height: var(--height);
    background-color: $bColor-secondary;
+   border: 1px solid $borderGrayColor;
    &,
    img {
-      z-index: 0;
       border-radius: 2px;
-      border: 1px solid $borderGrayColor;
    }
    &::before {
       content: "";
