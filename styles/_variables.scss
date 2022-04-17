@@ -10,10 +10,15 @@ $logoLightGray: #c1c3c7;
 $heroBg: rgba(255, 255, 255, 0.7);
 $error-color: rgb(228, 107, 107);
 $input-bg: #e0e0e0;
+// app
+$card-border-secondary: rgba(182, 182, 182, 0.25);
+//
+$box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+$box-shadow--hover: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
 :export {
-	primaryColor: $color-primary;
-	colorWhite: $color-white;
-	logoLightGray: $logoLightGray;
-	colorGray: $color-gray;
+   primaryColor: $color-primary;
+   colorWhite: $color-white;
+   logoLightGray: $logoLightGray;
+   colorGray: $color-gray;
 }
