@@ -1,6 +1,6 @@
 import type { ReactElement } from "react";
 import type { MyNextPage } from "next";
-import AppLayout from "@layouts/AppLayout";
+import AppLayout from "@layouts/App.layout";
 import Navbar from "@components/pages/app/Navbar";
 
 const App: MyNextPage = () => {
