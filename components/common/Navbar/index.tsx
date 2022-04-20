@@ -2,7 +2,7 @@ import cls from "classnames";
 import { navbarProps } from "@customTypes/index";
 import Logo from "./Logo";
 import Links from "./Links";
-import styles from "./Navbar.module.scss";
+import styles from "./index.module.scss";
 
 interface Props extends navbarProps {
    toggle: () => void;
