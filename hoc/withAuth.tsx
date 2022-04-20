@@ -1,7 +1,7 @@
 import type { MyNextPage } from "next";
 import { useRouter } from "next/router";
 import { useSelector } from "@redux/store";
-import { isAuthenticatedSelector, isFetchingSelector, statusSelector } from "@redux/features/userSlice";
+import { isAuthenticatedSelector, isFetchingSelector, statusSelector } from "@redux/selectors";
 import Loading from "@components/common/Loading";
 
 function withAuth<T, U>(isPublic: U, Component: MyNextPage<T>) {
