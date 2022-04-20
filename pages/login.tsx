@@ -1,6 +1,6 @@
 import type { ReactElement } from "react";
 import { SignLayoutProps } from "@globalTypes";
-import SignLayout from "@layouts/SignLayout";
+import SignLayout from "@layouts/Sign.layout";
 import LargeLogo from "@components/common/LoginSignup/LargeLogo";
 import Form from "@components/common/LoginSignup/Form";
 
