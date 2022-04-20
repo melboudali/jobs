@@ -5,7 +5,7 @@ import Navar from "./Navbar";
 import Links from "./Navbar/Links";
 import styles from "./Header.module.scss";
 import { useSelector } from "@redux/store";
-import { isAuthenticatedSelector } from "@redux/features/userSlice";
+import { isAuthenticatedSelector } from "@redux/selectors";
 import useNavbar from "@hooks/useNavbar";
 
 const Header = () => {
