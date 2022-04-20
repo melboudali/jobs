@@ -4,13 +4,8 @@ import { Provider } from "react-redux";
 import store, { useDispatch, useSelector } from "@redux/store";
 import { auth } from "@firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import {
-   isAuthenticatedSelector,
-   errorVariantSelector,
-   isLoadingSelector,
-   myAuth,
-   statusSelector,
-} from "@redux/features/userSlice";
+import { isAuthenticatedSelector, errorVariantSelector, statusSelector } from "@redux/selectors";
+import { myAuth } from "@redux/reducers";
 import "../styles/globals.scss";
 
 interface Props {
