@@ -1,7 +1,8 @@
 import { type ChangeEvent, type FormEvent, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "@redux/store";
-import { login, errorSelector, signUp, statusSelector, isAuthenticatedSelector, passwordReset } from "@redux/features/userSlice";
+import { login, signUp, passwordReset } from "@redux/reducers";
+import { errorSelector, statusSelector, isAuthenticatedSelector } from "@redux/selectors";
 import useForm from "@hooks/useForm";
 import FormValidation from "@utils/FormValidation";
 import type { FieldError, Fields, useFormValues, Variant } from "@globalTypes";
