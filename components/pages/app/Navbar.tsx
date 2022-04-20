@@ -4,7 +4,8 @@ import { ReactNode } from "react";
 import styles from "./Navbar.module.scss";
 import Image from "next/image";
 import { useSelector } from "@redux/store";
-import { signOutThunk, userSelector } from "@redux/features/userSlice";
+import { userSelector } from "@redux/selectors";
+import { signOutThunk } from "@redux/reducers";
 import { useDispatch } from "react-redux";
 
 interface Props {
