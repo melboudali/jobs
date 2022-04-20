@@ -6,7 +6,7 @@ import { parseISO, format } from "date-fns";
 import { ParsedUrlQuery } from "querystring";
 import { getAllPostIds, getPostData } from "@lib/blog";
 import type { Post as PostType } from "@globalTypes";
-import Layout from "@layouts/Layout";
+import Layout from "@layouts/Main.layout";
 import styles from "./blog.module.scss";
 
 interface Props {
