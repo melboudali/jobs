@@ -2,7 +2,7 @@ import { type ReactNode } from "react";
 import { AssertsShape } from "yup/lib/object";
 import type { RequiredStringSchema } from "yup/lib/string";
 import type { AnyObject } from "yup/lib/types";
-import { User } from "./react-redux";
+import { UserType } from "./react-redux";
 
 // Navbar
 export interface navbarProps {
@@ -77,7 +77,7 @@ export interface ValidateFuncResponse extends Response {
 }
 
 export interface SignUpAndLoginResponse extends Omit<Response, "ok"> {
-   nUser: User | null;
+   nUser: UserType | null;
 }
 
 export interface Codes {
