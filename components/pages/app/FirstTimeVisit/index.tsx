@@ -1,9 +1,21 @@
+import { isLoadingSelector, userSelector } from "@redux/selectors";
+import { updateUser } from "@redux/reducers";
+import { useDispatch, useSelector } from "@redux/store";
 import { useState } from "react";
+import Button from "../button";
 import Card from "./Card";
 import styles from "./index.module.scss";
 
 const FirstTimeVisit = () => {
    const [isFirstCardSelected, setIsFirstCardSelected] = useState(true);
+
+   const dispatch = useDispatch();
+   const user = useSelector(userSelector);
+   const isLoading = useSelector(isLoadingSelector);
+
+   const onClick = async () => {
+      await dispatch(updateUser({ ...user, type: isFirstCardSelected ? "seeker" : "poster" }));
+   };
 
    return (
       <>
@@ -35,6 +47,7 @@ const FirstTimeVisit = () => {
                }}
             />
          </div>
+         <Button text="continue" loading={isLoading} onClick={onClick} />
       </>
    );
 };
