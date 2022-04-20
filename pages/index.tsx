@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import type { GetStaticProps } from "next";
 import Head from "next/head";
-import Layout from "@layouts/Layout";
+import Layout from "@layouts/Main.layout";
 import Hero from "@components/pages/home/Hero";
 import Jobs from "@components/pages/home/Jobs";
 import Callouts from "@components/pages/home/Callouts";
