@@ -1,5 +1,5 @@
 import cls from "classnames";
-import styles from "./Navbar.module.scss";
+import styles from "./index.module.scss";
 
 interface Props {
    white: boolean;
