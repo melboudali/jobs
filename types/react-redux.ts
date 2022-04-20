@@ -1,6 +1,7 @@
 import type { Variant } from ".";
 
-export interface User {
+export interface UserType {
+   id: string;
    displayName: string;
    firstName: string;
    lastName: string;
@@ -11,7 +12,7 @@ export interface User {
 }
 
 interface Error {
-   variant: Variant | "auth";
+   variant: Variant | "auth" | "update";
    message: string;
 }
 
@@ -23,7 +24,7 @@ interface Error {
 // }
 
 export interface UserReducer {
-   value: User;
+   value: UserType;
    isAuthenticated: boolean;
    isFetching: boolean;
    status: "idle" | "loading" | "succeeded" | "failed";
