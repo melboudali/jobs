@@ -1,11 +1,11 @@
 @use "variables" as *;
 
 // layouts
-@mixin layout-main($margin-top) {
+@mixin layout-main($margin-top, $margin-bottom: 0) {
    --padding: 0 10px;
    padding: var(--padding);
    max-width: 1080px;
-   margin: $margin-top auto 0;
+   margin: $margin-top auto $margin-bottom;
    @media (min-width: 1080px) {
       --padding: 0;
    }
