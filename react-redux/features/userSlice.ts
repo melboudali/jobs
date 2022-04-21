@@ -1,7 +1,6 @@
 import { AsyncThunk, createSlice, isAnyOf } from "@reduxjs/toolkit";
 import type { UserReducer } from "@customTypes/react-redux";
-import { login, myAuth, passwordReset, signOutThunk, signUp } from "@redux/reducers";
-import { updateUser } from "./userSlice with selectors and reducers";
+import { login, myAuth, passwordReset, signOutThunk, signUp, updateUser } from "@redux/reducers";
 
 type GenericAsyncThunk = AsyncThunk<unknown, unknown, any>;
 type PendingAction = ReturnType<GenericAsyncThunk["pending"]>;
