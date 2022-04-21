@@ -10,8 +10,7 @@
    position: fixed;
    z-index: 3;
    height: var(--height);
-   width: var(--width);
-   max-width: 864px;
+   width: min(var(--width), 864px);
    top: 20px;
    left: 50%;
    transform: var(--transform);
