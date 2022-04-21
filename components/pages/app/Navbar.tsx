@@ -5,7 +5,7 @@ import styles from "./Navbar.module.scss";
 import Image from "next/image";
 import { useSelector } from "@redux/store";
 import { userSelector } from "@redux/selectors";
-import { signOutThunk } from "@redux/reducers";
+import { sign_out } from "@redux/reducers";
 import { useDispatch } from "react-redux";
 
 interface Props {
@@ -69,15 +69,15 @@ const Navbar = () => {
                         {children}
                      </CustomLink>
                   ))}
-                  <li>
+                  {/* <li>
                      <button
                         onClick={() => {
-                           dispatch(signOutThunk());
+                           dispatch(sign_out());
                         }}
                      >
                         logout
                      </button>
-                  </li>
+                  </li> */}
                </ul>
             </nav>
          </div>
@@ -91,7 +91,7 @@ const CustomLink = ({ children, name, href }: Props) => {
          <Link href={href}>
             <a>
                {children}
-               {name}
+               <span>{name}</span>
             </a>
          </Link>
       </li>
