@@ -20,7 +20,7 @@ function withAuth<T, U>(isPublic: U, Component: MyNextPage<T>) {
       }
 
       if (isAuth) {
-         router.push(route);
+         router.replace(route);
          return null;
       }
 
