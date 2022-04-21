@@ -1,5 +1,5 @@
 import { isLoadingSelector, userSelector } from "@redux/selectors";
-import { updateUser } from "@redux/reducers";
+import { update } from "@redux/reducers";
 import { useDispatch, useSelector } from "@redux/store";
 import { useState } from "react";
 import Button from "../Button";
@@ -14,11 +14,11 @@ const FirstTimeVisit = () => {
    const isLoading = useSelector(isLoadingSelector);
 
    const onClick = async () => {
-      await dispatch(updateUser({ ...user, type: isFirstCardSelected ? "seeker" : "poster" }));
+      await dispatch(update({ ...user, type: isFirstCardSelected ? "seeker" : "poster" }));
    };
 
    return (
-      <>
+      <section className={styles.root}>
          <h1 className={styles.header}>How are you planning to use JOBS?</h1>
          <p className={styles.sub}>We’ll streamline your application experience accordingly.</p>
          <div className={styles.cards}>
@@ -48,7 +48,7 @@ const FirstTimeVisit = () => {
             />
          </div>
          <Button text="continue" loading={isLoading} onClick={onClick} />
-      </>
+      </section>
    );
 };
 
