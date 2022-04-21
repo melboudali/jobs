@@ -2,10 +2,10 @@ import { type ReactNode, useEffect } from "react";
 import type { AppPropsWithLayout } from "next/app";
 import { Provider } from "react-redux";
 import store, { useDispatch, useSelector } from "@redux/store";
-import { auth } from "@firebase";
+import { auth as Auth } from "@firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { isAuthenticatedSelector, errorVariantSelector, statusSelector } from "@redux/selectors";
-import { myAuth } from "@redux/reducers";
+import { auth } from "@redux/reducers";
 import "../styles/globals.scss";
 
 interface Props {
@@ -20,8 +20,8 @@ const AppWrapper = ({ children }: Props) => {
 
    useEffect(() => {
       if (!authenticated && status === "idle" && errorVariant !== "auth") {
-         const unsubscribe = onAuthStateChanged(auth, async user => {
-            dispatch(myAuth(user));
+         const unsubscribe = onAuthStateChanged(Auth, async user => {
+            dispatch(auth(user));
          });
          return () => {
             unsubscribe();
