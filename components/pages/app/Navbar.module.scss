@@ -1,5 +1,6 @@
 @use "variables";
 @use "mixins";
+@use "breakpoints" as media;
 
 .root {
    background-color: variables.$color-white;
@@ -15,33 +16,47 @@
 }
 
 .links {
+   --gap: 10px;
    display: flex;
-   gap: 20px;
+   gap: var(--gap);
+   @include media.break(tablet) {
+      --gap: 20px;
+   }
 }
 
 .link {
+   // Link
+   --width: 30px;
+   --colorAndFill: #{variables.$color-primary};
+   // Text
+   --textDisplay: none;
    display: flex;
    align-items: center;
    svg path {
-      fill: variables.$color-primary;
+      fill: var(--colorAndFill);
    }
    a {
       display: inherit;
       align-items: inherit;
+      justify-content: center;
       gap: 5px;
       height: 30px;
-      font-size: 0.8125rem;
-      font-weight: 500;
-      line-height: 12px;
-      text-transform: capitalize;
+      width: var(--width);
+      span {
+         display: var(--textDisplay);
+         font-size: 0.8125rem;
+         font-weight: 500;
+         line-height: 12px;
+         text-transform: capitalize;
+         color: var(--colorAndFill);
+      }
    }
    &:hover {
-      a {
-         color: variables.$color-gray;
-      }
-      svg path {
-         fill: variables.$color-gray;
-      }
+      --colorAndFill: #{variables.$color-gray};
+   }
+   @include media.break(tablet) {
+      --textDisplay: block;
+      --width: fit-content;
    }
 }
 
