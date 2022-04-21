@@ -2,7 +2,7 @@ import { isLoadingSelector, userSelector } from "@redux/selectors";
 import { updateUser } from "@redux/reducers";
 import { useDispatch, useSelector } from "@redux/store";
 import { useState } from "react";
-import Button from "../button";
+import Button from "../Button";
 import Card from "./Card";
 import styles from "./index.module.scss";
 
