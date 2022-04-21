@@ -2,6 +2,7 @@ import type { Variant } from ".";
 
 export interface UserType {
    id: string;
+   userName: string;
    displayName: string;
    firstName: string;
    lastName: string;
