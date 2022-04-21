@@ -28,7 +28,8 @@
    display: flex;
    justify-content: center;
    gap: 30px;
-   margin: 100px auto;
+   margin: 0 auto;
+   padding: 100px 0;
    a {
       @include footer-p;
    }
