@@ -1,7 +1,7 @@
 import { type ChangeEvent, type FormEvent, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "@redux/store";
-import { login, signUp, passwordReset } from "@redux/reducers";
+import { login, sign_up, password_reset } from "@redux/reducers";
 import { errorSelector, statusSelector, isAuthenticatedSelector } from "@redux/selectors";
 import useForm from "@hooks/useForm";
 import FormValidation from "@utils/FormValidation";
@@ -86,7 +86,7 @@ const Form = ({ variant }: Props) => {
             // signup
             if (variant === "signup") {
                const res = await dispatch(
-                  signUp({ firstName: user.firstName!, lastName: user.lastName!, email: user.email, password: user.password! })
+                  sign_up({ firstName: user.firstName!, lastName: user.lastName!, email: user.email, password: user.password! })
                );
                fulfilled = res.meta.requestStatus === "fulfilled";
             }
@@ -94,11 +94,11 @@ const Form = ({ variant }: Props) => {
             // password reset
             if (variant === "password-rest") {
                console.log("password reset form");
-               await dispatch(passwordReset(user.email));
+               await dispatch(password_reset(user.email));
             }
 
             if (fulfilled) {
-               router.push("/app");
+               router.replace("/app");
                return null;
             }
 
