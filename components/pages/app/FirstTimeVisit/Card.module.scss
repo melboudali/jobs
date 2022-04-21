@@ -1,6 +1,14 @@
 @use "variables";
+@use "breakpoints" as media;
 
 .card {
+   // mobile
+   --width: 160px;
+   --padding: 30px 0;
+   --descriptionfontSize: 0.6875rem;
+   // check
+   --top: 10px;
+   --right: 10px;
    // card
    --borderColor: #{variables.$card-border-secondary};
    --opacity: 0.7;
@@ -11,12 +19,12 @@
    // check
    --bgColor: none;
    position: relative;
-   width: 230px;
+   width: var(--width);
    border-radius: 10px;
    background: variables.$color-white;
    opacity: var(--opacity);
    border: 2px solid var(--borderColor);
-   padding: 40px 0;
+   padding: var(--padding);
    cursor: pointer;
    box-shadow: var(--boxShadow);
    transform: translateY(var(--translate));
@@ -26,8 +34,8 @@
       position: absolute;
       width: 24px;
       height: 24px;
-      top: 12px;
-      right: 12px;
+      top: var(--top);
+      right: var(--right);
       border-radius: 50%;
       background-color: var(--bgColor);
       box-shadow: 0px 2px 6px variables.$grayBoxShadow;
@@ -42,7 +50,7 @@
       transition: inherit;
    }
    &__description {
-      font-size: 0.875rem;
+      font-size: var(--descriptionfontSize);
       line-height: 17px;
    }
    &:hover,
@@ -55,5 +63,14 @@
       --borderColor: #{variables.$color-secondary};
       --textColor: #{variables.$color-secondary};
       --bgColor: #{variables.$color-secondary};
+   }
+   @include media.break(tablet) {
+      // desktop
+      --width: 230px;
+      --padding: 40px 0;
+      --descriptionfontSize: 0.875rem;
+      // check
+      --top: 12px;
+      --right: 12px;
    }
 }
