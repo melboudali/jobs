@@ -1,4 +1,3 @@
-import { memo } from "react";
 import cls from "classnames";
 import styles from "./Button.module.scss";
 
@@ -18,4 +17,4 @@ const Button = ({ text, loading, onClick }: Props) => {
    );
 };
 
-export default memo(Button);
+export default Button;
