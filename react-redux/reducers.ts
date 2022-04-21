@@ -2,7 +2,7 @@ import { Codes, FieldError, useFormValues } from "@customTypes/index";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User } from "firebase/auth";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
-import Firestore, { auth } from "@firebase";
+import Firestore, { auth as Auth } from "@firebase";
 import FormSubmit from "@utils/FormSubmit";
 import { UserType } from "@customTypes/react-redux";
 
@@ -12,23 +12,24 @@ export const login = createAsyncThunk(
    "user/login",
    async ({ email, password }: Required<Pick<useFormValues, "email" | "password">>, thunkAPI) => {
       try {
-         const userCredential = await signInWithEmailAndPassword(auth, email, password);
+         const userCredential = await signInWithEmailAndPassword(Auth, email, password);
          const id = userCredential.user.uid;
          const querySnapshot = await getDoc(doc(Firestore, "users", id));
          return { ...querySnapshot.data(), id, date: new Date().toISOString() };
       } catch (error) {
          const { code } = error as FieldError;
-         const errorMessage = formSubmit.firebaseErrors(code as keyof Codes);
-         return thunkAPI.rejectWithValue(errorMessage);
+         const message = formSubmit.firebaseErrors(code as keyof Codes);
+         return thunkAPI.rejectWithValue({ variant: "login", message });
       }
    }
 );
 
-export const signUp = createAsyncThunk(
-   "user/signUp",
+export const sign_up = createAsyncThunk(
+   "user/sign_up",
    async ({ firstName, lastName, email, password }: Required<useFormValues>, thunkAPI) => {
       try {
          const newUser: Omit<UserType, "id"> = {
+            userName: firstName + lastName,
             displayName: firstName + " " + lastName,
             firstName: firstName,
             lastName: lastName,
@@ -38,27 +39,29 @@ export const signUp = createAsyncThunk(
             date: new Date().toISOString(),
          };
 
-         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+         const userCredential = await createUserWithEmailAndPassword(Auth, email, password);
          const id = userCredential.user.uid;
          await setDoc(doc(Firestore, "users", id), newUser);
          return { ...newUser, id };
       } catch (error) {
          const { code } = error as FieldError;
-         const errorMessage = formSubmit.firebaseErrors(code as keyof Codes);
-         return thunkAPI.rejectWithValue(errorMessage);
+         const message = formSubmit.firebaseErrors(code as keyof Codes);
+         return thunkAPI.rejectWithValue({ variant: "sign_up", message });
       }
    }
 );
 
-export const myAuth = createAsyncThunk("user/myAuth", async (user: User | null, thunkAPI) => {
+export const auth = createAsyncThunk("user/auth", async (user: User | null, thunkAPI) => {
    try {
       if (!user) {
          throw { code: "auth/user-not-found" } as FieldError;
       }
       const id = user.uid;
       const querySnapshot = await getDoc(doc(Firestore, "users", id));
+      console.log(querySnapshot.data());
       const value: UserType = {
          id,
+         userName: querySnapshot.data()?.userName,
          displayName: querySnapshot.data()?.displayName,
          firstName: querySnapshot.data()?.firstName,
          lastName: querySnapshot.data()?.lastName,
@@ -70,37 +73,37 @@ export const myAuth = createAsyncThunk("user/myAuth", async (user: User | null, 
       return value;
    } catch (error) {
       const { code } = error as FieldError;
-      const errorMessage = formSubmit.firebaseErrors(code as keyof Codes);
-      return thunkAPI.rejectWithValue(errorMessage);
+      const message = formSubmit.firebaseErrors(code as keyof Codes);
+      return thunkAPI.rejectWithValue({ variant: "auth", message });
    }
 });
 
-export const passwordReset = createAsyncThunk("user/psswordReset", async (email: string, thunkAPI) => {
+export const password_reset = createAsyncThunk("user/password_reset", async (email: string, thunkAPI) => {
    try {
       // await sendPasswordResetEmail(auth, email);
       console.log("email reseting fired for the email: ", email);
    } catch (error) {
       const { message } = error as FieldError;
-      return thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue({ variant: "password_rest", message });
    }
 });
 
-export const signOutThunk = createAsyncThunk("user/signOut", async (_, thunkAPI) => {
+export const sign_out = createAsyncThunk("user/sign_out", async (_, thunkAPI) => {
    try {
-      await signOut(auth);
+      await signOut(Auth);
    } catch (error) {
       const { message } = error as FieldError;
-      return thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue({ variant: "sign_out", message });
    }
 });
 
-export const updateUser = createAsyncThunk("user/update", async (user: UserType, thunkAPI) => {
+export const update = createAsyncThunk("user/update", async (user: UserType, thunkAPI) => {
    try {
       const newUser = doc(Firestore, "users", user.id);
       await updateDoc(newUser, { ...user });
       return user;
    } catch (error) {
       const { message } = error as FieldError;
-      return thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue({ variant: "update", message });
    }
 });
