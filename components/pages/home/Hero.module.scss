@@ -1,5 +1,6 @@
 @use "variables" as *;
 @use "mixins";
+@use "breakpoints" as media;
 
 .root {
    --height: 414px;
@@ -18,7 +19,7 @@
       background-color: $heroBg;
       z-index: 1;
    }
-   @media (min-width: 750px) {
+   @include media.break(tablet) {
       --height: 536px;
    }
 }
@@ -55,7 +56,7 @@
       line-height: var(--link-line-height);
       letter-spacing: -0.05em;
    }
-   @media (min-width: 750px) {
+   @include media.break(tablet) {
       --title-line-height: 58px;
       --title-font-size: 3rem;
       --title-margin-bottom: 50px;
