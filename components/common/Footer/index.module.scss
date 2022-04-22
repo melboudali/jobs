@@ -1,5 +1,6 @@
 @use "variables" as *;
 @use "mixins";
+@use "breakpoints" as media;
 
 // subscribe section
 .form {
@@ -48,7 +49,7 @@
          --bg: #{$color-primary};
       }
    }
-   @media (min-width: 750px) {
+   @include media.break(tablet) {
       --width: 60%;
       --padding: 0;
       max-width: 1080px;
@@ -84,7 +85,7 @@
          color: $color-white;
       }
    }
-   @media (min-width: 750px) {
+   @include media.break(tablet) {
       --padding: 0;
       --gtc: 12;
       --gap: 12px;
