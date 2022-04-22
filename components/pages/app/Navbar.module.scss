@@ -9,9 +9,7 @@
 
 .container {
    @include mixins.layout-main(0);
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
+   @include mixins.flex-between;
    height: inherit;
 }
 
@@ -54,7 +52,7 @@
    &:hover {
       --colorAndFill: #{variables.$color-gray};
    }
-   @include media.break(tablet) {
+   @include media.break(mobile) {
       --textDisplay: block;
       --width: fit-content;
    }
