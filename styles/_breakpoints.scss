@@ -1,4 +1,4 @@
-@mixin break($breakpoint) {
+@mixin break($breakpoint, $width: 0) {
    @if $breakpoint==desktop {
       @media only screen and (min-width: 1024px) {
          @content;
@@ -11,6 +11,11 @@
    }
    @if $breakpoint==mobile {
       @media only screen and (min-width: 480px) {
+         @content;
+      }
+   }
+   @if $breakpoint==custom {
+      @media only screen and (min-width: $width) {
          @content;
       }
    }
