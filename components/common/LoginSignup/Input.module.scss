@@ -1,4 +1,5 @@
 @use "variables" as *;
+@use "mixins";
 
 .root {
    position: relative;
@@ -6,9 +7,7 @@
 }
 
 .loginPasswordLabel {
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
+   @include mixins.flex-between;
    a {
       font-size: 0.75rem;
       line-height: 10px;
