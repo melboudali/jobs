@@ -1,5 +1,6 @@
 @use "variables" as *;
 @use "mixins";
+@use "breakpoints" as media;
 
 .testimonials {
    --gtc: 3;
@@ -13,10 +14,10 @@
    margin-top: 30px;
    height: var(--height);
    overflow: var(--overflow);
-   @media (min-width: 750px) {
+   @include media.break(tablet) {
       --gtc: 6;
    }
-   @media (min-width: 1070px) {
+   @include media.break(desktop) {
       --gtc: 12;
    }
    &__column {
