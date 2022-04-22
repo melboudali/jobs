@@ -15,8 +15,8 @@
 .redirection {
    @include mixins.loginSignCard(0 auto, 20px 0, 20px 0);
    p {
-      text-align: center;
       @include footer-p;
+      text-align: center;
       a {
          margin-left: 5px;
          color: $color-secondary;
@@ -28,7 +28,6 @@
    display: flex;
    justify-content: center;
    gap: 30px;
-   margin: 0 auto;
    padding: 100px 0;
    a {
       @include footer-p;
