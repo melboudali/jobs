@@ -1,59 +1,60 @@
 @use "variables" as *;
 @use "mixins";
+@use "breakpoints" as media;
 
 .title__wrapper {
-	@include mixins.title-wrapper;
+   @include mixins.flex-between;
 }
 
 .moerePosts {
-	@include mixins.shared-button-style;
-	font-size: 0.875rem;
-	font-weight: 500;
-	line-height: 10px;
-	text-transform: capitalize;
-	color: $color-primary;
+   @include mixins.shared-button-style;
+   font-size: 0.875rem;
+   font-weight: 500;
+   line-height: 10px;
+   text-transform: capitalize;
+   color: $color-primary;
 }
 
 .posts {
-	--gap: 30px;
-	--gtc: 4;
-	display: grid;
-	grid-template-columns: repeat(var(--gtc), 1fr);
-	gap: var(--gap);
-	margin-top: 30px;
-	@media (min-width: 600px) {
-		--gap: 12px;
-		--gtc: 8;
-	}
-	@media (min-width: 800px) {
-		--gtc: 12;
-	}
+   --gap: 30px;
+   --gtc: 4;
+   display: grid;
+   grid-template-columns: repeat(var(--gtc), 1fr);
+   gap: var(--gap);
+   margin-top: 30px;
+   @include media.break(custom, 600px) {
+      --gap: 12px;
+      --gtc: 8;
+   }
+   @include media.break(custom, 800px) {
+      --gtc: 12;
+   }
 }
 
 .post {
-	@include mixins.card;
-	grid-column: span 4;
-	padding: 9px;
-	line-height: 16px;
-	width: 100%;
-	&__image {
-		--height: 250px;
-		position: relative;
-		height: var(--height);
-		@media (min-width: 600px) {
-			--height: 170px;
-		}
-	}
-	h3 {
-		margin: 20px 0 10px;
-		font-size: 0.7rem;
-		font-weight: 700;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
-	p {
-		font-size: 0.75rem;
-		color: $color-gray;
-	}
+   @include mixins.card;
+   grid-column: span 4;
+   padding: 9px;
+   line-height: 16px;
+   width: 100%;
+   &__image {
+      --height: 250px;
+      position: relative;
+      height: var(--height);
+      @include media.break(custom, 600px) {
+         --height: 170px;
+      }
+   }
+   h3 {
+      margin: 20px 0 10px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+   }
+   p {
+      font-size: 0.75rem;
+      color: $color-gray;
+   }
 }
