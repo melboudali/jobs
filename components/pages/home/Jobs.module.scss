@@ -2,41 +2,40 @@
 @use "mixins";
 
 .title {
-	@include mixins.title-wrapper;
+   @include mixins.flex-between;
 }
 
 .buttons {
-	display: flex;
-	gap: 10px;
+   display: flex;
+   gap: 10px;
 }
 
 .button {
-	@include mixins.shared-button-style;
-
-	&:focus {
-		border-color: $logoLightGray;
-	}
-	svg path {
-		stroke: $color-primary;
-	}
-	&-disabled {
-		svg path {
-			stroke: $logoLightGray;
-		}
-		&:focus {
-			border-color: $borderGrayColor;
-		}
-	}
+   @include mixins.shared-button-style;
+   &:focus {
+      border-color: $logoLightGray;
+   }
+   svg path {
+      stroke: $color-primary;
+   }
+   &-disabled {
+      svg path {
+         stroke: $logoLightGray;
+      }
+      &:focus {
+         border-color: $borderGrayColor;
+      }
+   }
 }
 
 .cards {
-	&__slider {
-		overflow-x: hidden;
-	}
-	display: flex;
-	gap: 12px;
-	width: fit-content;
-	margin-top: 30px;
-	padding: 10px 0;
-	transition: transform 500ms cubic-bezier(0.215, 0.61, 0.355, 1);
+   display: flex;
+   gap: 12px;
+   width: fit-content;
+   margin-top: 30px;
+   padding: 10px 0;
+   transition: transform 500ms cubic-bezier(0.215, 0.61, 0.355, 1);
+   &__slider {
+      overflow-x: hidden;
+   }
 }
