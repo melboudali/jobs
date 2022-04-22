@@ -1,46 +1,48 @@
+@use "breakpoints" as media;
+
 .image {
-	--height: 414px;
-	position: relative;
-	width: 100%;
-	height: var(--height);
-	border-radius: 4px;
-	margin-bottom: 50px;
-	@media (min-width: 750px) {
-		--height: 536px;
-	}
+   --height: 414px;
+   position: relative;
+   width: 100%;
+   height: var(--height);
+   border-radius: 4px;
+   margin-bottom: 50px;
+   @include media.break(tablet) {
+      --height: 536px;
+   }
 }
 
 .title {
-	font-size: 2.5rem;
-	font-weight: 800;
-	line-height: 58px;
-	text-transform: capitalize;
+   font-size: 2.5rem;
+   font-weight: 800;
+   line-height: 58px;
+   text-transform: capitalize;
 }
 
 .time {
-	margin-bottom: 50px;
-	font-weight: 700;
+   margin-bottom: 50px;
+   font-weight: 700;
 }
 
 .content {
-	h1,
-	h2,
-	h3,
-	h4,
-	h5 {
-		margin: 15px 0;
-	}
-	p {
-		margin: 12px 0;
-		line-height: 1.5;
-	}
-	img {
-		--width: 100%;
-		display: block;
-		margin: 0 auto;
-		width: var(--width);
-		@media (min-width: 750px) {
-			--width: fit-content;
-		}
-	}
+   h1,
+   h2,
+   h3,
+   h4,
+   h5 {
+      margin: 15px 0;
+   }
+   p {
+      margin: 12px 0;
+      line-height: 1.5;
+   }
+   img {
+      --width: 100%;
+      display: block;
+      margin: 0 auto;
+      width: var(--width);
+      @include media.break(tablet) {
+         --width: fit-content;
+      }
+   }
 }
